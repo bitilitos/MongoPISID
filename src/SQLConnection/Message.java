@@ -59,9 +59,7 @@ public class Message implements Serializable {
     public String toString () {
         String result = "Message ID: " + id + "\n" + "Type: " + messageType + "\n";
         if (messageType == MessageType.SENSOR) {
-            result += "SensorType: " + sensorType + "\n";
-            if (sensorType.equals("mov"))
-                result += sensorReading.toString();
+            result += "SensorType: " + sensorType + "\n" +  sensorReading.toString();
         }
         else { result  +=    "Content: " + getContent(); }
         return result;
