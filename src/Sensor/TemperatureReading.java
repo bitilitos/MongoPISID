@@ -53,6 +53,14 @@ public class TemperatureReading extends SensorReading implements Serializable {
         return result;
     }
 
+    public double getReadingValue() {
+        return readingValue;
+    }
+
+    public int getSensorId() {
+        return sensorId;
+    }
+
     @Override
     public String toString() {
         String result = "ReadingID: " + super.getId() + " ; Time: " + super.getTimestamp() + " ;  " +
