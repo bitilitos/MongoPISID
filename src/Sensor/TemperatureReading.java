@@ -75,11 +75,11 @@ public class TemperatureReading extends SensorReading implements Serializable {
 
     public DBObject getDBObject() {
         Document doc = new Document();
-        doc.append("Hora", this.getTimestamp().toString());
-        doc.append("Leitura", this.readingValue);
+        doc.append("Hour", this.getTimestamp().toString());
+        doc.append("Measure", this.readingValue);
         doc.append("Sensor", this.sensorId);
-        doc.append("LeituraCorrecta", super.isReadingGood());
-        doc.append("Erro", super.getError());
+        doc.append("isValid", super.isReadingGood());
+        doc.append("Error", super.getError());
         return BasicDBObject.parse(doc.toJson());
 
     }

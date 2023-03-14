@@ -119,7 +119,7 @@ public class CloudToMongo implements MqttCallback {
         queueToMongo.start();
     }
 
-    private synchronized void insertToQueue (DBCollection mongoCol, String topic, DBObject json) {
+    private void insertToQueue (DBCollection mongoCol, String topic, DBObject json) {
 
         String sensorType = topics.get(topic);
         SensorReading sensorReading = createSensorReadingObject(mongoCol, sensorType,json);
