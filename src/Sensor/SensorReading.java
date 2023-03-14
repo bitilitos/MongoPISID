@@ -1,17 +1,25 @@
 package Sensor;
 
+import com.mongodb.DBCollection;
+import org.bson.codecs.pojo.annotations.BsonProperty;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class SensorReading implements Serializable {
 
+
     private boolean readingGood = true;
+
     private String error = "";
-    private String id;
+
     private Timestamp timestamp;
 
-    public SensorReading(String id, String timestampString ) {
-        this.id = id;
+
+    private DBCollection mongoCol;
+
+    public SensorReading(DBCollection mongoCol, String timestampString ) {
+        this.mongoCol = mongoCol;
         Timestamp time;
 
         if ((time = parseTimestamp(timestampString)) == null) {
@@ -49,11 +57,15 @@ public class SensorReading implements Serializable {
         this.error = error;
     }
 
-    public String getId() {
-        return id;
-    }
+
 
     public Timestamp getTimestamp() {
         return timestamp;
     }
+
+    public DBCollection getMongoCol() {
+        return mongoCol;
+    }
+
+
 }

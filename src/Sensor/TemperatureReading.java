@@ -1,16 +1,28 @@
 package Sensor;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import netscape.javascript.JSObject;
+import org.bson.Document;
+import org.bson.codecs.pojo.annotations.BsonProperty;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class TemperatureReading extends SensorReading implements Serializable {
 
+    @BsonProperty(value = "leitura")
     double readingValue;
+
+    @BsonProperty(value = "_id")
     int sensorId;
 
 
-    public TemperatureReading(String id, String timestampString, String readingString, String sensorIdString) {
-        super(id, timestampString);
+
+
+    public TemperatureReading(DBCollection mongoCol, String timestampString, String readingString, String sensorIdString) {
+        super(mongoCol, timestampString);
 
         Double value;
         int sensor;
@@ -61,9 +73,22 @@ public class TemperatureReading extends SensorReading implements Serializable {
         return sensorId;
     }
 
+    public DBObject getDBObject() {
+        Document doc = new Document();
+        doc.append("Hora", this.getTimestamp().toString());
+        doc.append("Leitura", this.readingValue);
+        doc.append("Sensor", this.sensorId);
+        doc.append("LeituraCorrecta", super.isReadingGood());
+        doc.append("Erro", super.getError());
+        return BasicDBObject.parse(doc.toJson());
+
+    }
+
+
+
     @Override
     public String toString() {
-        String result = "ReadingID: " + super.getId() + " ; Time: " + super.getTimestamp() + " ;  " +
+        String result = "Time: " + super.getTimestamp() + " ;  " +
                 "Sensor: " + sensorId + "; Temp: " + readingValue + "; Valid Reading: " + super.isReadingGood();
 
         if (super.isReadingGood() == false) result += " ; Error: " + super.getError();

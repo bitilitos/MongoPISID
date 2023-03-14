@@ -1,13 +1,12 @@
 package Mongo;
 
-import SQLConnection.Message;
-import SQLConnection.MessageType;
 import Sensor.MoveReading;
 import Sensor.SensorReading;
 import Sensor.TemperatureReading;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
-import org.bson.types.ObjectId;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
 import org.eclipse.paho.client.mqttv3.*;
 
 import javax.swing.*;
@@ -16,22 +15,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-public class CloudToMongo  extends Thread implements MqttCallback {
+
+public class CloudToMongo implements MqttCallback {
 
     MqttClient mqttclient;
 
 
 
-    static BlockingQueue <Message> messagesToSendQueue = new LinkedBlockingQueue<Message>();
+    static BlockingQueue <SensorReading> readingsForMongo = new LinkedBlockingQueue<SensorReading>();
 
     static MongoClient mongoClient;
+
 
     static DB db;
     private DBCollection mongocol;
@@ -47,6 +51,7 @@ public class CloudToMongo  extends Thread implements MqttCallback {
     static String mongo_authentication = new String();
     static JTextArea documentLabel = new JTextArea("\n");
     static Map<String, String> topics = new HashMap<>();
+
 
 
 
@@ -71,7 +76,7 @@ public class CloudToMongo  extends Thread implements MqttCallback {
         });
     }
 
-    public void run() {
+    public static void initiate() {
 
         createWindow();
 
@@ -104,16 +109,22 @@ public class CloudToMongo  extends Thread implements MqttCallback {
                     CloudToMongo cloudToMongo = new CloudToMongo();
                     cloudToMongo.connectCloud(topic.getKey());
                     cloudToMongo.connectMongo(topic.getValue());
+
                 }
             };
             thread.run();
         }
+
+        QueueToMongo queueToMongo = new QueueToMongo(CloudToMongo.getReadingsForMongo());
+        queueToMongo.start();
     }
 
-    private synchronized void insertToQueue (String id, String topic, DBObject json) {
+    private synchronized void insertToQueue (DBCollection mongoCol, String topic, DBObject json) {
 
         String sensorType = topics.get(topic);
-        messagesToSendQueue.add(new Message(id, MessageType.SENSOR, sensorType, createSensorReadingObject(sensorType,json)));
+        SensorReading sensorReading = createSensorReadingObject(mongoCol, sensorType,json);
+        System.out.println(sensorReading);
+        readingsForMongo.add(sensorReading);
     }
 
 
@@ -149,7 +160,11 @@ public class CloudToMongo  extends Thread implements MqttCallback {
 
     public void connectMongo(String collection) {
         String mongoURI = new String();
+
         mongoURI = "mongodb://";
+
+
+
         if (mongo_authentication.equals("true")) mongoURI = mongoURI + mongo_user + ":" + mongo_password + "@";
         mongoURI = mongoURI + mongo_address;
         if (!mongo_replica.equals("false"))
@@ -157,7 +172,7 @@ public class CloudToMongo  extends Thread implements MqttCallback {
             else mongoURI = mongoURI + "/?replicaSet=" + mongo_replica;
         else
         if (mongo_authentication.equals("true")) mongoURI = mongoURI  + "/?authSource=admin";
-        MongoClient mongoClient = new MongoClient(new MongoClientURI(mongoURI));
+        MongoClient mongoClient = new MongoClient((new MongoClientURI(mongoURI)));
         db = mongoClient.getDB(mongo_database);
         mongocol = db.getCollection(collection);
         if(mongocol!=null){
@@ -170,29 +185,29 @@ public class CloudToMongo  extends Thread implements MqttCallback {
     public void messageArrived(String topic, MqttMessage c)
             throws Exception {
         try {
-            DBObject document_json;
-            document_json = (DBObject) JSON.parse(c.toString());
-            System.out.println(document_json);
-            mongocol.insert(document_json);
-            ObjectId id = (ObjectId) document_json.get("_id");
-            insertToQueue(id.toString(), topic, document_json);
-            //Apresentar Document na Window
+              DBObject document_json;
+              document_json = (DBObject) JSON.parse(c.toString());
+
             documentLabel.append(c.toString()+"\n");
+            System.out.println(document_json);
+            insertToQueue(mongocol, topic, document_json);
+
+
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    private SensorReading createSensorReadingObject (String sensorType, DBObject json) {
+    private SensorReading createSensorReadingObject (DBCollection mongocol, String sensorType, DBObject json) {
 
         SensorReading sensorReading;
 
         if (sensorType.equals("mov")) {
-            sensorReading = new MoveReading(json.get("_id").toString(), json.get("Hora").toString(),
+            sensorReading = new MoveReading(mongocol, json.get("Hora").toString(),
                     json.get("SalaEntrada").toString(), json.get("SalaSaida").toString());
         } else {
-            sensorReading = new TemperatureReading(json.get("_id").toString(), json.get("Hora").toString(),
+            sensorReading = new TemperatureReading(mongocol, json.get("Hora").toString(),
                     json.get("Leitura").toString(), json.get("Sensor").toString());
         }
         return sensorReading;
@@ -201,8 +216,8 @@ public class CloudToMongo  extends Thread implements MqttCallback {
     }
 
 
-    public static BlockingQueue<Message> getMessagesToSendQueue() {
-        return messagesToSendQueue;
+    public static BlockingQueue<SensorReading> getReadingsForMongo() {
+        return readingsForMongo;
     }
 
 
@@ -212,6 +227,11 @@ public class CloudToMongo  extends Thread implements MqttCallback {
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken token) {
+
+    }
+
+    public static void main(String[] args) {
+        CloudToMongo.initiate();
 
     }
 }
