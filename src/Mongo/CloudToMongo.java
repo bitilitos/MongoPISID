@@ -213,7 +213,6 @@ public class CloudToMongo implements MqttCallback {
 
     }
 
-
     public static BlockingQueue<SensorReading> getReadingsForMongo() {
         return readingsForMongo;
     }

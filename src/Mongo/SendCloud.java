@@ -52,7 +52,6 @@ public class SendCloud  implements MqttCallback  {
     }
 
 
-
     public static void main(String[] args) {
 
         try {
