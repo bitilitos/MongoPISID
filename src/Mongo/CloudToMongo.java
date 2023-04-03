@@ -43,7 +43,7 @@ public class CloudToMongo implements MqttCallback {
     static String mongo_password = new String();
     static String mongo_address = new String();
     static String cloud_server = new String();
-    String cloud_topic = new String();
+    static String cloud_topic = new String();
     static String mongo_host = new String();
     static String mongo_replica = new String();
     static String mongo_database = new String();
@@ -162,8 +162,6 @@ public class CloudToMongo implements MqttCallback {
         String mongoURI = new String();
 
         mongoURI = "mongodb://";
-
-
 
         if (mongo_authentication.equals("true")) mongoURI = mongoURI + mongo_user + ":" + mongo_password + "@";
         mongoURI = mongoURI + mongo_address;
