@@ -1,34 +1,50 @@
 package Sensor;
 
+import Mongo.CloudToMongo;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
+
 import com.mongodb.DBObject;
-import netscape.javascript.JSObject;
 import org.bson.Document;
-import org.bson.codecs.pojo.annotations.BsonProperty;
 
-import java.io.Serializable;
 
-public class MoveReading extends SensorReading implements Serializable {
+public class MoveReading extends SensorReading {
 
-    @BsonProperty(value = "SalaEntrada")
-    int inRoom;
-    @BsonProperty (value = "SalaSaida")
-    int outRoom;
+
+    int entranceRoom;
+
+    int exitRoom;
 
 
 
-    public MoveReading(DBCollection mongoCol, String timestampString, String inRoomString, String outRoomString) {
-        super(mongoCol, timestampString);
 
-        if ((this.inRoom = parseRoom(inRoomString)) == -1) {
+    public MoveReading(String timestampString, String entranceRoomString, String exitRoomString) {
+        super(timestampString);
+
+        if ((this.entranceRoom = parseRoom(entranceRoomString)) == -1) {
             super.setReadingGood(false);
-            super.setError(super.getError() + " InRoom wasn't parsable. ");
+            super.setError(super.getError() + " EntranceRoom wasn't parsable. ");
         }
 
-        if ((this.outRoom = parseRoom(outRoomString)) == -1) {
+        if ((this.exitRoom = parseRoom(exitRoomString)) == -1) {
             super.setReadingGood(false);
-            super.setError(super.getError() + " outRoom wasn't parsable. ");
+            super.setError(super.getError() + " ExitRoom wasn't parsable. ");
+        }
+
+        if((this.entranceRoom == this.exitRoom)) {
+            super.setReadingGood(false);
+            if (this.entranceRoom == 0 && timestampString.equals("2000-01-01 00:00:00")) {
+                if (CloudToMongo.getExperienceBeginning() != null)
+                    super.setError(super.getError() + "INFO:0 - Experience Start Message. ");
+                else {
+                    CloudToMongo.endExperience(SensorReading.getLastTimeStamp(),"New experience started.");
+                    super.setError(super.getError() + "INFO:1 - New Experience Start Message while experience running, +" +
+                            "stopped collecting data. ");
+                }
+
+            }
+            else
+                super.setError(super.getError() + " Corridor can't start and end in the same room. ");
+
         }
 
     }
@@ -47,8 +63,8 @@ public class MoveReading extends SensorReading implements Serializable {
     public DBObject getDBObject() {
         Document doc = new Document();
         doc.append("Hour", this.getTimestamp().toString());
-        doc.append("EntranceRoom", this.inRoom);
-        doc.append("ExitRoom", this.outRoom);
+        doc.append("EntranceRoom", this.entranceRoom);
+        doc.append("ExitRoom", this.exitRoom);
         doc.append("isValid", super.isReadingGood());
         doc.append("Error", super.getError());
         return BasicDBObject.parse(doc.toJson());
@@ -58,11 +74,13 @@ public class MoveReading extends SensorReading implements Serializable {
     @Override
     public String toString() {
         String result = "Time: " + super.getTimestamp() + " ;  " +
-                "InRoom: " + inRoom + "; OutRoom: " + outRoom + "; Valid Reading: " + super.isReadingGood();
+                "EntranceRoom: " + entranceRoom + "; ExitRoom: " + exitRoom + "; isValid: " + super.isReadingGood();
 
         if (super.isReadingGood() == false) result += " ; Error: " + super.getError();
         return result;
     }
+
+
 
 
 

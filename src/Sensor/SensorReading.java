@@ -1,12 +1,11 @@
 package Sensor;
 
-import com.mongodb.DBCollection;
-import org.bson.codecs.pojo.annotations.BsonProperty;
+import Mongo.CloudToMongo;
 
-import java.io.Serializable;
+import com.mongodb.DBObject;
 import java.sql.Timestamp;
 
-public class SensorReading implements Serializable {
+public abstract class SensorReading {
 
 
     private boolean readingGood = true;
@@ -14,20 +13,31 @@ public class SensorReading implements Serializable {
     private String error = "";
 
     private Timestamp timestamp;
+    private static Timestamp lastTimeStamp;
 
+    public SensorReading(String timestampString ) {
 
-    private DBCollection mongoCol;
-
-    public SensorReading(DBCollection mongoCol, String timestampString ) {
-        this.mongoCol = mongoCol;
         Timestamp time;
-
-        if ((time = parseTimestamp(timestampString)) == null) {
+        time = parseTimestamp(timestampString);
+        if (time == null) {
             this.timestamp = new Timestamp(0,0,0,0,0,0,0);
-        } else {
-            this.timestamp = time;
         }
+        else if (CloudToMongo.getExperienceBeginning() != null) {
+                if (time.before(CloudToMongo.getExperienceBeginning())) {
+                    this.setReadingGood(false);
+                    this.setError("This reading is from a past experience. ");
+                    this.timestamp = time;
 
+                } else if (time.after(CloudToMongo.getExperienceLimitTimestamp()))  { //10 Minutes
+                    this.setReadingGood(false);
+                    this.setError("This reading will be from a future experience. ");
+                    this.timestamp = time;
+                }
+                else {
+                    this.timestamp = time;
+                    lastTimeStamp = time;
+                }
+        }
     }
 
     private Timestamp parseTimestamp (String timestampString) {
@@ -63,9 +73,10 @@ public class SensorReading implements Serializable {
         return timestamp;
     }
 
-    public DBCollection getMongoCol() {
-        return mongoCol;
+
+    public abstract DBObject getDBObject();
+
+    public static Timestamp getLastTimeStamp() {
+        return lastTimeStamp;
     }
-
-
 }

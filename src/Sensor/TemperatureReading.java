@@ -8,21 +8,25 @@ import org.bson.Document;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
-public class TemperatureReading extends SensorReading implements Serializable {
+public class TemperatureReading extends SensorReading {
 
-    @BsonProperty(value = "leitura")
-    double readingValue;
+    private static double standardDeviation = 1;
+    private static double delta = 0;
+    private static double variance = 0;
+    private static double mean;
+    private static int numberOfReadings;
 
-    @BsonProperty(value = "_id")
+    private static final int THRESHOLD = 1;
+    private double readingValue;
     int sensorId;
 
 
-
-
-    public TemperatureReading(DBCollection mongoCol, String timestampString, String readingString, String sensorIdString) {
-        super(mongoCol, timestampString);
+    public TemperatureReading(String timestampString, String readingString, String sensorIdString) {
+        super( timestampString);
 
         Double value;
         int sensor;
@@ -33,7 +37,13 @@ public class TemperatureReading extends SensorReading implements Serializable {
             super.setReadingGood(false);
             super.setError(super.getError() + "Reading value wasn't parsable. ");
             this.readingValue = -273.15;
-        } else {readingValue = value; }
+        } else {
+            readingValue = value;
+            updateOutliersAlgorithm(readingValue);
+
+
+            standardDeviation = getMean()*0.1;
+        }
 
         // Try to parse the sensorId
         if ((sensor = parseSensorId(sensorIdString)) == -1) {
@@ -41,6 +51,24 @@ public class TemperatureReading extends SensorReading implements Serializable {
             super.setError(super.getError() + "SensorId wasn't parsable. ");
         }
         sensorId = sensor;
+    }
+
+    private static void updateOutliersAlgorithm(double readingValue) {
+        numberOfReadings++;
+        updateDelta(readingValue);
+        updateMean();
+        updateVariance(readingValue);
+        updateStandardDeviation();
+    }
+
+    private static void updateDelta (double readingValue) {mean = readingValue-getMean(); }
+    private static void updateMean () { mean += (getMean() / numberOfReadings);}
+    private static void updateVariance (double readingValue) {  variance += delta * (readingValue - mean);  }
+
+    private static void updateStandardDeviation() { standardDeviation = Math.sqrt(variance/numberOfReadings);}
+
+    private static double getZScore(Double readingValue) {
+        return Math.abs(readingValue - mean)/(standardDeviation);
     }
 
     private Double parseReadingValue (String readingValue) {
@@ -54,6 +82,8 @@ public class TemperatureReading extends SensorReading implements Serializable {
         return result;
     }
 
+
+
     private int parseSensorId (String sensorIdString) {
         int result;
         try{
@@ -63,6 +93,10 @@ public class TemperatureReading extends SensorReading implements Serializable {
         }
 
         return result;
+    }
+
+    public static double getMean() {
+        return mean;
     }
 
     public double getReadingValue() {
@@ -81,7 +115,6 @@ public class TemperatureReading extends SensorReading implements Serializable {
         doc.append("isValid", super.isReadingGood());
         doc.append("Error", super.getError());
         return BasicDBObject.parse(doc.toJson());
-
     }
 
 
