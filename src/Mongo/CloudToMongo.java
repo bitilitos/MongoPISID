@@ -183,10 +183,7 @@ public class CloudToMongo implements MqttCallback {
         try {
             documentLabel.insert(c.toString()+"\n", 0);
 
-            // IMPORTANT - IMPORTANT - IMPORTANT - IMPORTANT - IMPORTANT - IMPORTANT
-            // **********************************************************************
-            // ** change to TRUE when we can get info that experience has to start **
-            // **********************************************************************
+
             if (isWaitingForExperienceStart) {
                 DBObject json = getDBObjectFromReading(c.toString());
                 if (json != null) {
@@ -204,10 +201,9 @@ public class CloudToMongo implements MqttCallback {
                 }
             }
             if (experienceBeginning != null)  {
-                insertToQueue(mongocol, topic, c.toString());
                 DBObject json = getDBObjectFromReading(c.toString());
                 isReadingExperienceStart(json);
-
+                insertToQueue(mongocol, topic, c.toString());
             }
 
         } catch (Exception e) {
@@ -244,8 +240,9 @@ public class CloudToMongo implements MqttCallback {
                 isWaitingForExperienceStart = false;
                 System.out.println("IMPORTANT -> EXPERIENCE STARTED!!");
             }else if (experienceBeginning != null) {
-                System.out.println("IMPORTANT -> NEW EXPERIENCE STARTED, MUST END THIS ONE!!");
                 experienceMustEnd = true;
+                System.out.println("IMPORTANT -> NEW EXPERIENCE STARTED, MUST END THIS ONE!!");
+
             }
             return true;
 
@@ -269,6 +266,7 @@ public class CloudToMongo implements MqttCallback {
         experienceBeginning = null;
         isWaitingForExperienceStart = true;
         hasStartReadingArrived = false;
+        experienceMustEnd = false;
 
 
 
