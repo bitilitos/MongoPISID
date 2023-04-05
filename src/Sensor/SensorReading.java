@@ -23,7 +23,25 @@ public abstract class SensorReading {
             this.timestamp = new Timestamp(0,0,0,0,0,0,0);
         }
         else if (CloudToMongo.getExperienceBeginning() != null) {
-                if (time.before(CloudToMongo.getExperienceBeginning())) {
+                if (timestampString.equals("2000-01-01 00:00:00") && !CloudToMongo.isExperienceMustEnd()) {
+                    if (this instanceof MoveReading) {
+                        MoveReading moveReading = (MoveReading) this;
+                        if (moveReading.entranceRoom == 0 && moveReading.exitRoom == 0) {
+                            timestamp = time;
+                        }
+                    }
+                }
+
+                else if (timestampString.equals("2000-01-01 00:00:00")) {
+                    if (this instanceof MoveReading) {
+                        MoveReading moveReading = (MoveReading) this;
+                        if (moveReading.entranceRoom == 0 && moveReading.exitRoom == 0 && lastTimeStamp != null) {
+                            timestamp = lastTimeStamp;
+                            CloudToMongo.endExperience(lastTimeStamp, "A new experience has started. ");
+                        }
+                    }
+                }
+                else if (time.before(CloudToMongo.getExperienceBeginning())) {
                     this.setReadingGood(false);
                     this.setError("This reading is from a past experience. ");
                     this.timestamp = time;

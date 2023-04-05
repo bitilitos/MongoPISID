@@ -47,6 +47,8 @@ public class CloudToMongo implements MqttCallback {
     // Flag -> Message indicating experience start has arrived
     private static boolean hasStartReadingArrived = false;
 
+    private static boolean experienceMustEnd = false;
+
 
     private static Timestamp experienceBeginning = null;
 
@@ -204,6 +206,7 @@ public class CloudToMongo implements MqttCallback {
             if (experienceBeginning != null)  {
                 insertToQueue(mongocol, topic, c.toString());
                 DBObject json = getDBObjectFromReading(c.toString());
+                isReadingExperienceStart(json);
 
             }
 
@@ -242,6 +245,7 @@ public class CloudToMongo implements MqttCallback {
                 System.out.println("IMPORTANT -> EXPERIENCE STARTED!!");
             }else if (experienceBeginning != null) {
                 System.out.println("IMPORTANT -> NEW EXPERIENCE STARTED, MUST END THIS ONE!!");
+                experienceMustEnd = true;
             }
             return true;
 
@@ -253,6 +257,7 @@ public class CloudToMongo implements MqttCallback {
         experienceBeginning = Timestamp.valueOf(timestamp);
         System.out.println("IMPORTANT -> Experience started at: " + timestamp);
         System.out.println("IMPORTANT -> Experience must end until: " + getExperienceLimitTimestamp());
+        experienceMustEnd = false;
     }
 
     public static void endExperience(Timestamp timestamp, String motive) {
@@ -288,5 +293,8 @@ public class CloudToMongo implements MqttCallback {
         return new Timestamp(experienceBeginning.getTime() + TimeUnit.MINUTES.toMillis(10));
     }
 
+    public static boolean isExperienceMustEnd() {
+        return experienceMustEnd;
+    }
 }
 

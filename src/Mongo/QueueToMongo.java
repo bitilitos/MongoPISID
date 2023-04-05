@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 public class QueueToMongo extends Thread{
     private BlockingQueue<String> readingsForMongo;
@@ -30,7 +31,12 @@ public class QueueToMongo extends Thread{
                 String[] tempValues = parseSensorReadingToArray(reading);
                 SensorReading sensorReading = null;
                 if (mongocol.getName().equals("temp")) {
+
+                    if (!checkIfTemperatureReadingIsToWrite(new TemperatureReading(tempValues[0], tempValues[1], tempValues[2]))){
+                        return;
+                    }
                     sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2]);
+
                 }
                 else {
                     sensorReading = new MoveReading(tempValues[0], tempValues[1], tempValues[2]);
@@ -42,9 +48,6 @@ public class QueueToMongo extends Thread{
     }
 
 
-    private boolean isReadingExperienceStart(String[] tempValues) {
-         return (tempValues[0].equals("2000-01-01 00:00:00") && tempValues[1].equals("0") && tempValues[2].equals("0"));
-    }
 
     // returns hora, leitura, sensor
     // returns hora, SalaEntrada, SalaSaida
@@ -66,15 +69,23 @@ public class QueueToMongo extends Thread{
 
     private boolean checkIfTemperatureReadingIsToWrite(TemperatureReading temperatureReading) {
          //if no reading has been sent
-         if (!lastTemperatureInMongo.containsKey(temperatureReading.getSensorId())) return true;
+         if (!lastTemperatureInMongo.containsKey(temperatureReading.getSensorId())) {
+             lastTemperatureInMongo.put(temperatureReading.getSensorId(), temperatureReading);
+             return true;
+         }
 
          double lastTempValue = lastTemperatureInMongo.get(temperatureReading.getSensorId()).getReadingValue();
          // if reading is different
-         if (lastTempValue != temperatureReading.getReadingValue()) return true;
+         if (lastTempValue != temperatureReading.getReadingValue()) {
+             lastTemperatureInMongo.put(temperatureReading.getSensorId(), temperatureReading);
+             return true;
+         }
 
          //if reading is the same but last reading was over 5sec
          Timestamp lastTempTime = lastTemperatureInMongo.get(temperatureReading.getSensorId()).getTimestamp();
-         if (lastTempTime.compareTo(temperatureReading.getTimestamp()) > 5000) return true;
+         if (temperatureReading.getTimestamp().after(new Timestamp(lastTempTime.getTime() + TimeUnit.SECONDS.toMillis(5))))
+             return true;
+
          return false;
     }
 

@@ -33,7 +33,7 @@ public class MoveReading extends SensorReading {
         if((this.entranceRoom == this.exitRoom)) {
             super.setReadingGood(false);
             if (this.entranceRoom == 0 && timestampString.equals("2000-01-01 00:00:00")) {
-                if (CloudToMongo.getExperienceBeginning() != null)
+                if (!CloudToMongo.isExperienceMustEnd())
                     super.setError(super.getError() + "INFO:0 - Experience Start Message. ");
                 else {
                     CloudToMongo.endExperience(SensorReading.getLastTimeStamp(),"New experience started.");
