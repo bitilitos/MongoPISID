@@ -6,6 +6,7 @@ import org.eclipse.paho.client.mqttv3.*;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,11 +52,6 @@ public class CloudToMongo implements MqttCallback {
 
 
     private static Timestamp experienceBeginning = null;
-
-
-
-
-
 
     private static void createWindow() {
         JFrame frame = new JFrame("Cloud to Mongo");
@@ -103,6 +99,11 @@ public class CloudToMongo implements MqttCallback {
             System.out.println("Error reading CloudToMongo.ini file " + e);
             JOptionPane.showMessageDialog(null, "The CloudToMongo.inifile wasn't found.", "CloudToMongo", JOptionPane.ERROR_MESSAGE);
         }
+
+        //**************************//
+        // for testing purposes only
+        //experienceBeginning = new Timestamp(System.currentTimeMillis());
+
         for (Map.Entry<String, String> topic : topics.entrySet()){
             Runnable thread = new Runnable() {
                 @Override
@@ -117,11 +118,13 @@ public class CloudToMongo implements MqttCallback {
             thread.run();
         }
 
+        System.out.println("Insert,Topic,Time,Field1,Field2,isValid,Error");
+
     }
 
     private void insertToQueue (DBCollection mongoCol, String topic, String reading) {
         readingsForMongo.add(reading);
-        System.out.println("Queue Insert: " + topic + " " + reading);
+        System.out.println("Queue Insert, " + topic + "," + " " + reading +",");
 
     }
 
@@ -182,6 +185,9 @@ public class CloudToMongo implements MqttCallback {
             throws Exception {
         try {
             documentLabel.insert(c.toString()+"\n", 0);
+            //**************************//
+            // for testing purpose only
+            //insertToQueue(mongocol, topic, c.toString());
 
 
             if (isWaitingForExperienceStart) {
@@ -209,6 +215,8 @@ public class CloudToMongo implements MqttCallback {
         } catch (Exception e) {
             System.out.println(e);
         }
+
+
     }
     public BlockingQueue<String> getReadingsForMongo() {
         return readingsForMongo;
@@ -278,7 +286,7 @@ public class CloudToMongo implements MqttCallback {
             document_json = (DBObject) JSON.parse(reading);
             return document_json;
         } catch (Exception e){
-            System.out.println(e);
+           // System.out.println(e);
             return null;
         }
 

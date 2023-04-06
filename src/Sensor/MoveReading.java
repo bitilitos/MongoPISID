@@ -73,10 +73,10 @@ public class MoveReading extends SensorReading {
 
     @Override
     public String toString() {
-        String result = "Time: " + super.getTimestamp() + " ;  " +
-                "EntranceRoom: " + entranceRoom + "; ExitRoom: " + exitRoom + "; isValid: " + super.isReadingGood();
+        String result = "Time: " + super.getTimestamp() + " ,  " +
+                "EntranceRoom: " + entranceRoom + ", ExitRoom: " + exitRoom + ", isValid: " + super.isReadingGood();
 
-        if (super.isReadingGood() == false) result += " ; Error: " + super.getError();
+        if (super.isReadingGood() == false) result += " , Error: " + super.getError();
         return result;
     }
 
