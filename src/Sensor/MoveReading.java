@@ -2,12 +2,13 @@ package Sensor;
 
 import Mongo.CloudToMongo;
 import com.mongodb.BasicDBObject;
-
 import com.mongodb.DBObject;
 import org.bson.Document;
 
 
 public class MoveReading extends SensorReading {
+
+
 
 
     int entranceRoom;
@@ -61,13 +62,18 @@ public class MoveReading extends SensorReading {
     }
 
     public DBObject getDBObject() {
+        return BasicDBObject.parse(this.getDocument().toJson());
+    }
+
+
+    public Document getDocument() {
         Document doc = new Document();
         doc.append("Hour", this.getTimestamp().toString());
         doc.append("EntranceRoom", this.entranceRoom);
         doc.append("ExitRoom", this.exitRoom);
         doc.append("isValid", super.isReadingGood());
         doc.append("Error", super.getError());
-        return BasicDBObject.parse(doc.toJson());
+        return doc;
     }
 
     @Override
@@ -79,7 +85,13 @@ public class MoveReading extends SensorReading {
         return result;
     }
 
+    public int getEntranceRoom() {
+        return entranceRoom;
+    }
 
+    public int getExitRoom() {
+        return exitRoom;
+    }
 
 
 

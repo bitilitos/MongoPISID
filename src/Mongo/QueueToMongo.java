@@ -1,10 +1,10 @@
 package Mongo;
 
 
-import Sensor.MoveReading;
-import Sensor.SensorReading;
-import Sensor.TemperatureReading;
+import Sensor.*;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -17,7 +17,11 @@ import java.util.concurrent.TimeUnit;
 public class QueueToMongo extends Thread{
     private BlockingQueue<String> readingsForMongo;
     private Map<Integer, TemperatureReading> lastTemperatureInMongo = new HashMap<>();
+    private Map<Integer, TemperatureReading> temperatureinTime = new HashMap<>();
+    private Map<Integer, MutableInt> sensorFailureCount = new HashMap<>();
     private DBCollection mongocol;
+
+
 
      public QueueToMongo(DBCollection mongocol, BlockingQueue<String> readingsForMongo) {
          this.readingsForMongo = readingsForMongo;
@@ -52,6 +56,7 @@ public class QueueToMongo extends Thread{
                         }
                     }
                     System.out.println(insert);
+                    if (!sensorReading.isReadingGood()) sensorFailureProcess(sensorReading);
                 }
 
             }
@@ -118,5 +123,50 @@ public class QueueToMongo extends Thread{
         }
     }
 
+    private void sensorFailureProcess(SensorReading sensorReading) {
+         int key;
+         if (mongocol.getName().equals("temp")) {
+             TemperatureReading temperatureReading = (TemperatureReading) sensorReading;
+             key = temperatureReading.getSensorId();
+         }
+         else {
+             MoveReading moveReading = (MoveReading) sensorReading;
+             key = Integer.parseInt((Integer.toString(moveReading.getEntranceRoom()) + Integer.toString(moveReading.getExitRoom())));
+         }
+
+         MutableInt count = sensorFailureCount.get(key);
+         if (count==null){
+             sensorFailureCount.put(key, new MutableInt());
+         }
+         else
+             count.increment();
+
+         // every 5 failures insert alert
+         // first 5 medium alert, after high alert
+         if (count!=null && (count.get() == 5 || count.get() == 50) ) {
+             AlertType alertType;
+             if (count.get()>5)
+                 alertType = AlertType.High;
+             else
+                 alertType = AlertType.Medium;
+
+             Alert alert = new Alert(sensorReading, alertType, "Sensor with " + count.get() + " malfunctions! ");
+             CloudToMongo.getAlertCollection().insert(alert.getDBObject());
+             System.out.println("Alert Insert, " + alert);
+             try {
+                 CloudToMongo.getFileWriter().append("Alert Insert, ").append(String.valueOf(alert));
+             } catch (IOException e) {
+                 throw new RuntimeException(e);
+             }
+         }
+
+
+    }
+
+    static class MutableInt {
+        int value = 1; // note that we start at 1 since we're counting
+        public void increment () { ++value;      }
+        public int  get ()       { return value; }
+    }
 
 }

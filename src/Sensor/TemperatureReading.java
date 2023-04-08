@@ -108,13 +108,17 @@ public class TemperatureReading extends SensorReading {
     }
 
     public DBObject getDBObject() {
+        return BasicDBObject.parse(this.getDocument().toJson());
+    }
+
+    public Document getDocument() {
         Document doc = new Document();
         doc.append("Hour", this.getTimestamp().toString());
         doc.append("Measure", this.readingValue);
         doc.append("Sensor", this.sensorId);
         doc.append("isValid", super.isReadingGood());
         doc.append("Error", super.getError());
-        return BasicDBObject.parse(doc.toJson());
+        return doc;
     }
 
 

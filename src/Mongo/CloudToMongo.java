@@ -29,20 +29,21 @@ public class CloudToMongo implements MqttCallback {
     static MongoClient mongoClient;
 
 
-    static DB db;
+    private static DB db;
     private DBCollection mongocol;
-    static String mongo_user = new String();
-    static String mongo_password = new String();
-    static String mongo_address = new String();
-    static String cloud_server = new String();
-    String cloud_topic = new String();
-    static String mongo_host = new String();
-    static String mongo_replica = new String();
-    static String mongo_database = new String();
-    static String mongo_collection = new String();
-    static String mongo_authentication = new String();
-    static JTextArea documentLabel = new JTextArea("\n");
-    static Map<String, String> topics = new HashMap<>();
+    public static DBCollection alertCollection;
+    private static String mongo_user = new String();
+    private static String mongo_password = new String();
+    private static String mongo_address = new String();
+    private static String cloud_server = new String();
+    private String cloud_topic = new String();
+    private static String mongo_host = new String();
+    private static String mongo_replica = new String();
+    private static String mongo_database = new String();
+    private static String mongo_collection = new String();
+    private static String mongo_authentication = new String();
+    private static JTextArea documentLabel = new JTextArea("\n");
+    private static Map<String, String> topics = new HashMap<>();
     private BlockingQueue <String> readingsForMongo = new LinkedBlockingQueue<>();
 
 
@@ -106,9 +107,10 @@ public class CloudToMongo implements MqttCallback {
             JOptionPane.showMessageDialog(null, "The CloudToMongo.inifile wasn't found.", "CloudToMongo", JOptionPane.ERROR_MESSAGE);
         }
 
+
         //**************************//
         // for testing purposes only
-        // experienceBeginning = new Timestamp(System.currentTimeMillis());
+         // experienceBeginning = new Timestamp(System.currentTimeMillis());
 
         for (Map.Entry<String, String> topic : topics.entrySet()){
             Runnable thread = new Runnable() {
@@ -123,6 +125,7 @@ public class CloudToMongo implements MqttCallback {
             };
             thread.run();
         }
+        alertCollection = db.getCollection("alert");
 
     }
 
@@ -290,7 +293,9 @@ public class CloudToMongo implements MqttCallback {
 
         experienceMustEnd = false;
     }
-
+    // *******************************************************
+    // * FALTA LIMPAR AS ESTRUTURAS DE DADOS!!! NÃO ESQUECER *
+    // *******************************************************
     public static void endExperience(Timestamp timestamp, String motive) {
         DBCollection exp = db.getCollection("exp");
         DBObject json = new BasicDBObject().append("StartTime", experienceBeginning)
@@ -332,5 +337,12 @@ public class CloudToMongo implements MqttCallback {
     }
 
     public static FileWriter getFileWriter() {return fw;}
+
+    public static DB getDb() {
+        return db;
+    }
+
+    public static DBCollection getAlertCollection() {return alertCollection;}
+
 }
 

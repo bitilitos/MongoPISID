@@ -1,8 +1,8 @@
 package Sensor;
 
 import Mongo.CloudToMongo;
-
 import com.mongodb.DBObject;
+import org.bson.Document;
 import java.sql.Timestamp;
 
 public abstract class SensorReading {
@@ -101,6 +101,8 @@ public abstract class SensorReading {
 
 
     public abstract DBObject getDBObject();
+
+    public abstract Document getDocument();
 
     public static Timestamp getLastTimeStamp() {
         return lastTimeStamp;
