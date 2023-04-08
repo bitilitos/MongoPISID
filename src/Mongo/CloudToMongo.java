@@ -5,6 +5,9 @@ import com.mongodb.util.JSON;
 import org.eclipse.paho.client.mqttv3.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
@@ -52,6 +55,9 @@ public class CloudToMongo implements MqttCallback {
 
 
     private static Timestamp experienceBeginning = null;
+
+    private static File csvFile = new File("inserts.csv");
+    private static FileWriter fw;
 
     private static void createWindow() {
         JFrame frame = new JFrame("Cloud to Mongo");
@@ -102,7 +108,7 @@ public class CloudToMongo implements MqttCallback {
 
         //**************************//
         // for testing purposes only
-        //experienceBeginning = new Timestamp(System.currentTimeMillis());
+        // experienceBeginning = new Timestamp(System.currentTimeMillis());
 
         for (Map.Entry<String, String> topic : topics.entrySet()){
             Runnable thread = new Runnable() {
@@ -118,13 +124,19 @@ public class CloudToMongo implements MqttCallback {
             thread.run();
         }
 
-        System.out.println("Insert,Topic,Time,Field1,Field2,isValid,Error");
-
     }
 
     private void insertToQueue (DBCollection mongoCol, String topic, String reading) {
         readingsForMongo.add(reading);
-        System.out.println("Queue Insert, " + topic + "," + " " + reading +",");
+        String insert = "Queue Insert, " + topic + "," + " " + reading +",";
+        if (fw != null) {
+            try {
+                fw.append(insert + "\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println(insert);
 
     }
 
@@ -187,36 +199,38 @@ public class CloudToMongo implements MqttCallback {
             documentLabel.insert(c.toString()+"\n", 0);
             //**************************//
             // for testing purpose only
-            //insertToQueue(mongocol, topic, c.toString());
+            // insertToQueue(mongocol, topic, c.toString());
+            DBObject json = getDBObjectFromReading(c.toString());
 
-
-            if (isWaitingForExperienceStart) {
-                DBObject json = getDBObjectFromReading(c.toString());
-                if (json != null) {
-                    if (isReadingExperienceStart(json)) insertToQueue(mongocol, topic, c.toString());
+                // To get Start Message when expecting experience to Start
+                if (isWaitingForExperienceStart) {
+                    if (json != null) {
+                        if (isReadingExperienceStart(json)) insertToQueue(mongocol, topic, c.toString());
+                        return;
+                    }
                 }
-                return;
-            }
+
 
                 // To get first timeStamp after start experience message
-            if (!isWaitingForExperienceStart && hasStartReadingArrived && experienceBeginning == null) {
-                DBObject json = getDBObjectFromReading(c.toString());
-                if (json != null) {
-                    String timestamp = json.get("Hora").toString();
-                    if (timestamp != null && !timestamp.isEmpty()) startExperience(timestamp);
+                if (hasStartReadingArrived && experienceBeginning == null) {
+                    if (json != null) {
+                        String timestamp = json.get("Hora").toString();
+                        if (timestamp != null && !timestamp.isEmpty()) startExperience(timestamp);
+                        insertToQueue(mongocol, topic, c.toString());
+                    }
                 }
-            }
-            if (experienceBeginning != null)  {
-                DBObject json = getDBObjectFromReading(c.toString());
-                isReadingExperienceStart(json);
-                insertToQueue(mongocol, topic, c.toString());
-            }
+
+                // When experience is running to get start of new experience
+                if (experienceBeginning != null)  {
+                    if (json != null) {
+                        isReadingExperienceStart(json);
+                    }
+                    insertToQueue(mongocol, topic, c.toString());
+                }
 
         } catch (Exception e) {
             System.out.println(e);
         }
-
-
     }
     public BlockingQueue<String> getReadingsForMongo() {
         return readingsForMongo;
@@ -241,6 +255,7 @@ public class CloudToMongo implements MqttCallback {
 
     // checks if reading is experience start
     private boolean isReadingExperienceStart (DBObject json) {
+        if (json==null) return false;
         if (json.get("Hora").toString().equals("2000-01-01 00:00:00") && json.get("SalaEntrada").toString().equals("0") &&
                 json.get("SalaSaida").toString().equals("0")) {
             if (isWaitingForExperienceStart) {
@@ -262,6 +277,17 @@ public class CloudToMongo implements MqttCallback {
         experienceBeginning = Timestamp.valueOf(timestamp);
         System.out.println("IMPORTANT -> Experience started at: " + timestamp);
         System.out.println("IMPORTANT -> Experience must end until: " + getExperienceLimitTimestamp());
+
+        // For better data analysis
+        try {
+            csvFile = new File("inserts.csv");
+            fw = new FileWriter(csvFile.getPath(), false);
+            String header = "Insert,Topic,Time,Field1,Field2,isValid,Error\n";
+            fw.append(header);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         experienceMustEnd = false;
     }
 
@@ -275,9 +301,11 @@ public class CloudToMongo implements MqttCallback {
         isWaitingForExperienceStart = true;
         hasStartReadingArrived = false;
         experienceMustEnd = false;
-
-
-
+        try {
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private DBObject getDBObjectFromReading (String reading) {
@@ -286,7 +314,7 @@ public class CloudToMongo implements MqttCallback {
             document_json = (DBObject) JSON.parse(reading);
             return document_json;
         } catch (Exception e){
-           // System.out.println(e);
+            System.out.println(e);
             return null;
         }
 
@@ -302,5 +330,7 @@ public class CloudToMongo implements MqttCallback {
     public static boolean isExperienceMustEnd() {
         return experienceMustEnd;
     }
+
+    public static FileWriter getFileWriter() {return fw;}
 }
 

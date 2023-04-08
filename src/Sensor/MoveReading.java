@@ -68,7 +68,6 @@ public class MoveReading extends SensorReading {
         doc.append("isValid", super.isReadingGood());
         doc.append("Error", super.getError());
         return BasicDBObject.parse(doc.toJson());
-
     }
 
     @Override

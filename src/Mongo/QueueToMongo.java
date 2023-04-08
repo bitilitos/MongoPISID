@@ -6,6 +6,7 @@ import Sensor.SensorReading;
 import Sensor.TemperatureReading;
 import com.mongodb.DBCollection;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -33,19 +34,23 @@ public class QueueToMongo extends Thread{
                 String[] tempValues = parseSensorReadingToArray(reading);
                 SensorReading sensorReading = null;
                 if (mongocol.getName().equals("temp")) {
-
-                    if (checkIfTemperatureReadingIsToWrite(new TemperatureReading(tempValues[0], tempValues[1], tempValues[2]))){
-                        sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2]);
-                    }
-
-
+                    if (checkIfTemperatureReadingIsToWrite(
+                            sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2])));
                 }
                 else {
                     sensorReading = new MoveReading(tempValues[0], tempValues[1], tempValues[2]);
                 }
                 if (sensorReading != null) {
                     mongocol.insert(sensorReading.getDBObject());
-                    System.out.println("Mongo Insert,, " + sensorReading);
+                    String insert = "Mongo Insert,, " + sensorReading;
+                    if (CloudToMongo.getFileWriter()!=null){
+                        try {
+                            CloudToMongo.getFileWriter().append(insert + "\n");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    System.out.println(insert);
                 }
 
             }
@@ -72,8 +77,10 @@ public class QueueToMongo extends Thread{
          return values;
     }
 
-    private boolean checkIfTemperatureReadingIsToWrite(TemperatureReading temperatureReading) {
-         if (!temperatureReading.isReadingGood()) return true;
+    private boolean checkIfTemperatureReadingIsToWrite(SensorReading sensorReading) {
+         // if sensor has problem
+         if (!sensorReading.isReadingGood()) return true;
+        TemperatureReading temperatureReading = (TemperatureReading) sensorReading;
          //if no reading has been sent
          if (!lastTemperatureInMongo.containsKey(temperatureReading.getSensorId())) {
              lastTemperatureInMongo.put(temperatureReading.getSensorId(), temperatureReading);

@@ -122,7 +122,7 @@ public class TemperatureReading extends SensorReading {
     @Override
     public String toString() {
         String result = "Time: " + super.getTimestamp() + " ,  " +
-                "Temp: " + readingValue +   ",Sensor: " + sensorId + ", Valid Reading: " + super.isReadingGood();
+                "Temp: " + readingValue +   ",Sensor: " + sensorId + ", isValid: " + super.isReadingGood();
 
         if (super.isReadingGood() == false) result += " , Error: " + super.getError();
         return result;

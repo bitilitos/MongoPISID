@@ -19,8 +19,13 @@ public abstract class SensorReading {
 
         Timestamp time;
         time = parseTimestamp(timestampString);
+
         if (time == null) {
             this.timestamp = new Timestamp(0,0,0,0,0,0,0);
+            this.setReadingGood(false);
+            this.setError("This timestamp wasn't parsable. ");
+
+
         }
         else if (CloudToMongo.getExperienceBeginning() != null) {
                 if (timestampString.equals("2000-01-01 00:00:00") && !CloudToMongo.isExperienceMustEnd()) {
@@ -41,11 +46,13 @@ public abstract class SensorReading {
                         }
                     }
                 }
+                // Before beginning
                 else if (time.before(CloudToMongo.getExperienceBeginning())) {
                     this.setReadingGood(false);
                     this.setError("This reading is from a past experience. ");
                     this.timestamp = time;
 
+                // after limit time of experience
                 } else if (time.after(CloudToMongo.getExperienceLimitTimestamp()))  { //10 Minutes
                     this.setReadingGood(false);
                     this.setError("This reading will be from a future experience. ");
@@ -63,7 +70,8 @@ public abstract class SensorReading {
         try {
             result = Timestamp.valueOf(timestampString);
 
-        }catch (IllegalArgumentException e) {
+        }catch (IllegalArgumentException | NullPointerException e) {
+            System.out.println(e);
             return null;
         }
         return result;
