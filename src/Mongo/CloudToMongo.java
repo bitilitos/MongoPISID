@@ -221,7 +221,7 @@ public class CloudToMongo implements MqttCallback {
                 }
 
                 // When experience is running to get start of new experience
-                if (experienceBeginning != null)  {
+                else if (experienceBeginning != null)  {
                     if (json != null) {
                         isReadingExperienceStart(json);
                     }

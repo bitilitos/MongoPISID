@@ -33,9 +33,10 @@ public class QueueToMongo extends Thread{
                 String reading = readingsForMongo.poll();
                 String[] tempValues = parseSensorReadingToArray(reading);
                 SensorReading sensorReading = null;
+
                 if (mongocol.getName().equals("temp")) {
-                    if (checkIfTemperatureReadingIsToWrite(
-                            sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2])));
+                    if (!checkIfTemperatureReadingIsToWrite(sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2])))
+                        continue;
                 }
                 else {
                     sensorReading = new MoveReading(tempValues[0], tempValues[1], tempValues[2]);
