@@ -27,7 +27,9 @@ public class CloudToMongo implements MqttCallback {
 
 
 
-    static MongoClient mongoClient;
+    private static MongoClient mongoClient;
+
+    private static Mongo mongo;
 
 
     private static DB db;
@@ -244,6 +246,7 @@ public class CloudToMongo implements MqttCallback {
 
     @Override
     public void connectionLost(Throwable cause) {
+        System.out.println("Connection Lost with Cloud!!!");
     }
 
     @Override
@@ -333,6 +336,23 @@ public class CloudToMongo implements MqttCallback {
             CloudToMongo.getFileWriter().append("Alert Insert, ").append(String.valueOf(alert));
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean isMongoConnected() {
+        MongoClientOptions.Builder builder = MongoClientOptions.builder();
+        // builder settings
+        ServerAddress ServerAddress = new ServerAddress("localhost", 25019);
+        MongoClient mongoClient = new MongoClient(ServerAddress, builder.build());
+
+        try {
+            mongoClient.getConnectPoint();
+            return true;
+        } catch (Exception e) {
+            System.out.println("MongoDB Server is Down");
+            return false;
+        } finally {
+            mongoClient.close();
         }
     }
 

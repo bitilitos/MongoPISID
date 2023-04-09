@@ -5,6 +5,7 @@ import Sensor.*;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
+import com.mongodb.WriteResult;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -33,42 +34,46 @@ public class QueueToMongo extends Thread{
 
         while (true) {
             //
-            if (!readingsForMongo.isEmpty() && CloudToMongo.getExperienceBeginning() != null) {
-                String reading = readingsForMongo.poll();
+            if (!readingsForMongo.isEmpty() && CloudToMongo.getExperienceBeginning() != null
+                    && CloudToMongo.isMongoConnected()) {
+                String reading = readingsForMongo.peek();
                 String[] tempValues = parseSensorReadingToArray(reading);
                 SensorReading sensorReading = null;
 
                 if (mongocol.getName().equals("temp")) {
                     sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2]);
-                    if (!checkIfTemperatureReadingIsToWrite(sensorReading))
+                    if (!checkIfTemperatureReadingIsToWrite(sensorReading)){
+                        readingsForMongo.poll();
                         continue;
-                    else {
-                        if (checkIfTemperatureReadingIsToAlert(sensorReading)){
-                            CloudToMongo.insertAlert(new Alert(sensorReading, AlertType.Low, "Info: Temperature Variation bigger than 1 degree since last info. "));
-                        }
                     }
+
                 }
                 else {
                     sensorReading = new MoveReading(tempValues[0], tempValues[1], tempValues[2]);
                 }
-                if (sensorReading != null) {
-                    mongocol.insert(sensorReading.getDBObject());
-                    String insert = "Mongo Insert,, " + sensorReading;
-                    if (CloudToMongo.getFileWriter()!=null){
-                        try {
-                            CloudToMongo.getFileWriter().append(insert + "\n");
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    }
-                    System.out.println(insert);
-                }
-
+                insertReadingToMongo(sensorReading);
             }
         }
     }
 
-
+    private void insertReadingToMongo(SensorReading sensorReading) {
+        WriteResult wr = mongocol.insert(sensorReading.getDBObject());
+        if (wr.wasAcknowledged()) {
+            readingsForMongo.poll();
+            if (mongocol.getName().equals("temp") && checkIfTemperatureReadingIsToAlert(sensorReading)) {
+                CloudToMongo.insertAlert(new Alert(sensorReading, AlertType.Low, "Info: Temperature Variation bigger than 1 degree since last info. "));
+            }
+            String insert = "Mongo Insert,, " + sensorReading;
+            if (CloudToMongo.getFileWriter()!=null){
+                try {
+                    CloudToMongo.getFileWriter().append(insert + "\n");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            System.out.println(insert);
+        }
+    }
 
     // returns hora, leitura, sensor
     // returns hora, SalaEntrada, SalaSaida
