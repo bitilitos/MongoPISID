@@ -1,5 +1,6 @@
 package Mongo;
 
+import Sensor.Alert;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
 import org.eclipse.paho.client.mqttv3.*;
@@ -323,6 +324,16 @@ public class CloudToMongo implements MqttCallback {
             return null;
         }
 
+    }
+
+    public static void insertAlert(Alert alert) {
+        CloudToMongo.getAlertCollection().insert(alert.getDBObject());
+        System.out.println("Alert Insert, " + alert);
+        try {
+            CloudToMongo.getFileWriter().append("Alert Insert, ").append(String.valueOf(alert));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

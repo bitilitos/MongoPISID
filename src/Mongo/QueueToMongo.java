@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class QueueToMongo extends Thread{
     private BlockingQueue<String> readingsForMongo;
     private Map<Integer, TemperatureReading> lastTemperatureInMongo = new HashMap<>();
-    private Map<Integer, TemperatureReading> temperatureinTime = new HashMap<>();
+    private Map<Integer, TemperatureReading> lastTemperatureAlert = new HashMap<>();
     private Map<Integer, MutableInt> sensorFailureCount = new HashMap<>();
     private DBCollection mongocol;
 
@@ -39,8 +39,14 @@ public class QueueToMongo extends Thread{
                 SensorReading sensorReading = null;
 
                 if (mongocol.getName().equals("temp")) {
-                    if (!checkIfTemperatureReadingIsToWrite(sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2])))
+                    sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2]);
+                    if (!checkIfTemperatureReadingIsToWrite(sensorReading))
                         continue;
+                    else {
+                        if (checkIfTemperatureReadingIsToAlert(sensorReading)){
+                            CloudToMongo.insertAlert(new Alert(sensorReading, AlertType.Low, "Info: Temperature Variation bigger than 1 degree since last info. "));
+                        }
+                    }
                 }
                 else {
                     sensorReading = new MoveReading(tempValues[0], tempValues[1], tempValues[2]);
@@ -56,7 +62,6 @@ public class QueueToMongo extends Thread{
                         }
                     }
                     System.out.println(insert);
-                    if (!sensorReading.isReadingGood()) sensorFailureProcess(sensorReading);
                 }
 
             }
@@ -85,7 +90,10 @@ public class QueueToMongo extends Thread{
 
     private boolean checkIfTemperatureReadingIsToWrite(SensorReading sensorReading) {
          // if sensor has problem
-         if (!sensorReading.isReadingGood()) return true;
+         if (!sensorReading.isReadingGood()) {
+             sensorFailureProcess(sensorReading);
+             return true;
+         }
         TemperatureReading temperatureReading = (TemperatureReading) sensorReading;
          //if no reading has been sent
          if (!lastTemperatureInMongo.containsKey(temperatureReading.getSensorId())) {
@@ -113,6 +121,29 @@ public class QueueToMongo extends Thread{
 
          return false;
     }
+
+
+    private boolean checkIfTemperatureReadingIsToAlert(SensorReading sensorReading) {
+        // if sensor has problem
+        if (!sensorReading.isReadingGood()) return false;
+        TemperatureReading temperatureReading = (TemperatureReading) sensorReading;
+        //if no reading has been sent
+        if (!lastTemperatureAlert.containsKey(temperatureReading.getSensorId())) {
+            lastTemperatureAlert.put(temperatureReading.getSensorId(), temperatureReading);
+            return true;
+        }
+
+        double lastTempAlert = lastTemperatureAlert.get(temperatureReading.getSensorId()).getReadingValue();
+        double actualTempAlert = temperatureReading.getReadingValue();
+
+        // if reading has 1 degree
+        if (Math.abs(lastTempAlert-actualTempAlert) >= 1) {
+            lastTemperatureAlert.put(temperatureReading.getSensorId(), temperatureReading);
+            return true;
+        }
+        return false;
+    }
+
 
     private static BigDecimal truncateDecimal(double x, int numberofDecimals)
     {
@@ -145,22 +176,14 @@ public class QueueToMongo extends Thread{
          // first 5 medium alert, after high alert
          if (count!=null && (count.get() == 5 || count.get() == 50) ) {
              AlertType alertType;
-             if (count.get()>5)
+             if (count.get() > 5)
                  alertType = AlertType.High;
              else
                  alertType = AlertType.Medium;
 
              Alert alert = new Alert(sensorReading, alertType, "Sensor with " + count.get() + " malfunctions! ");
-             CloudToMongo.getAlertCollection().insert(alert.getDBObject());
-             System.out.println("Alert Insert, " + alert);
-             try {
-                 CloudToMongo.getFileWriter().append("Alert Insert, ").append(String.valueOf(alert));
-             } catch (IOException e) {
-                 throw new RuntimeException(e);
-             }
+             CloudToMongo.insertAlert(alert);
          }
-
-
     }
 
     static class MutableInt {
