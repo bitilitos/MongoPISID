@@ -1,59 +1,67 @@
 package Mongo;
 
-import Sensor.MoveReading;
-import Sensor.SensorReading;
-import Sensor.TemperatureReading;
+import Sensor.Alert;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 import org.eclipse.paho.client.mqttv3.*;
-
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+import java.util.concurrent.TimeUnit;
 
 
 public class CloudToMongo implements MqttCallback {
 
-    MqttClient mqttclient;
+    private MqttClient mqttclient;
 
 
 
-    static BlockingQueue <SensorReading> readingsForMongo = new LinkedBlockingQueue<SensorReading>();
+    private static MongoClient mongoClient;
 
-    static MongoClient mongoClient;
+    private static Mongo mongo;
 
 
-    static DB db;
+    private static DB db;
     private DBCollection mongocol;
-    static String mongo_user = new String();
-    static String mongo_password = new String();
-    static String mongo_address = new String();
-    static String cloud_server = new String();
-    static String cloud_topic = new String();
-    static String mongo_host = new String();
-    static String mongo_replica = new String();
-    static String mongo_database = new String();
-    static String mongo_collection = new String();
-    static String mongo_authentication = new String();
-    static JTextArea documentLabel = new JTextArea("\n");
-    static Map<String, String> topics = new HashMap<>();
+    public static DBCollection alertCollection;
+    private static String mongo_user = new String();
+    private static String mongo_password = new String();
+    private static String mongo_address = new String();
+    private static String cloud_server = new String();
+    private String cloud_topic = new String();
+    private static String mongo_host = new String();
+    private static String mongo_replica = new String();
+    private static String mongo_database = new String();
+    private static String mongo_collection = new String();
+    private static String mongo_authentication = new String();
+    private static JTextArea documentLabel = new JTextArea("\n");
+    private static Map<String, String> topics = new HashMap<>();
+    private BlockingQueue <String> readingsForMongo = new LinkedBlockingQueue<>();
 
 
+    // Flag -> Waiting for Experience Reading to arrive
+    private static boolean isWaitingForExperienceStart = true;
+    // Flag -> Message indicating experience start has arrived
+    private static boolean hasStartReadingArrived = false;
 
+    private static boolean experienceMustEnd = false;
+
+
+    private static Timestamp experienceBeginning = null;
+
+    private static File csvFile = new File("inserts.csv");
+    private static FileWriter fw;
 
     private static void createWindow() {
         JFrame frame = new JFrame("Cloud to Mongo");
@@ -80,7 +88,6 @@ public class CloudToMongo implements MqttCallback {
 
         createWindow();
 
-
         try {
             Properties p = new Properties();
             p.load(new FileInputStream("CloudToMongo.ini"));
@@ -102,6 +109,12 @@ public class CloudToMongo implements MqttCallback {
             System.out.println("Error reading CloudToMongo.ini file " + e);
             JOptionPane.showMessageDialog(null, "The CloudToMongo.inifile wasn't found.", "CloudToMongo", JOptionPane.ERROR_MESSAGE);
         }
+
+
+        //**************************//
+        // for testing purposes only
+         // experienceBeginning = new Timestamp(System.currentTimeMillis());
+
         for (Map.Entry<String, String> topic : topics.entrySet()){
             Runnable thread = new Runnable() {
                 @Override
@@ -109,22 +122,28 @@ public class CloudToMongo implements MqttCallback {
                     CloudToMongo cloudToMongo = new CloudToMongo();
                     cloudToMongo.connectCloud(topic.getKey());
                     cloudToMongo.connectMongo(topic.getValue());
-
+                    QueueToMongo queueToMongo = new QueueToMongo(cloudToMongo.mongocol, cloudToMongo.readingsForMongo);
+                    queueToMongo.start();
                 }
             };
             thread.run();
         }
+        alertCollection = db.getCollection("alert");
 
-        QueueToMongo queueToMongo = new QueueToMongo(CloudToMongo.getReadingsForMongo());
-        queueToMongo.start();
     }
 
-    private void insertToQueue (DBCollection mongoCol, String topic, DBObject json) {
+    private void insertToQueue (DBCollection mongoCol, String topic, String reading) {
+        readingsForMongo.add(reading);
+        String insert = "Queue Insert, " + topic + "," + " " + reading +",";
+        if (fw != null) {
+            try {
+                fw.append(insert + "\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println(insert);
 
-        String sensorType = topics.get(topic);
-        SensorReading sensorReading = createSensorReadingObject(mongoCol, sensorType,json);
-        System.out.println(sensorReading);
-        readingsForMongo.add(sensorReading);
     }
 
 
@@ -183,43 +202,51 @@ public class CloudToMongo implements MqttCallback {
     public void messageArrived(String topic, MqttMessage c)
             throws Exception {
         try {
-              DBObject document_json;
-              document_json = (DBObject) JSON.parse(c.toString());
+            documentLabel.insert(c.toString()+"\n", 0);
+            //**************************//
+            // for testing purpose only
+            // insertToQueue(mongocol, topic, c.toString());
+            DBObject json = getDBObjectFromReading(c.toString());
 
-            documentLabel.append(c.toString()+"\n");
-            System.out.println(document_json);
-            insertToQueue(mongocol, topic, document_json);
+                // To get Start Message when expecting experience to Start
+                if (isWaitingForExperienceStart) {
+                    if (json != null) {
+                        if (isReadingExperienceStart(json)) insertToQueue(mongocol, topic, c.toString());
+                        return;
+                    }
+                }
 
 
+                // To get first timeStamp after start experience message
+                if (hasStartReadingArrived && experienceBeginning == null) {
+                    if (json != null) {
+                        String timestamp = json.get("Hora").toString();
+                        if (timestamp != null && !timestamp.isEmpty()) startExperience(timestamp);
+                        insertToQueue(mongocol, topic, c.toString());
+                    }
+                }
+
+                // When experience is running to get start of new experience
+                else if (experienceBeginning != null)  {
+                    if (json != null) {
+                        isReadingExperienceStart(json);
+                    }
+                    insertToQueue(mongocol, topic, c.toString());
+                }
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-
-    private SensorReading createSensorReadingObject (DBCollection mongocol, String sensorType, DBObject json) {
-
-        SensorReading sensorReading;
-
-        if (sensorType.equals("mov")) {
-            sensorReading = new MoveReading(mongocol, json.get("Hora").toString(),
-                    json.get("SalaEntrada").toString(), json.get("SalaSaida").toString());
-        } else {
-            sensorReading = new TemperatureReading(mongocol, json.get("Hora").toString(),
-                    json.get("Leitura").toString(), json.get("Sensor").toString());
-        }
-        return sensorReading;
-
-
-    }
-
-    public static BlockingQueue<SensorReading> getReadingsForMongo() {
+    public BlockingQueue<String> getReadingsForMongo() {
         return readingsForMongo;
     }
 
+    public static Map<String, String> getTopics() {return topics;}
 
     @Override
     public void connectionLost(Throwable cause) {
+        System.out.println("Connection Lost with Cloud!!!");
     }
 
     @Override
@@ -227,9 +254,126 @@ public class CloudToMongo implements MqttCallback {
 
     }
 
+
     public static void main(String[] args) {
         CloudToMongo.initiate();
 
     }
+
+    // checks if reading is experience start
+    private boolean isReadingExperienceStart (DBObject json) {
+        if (json==null) return false;
+        if (json.get("Hora").toString().equals("2000-01-01 00:00:00") && json.get("SalaEntrada").toString().equals("0") &&
+                json.get("SalaSaida").toString().equals("0")) {
+            if (isWaitingForExperienceStart) {
+                hasStartReadingArrived = true;
+                isWaitingForExperienceStart = false;
+                System.out.println("IMPORTANT -> EXPERIENCE STARTED!!");
+            }else if (experienceBeginning != null) {
+                experienceMustEnd = true;
+                System.out.println("IMPORTANT -> NEW EXPERIENCE STARTED, MUST END THIS ONE!!");
+
+            }
+            return true;
+
+        }
+        return false;
+    }
+
+    private void startExperience(String timestamp) {
+        experienceBeginning = Timestamp.valueOf(timestamp);
+        System.out.println("IMPORTANT -> Experience started at: " + timestamp);
+        System.out.println("IMPORTANT -> Experience must end until: " + getExperienceLimitTimestamp());
+
+        // For better data analysis
+        try {
+            csvFile = new File("inserts.csv");
+            fw = new FileWriter(csvFile.getPath(), false);
+            String header = "Insert,Topic,Time,Field1,Field2,isValid,Error\n";
+            fw.append(header);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        experienceMustEnd = false;
+    }
+    // *******************************************************
+    // * FALTA LIMPAR AS ESTRUTURAS DE DADOS!!! NÃO ESQUECER *
+    // *******************************************************
+    public static void endExperience(Timestamp timestamp, String motive) {
+        DBCollection exp = db.getCollection("exp");
+        DBObject json = new BasicDBObject().append("StartTime", experienceBeginning)
+                                            .append("EndTime", timestamp)
+                                            .append("EndMotive", motive);
+        exp.insert(json);
+        experienceBeginning = null;
+        isWaitingForExperienceStart = true;
+        hasStartReadingArrived = false;
+        experienceMustEnd = false;
+        try {
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private DBObject getDBObjectFromReading (String reading) {
+        try{
+            DBObject document_json;
+            document_json = (DBObject) JSON.parse(reading);
+            return document_json;
+        } catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+
+    }
+
+    public static void insertAlert(Alert alert) {
+        CloudToMongo.getAlertCollection().insert(alert.getDBObject());
+        System.out.println("Alert Insert, " + alert);
+        try {
+            CloudToMongo.getFileWriter().append("Alert Insert, ").append(String.valueOf(alert));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean isMongoConnected() {
+        MongoClientOptions.Builder builder = MongoClientOptions.builder();
+        // builder settings
+        ServerAddress ServerAddress = new ServerAddress("localhost", 25019);
+        MongoClient mongoClient = new MongoClient(ServerAddress, builder.build());
+
+        try {
+            mongoClient.getConnectPoint();
+            return true;
+        } catch (Exception e) {
+            System.out.println("MongoDB Server is Down");
+            return false;
+        } finally {
+            mongoClient.close();
+        }
+    }
+
+
+    public static Timestamp getExperienceBeginning() { return experienceBeginning; }
+
+    public static Timestamp getExperienceLimitTimestamp() {
+        return new Timestamp(experienceBeginning.getTime() + TimeUnit.MINUTES.toMillis(10));
+    }
+
+    public static boolean isExperienceMustEnd() {
+        return experienceMustEnd;
+    }
+
+    public static FileWriter getFileWriter() {return fw;}
+
+    public static DB getDb() {
+        return db;
+    }
+
+    public static DBCollection getAlertCollection() {return alertCollection;}
+
 }
 
