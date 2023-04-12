@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact name="MongoPISID:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MongoPISID_jar</output-path>
+    <root id="root">
+      <element id="archive" name="MongoPISID.jar">
+        <element id="module-output" name="MongoPISID" />
+      </element>
+      <element id="file-copy" path="$PROJECT_DIR$/dependencies/bson-3.10.1.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/dependencies/mongo-java-driver-3.6.3.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/dependencies/jackson-mapper-asl-1.5.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/dependencies/org.eclipse.paho.client.mqttv3-1.1.0.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/CloudToMongo.ini" />
+    </root>
+  </artifact>
+</component>

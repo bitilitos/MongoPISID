@@ -3,7 +3,6 @@ package Sensor;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import netscape.javascript.JSObject;
 import org.bson.Document;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
