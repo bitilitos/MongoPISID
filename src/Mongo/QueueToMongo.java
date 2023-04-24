@@ -2,9 +2,7 @@ package Mongo;
 
 
 import Sensor.*;
-import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.WriteResult;
 
 import java.io.IOException;
@@ -21,6 +19,9 @@ public class QueueToMongo extends Thread{
     private Map<Integer, TemperatureReading> lastTemperatureAlert = new HashMap<>();
     private Map<Integer, MutableInt> sensorFailureCount = new HashMap<>();
     private DBCollection mongocol;
+
+    private final int TEMPERATURE_UPDATE_VARIATION = 1;
+    private final double TEMPERATURE_ALERT_Z_SCORE = 1;
 
 
 
@@ -60,9 +61,9 @@ public class QueueToMongo extends Thread{
         WriteResult wr = mongocol.insert(sensorReading.getDBObject());
         if (wr.wasAcknowledged()) {
             readingsForMongo.poll();
-            if (mongocol.getName().equals("temp") && checkIfTemperatureReadingIsToAlert(sensorReading)) {
-                CloudToMongo.insertAlert(new Alert(sensorReading, AlertType.Low, "Info: Temperature Variation bigger than 1 degree since last info. "));
-            }
+            if (mongocol.getName().equals("temp") && sensorReading.isReadingGood())
+                temperatureReadingIsToAlert(sensorReading);
+
             String insert = "Mongo Insert,, " + sensorReading;
             if (CloudToMongo.getFileWriter()!=null){
                 try {
@@ -127,26 +128,50 @@ public class QueueToMongo extends Thread{
          return false;
     }
 
+    // TOMORROW IF Z-SCORE BIGGER THAN 2 ALERT
+    private void temperatureReadingIsToAlert(SensorReading sensorReading) {
 
-    private boolean checkIfTemperatureReadingIsToAlert(SensorReading sensorReading) {
-        // if sensor has problem
-        if (!sensorReading.isReadingGood()) return false;
         TemperatureReading temperatureReading = (TemperatureReading) sensorReading;
+        String message = "INFO: Sensor"  + temperatureReading.getSensorId() ;
+
+
+
         //if no reading has been sent
         if (!lastTemperatureAlert.containsKey(temperatureReading.getSensorId())) {
             lastTemperatureAlert.put(temperatureReading.getSensorId(), temperatureReading);
-            return true;
+            message += " first reading is " + temperatureReading.getReadingValue() + ".";
+            alertInfoTemperatureUpdate(sensorReading, message);
+            return;
         }
-
         double lastTempAlert = lastTemperatureAlert.get(temperatureReading.getSensorId()).getReadingValue();
         double actualTempAlert = temperatureReading.getReadingValue();
 
-        // if reading has 1 degree
-        if (Math.abs(lastTempAlert-actualTempAlert) >= 1) {
+        // if reading has 1 degree variation from last update
+        if (Math.abs(lastTempAlert-actualTempAlert) >= TEMPERATURE_UPDATE_VARIATION) {
             lastTemperatureAlert.put(temperatureReading.getSensorId(), temperatureReading);
-            return true;
+            message += " update, reading is " + temperatureReading.getReadingValue() + ".";
+            alertInfoTemperatureUpdate(sensorReading, message);
+            alertHighTemperatureVariation(sensorReading);
         }
-        return false;
+    }
+
+
+    private void alertInfoTemperatureUpdate(SensorReading sensorReading, String message) {
+        CloudToMongo.insertAlert(new Alert(sensorReading, AlertType.Low, message));
+    }
+
+    private void alertHighTemperatureVariation(SensorReading sensorReading) {
+         TemperatureReading temperatureReading = (TemperatureReading) sensorReading;
+         if (temperatureReading.getzScore()<TEMPERATURE_ALERT_Z_SCORE)
+             return;
+
+         String message = "";
+         if (temperatureReading.getReadingValue()<temperatureReading.getReadingMean())
+             message = "HIGH: Temperature is dropping fast bellow mean value";
+         else
+             message = "HIGH: Temperature is rising fast above mean value";
+
+         CloudToMongo.insertAlert(new Alert(sensorReading, AlertType.High, message));
     }
 
 

@@ -4,27 +4,30 @@ import Sensor.Alert;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
 import org.eclipse.paho.client.mqttv3.*;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.List;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 
+
+
 public class CloudToMongo implements MqttCallback {
 
     private MqttClient mqttclient;
-
 
 
     private static MongoClient mongoClient;
@@ -178,6 +181,7 @@ public class CloudToMongo implements MqttCallback {
     }
 
     public void connectMongo(String collection) {
+
         String mongoURI = new String();
 
         mongoURI = "mongodb://";
@@ -196,6 +200,8 @@ public class CloudToMongo implements MqttCallback {
             System.out.println("Sucesso");
 
         }
+
+
     }
 
     @Override
@@ -333,7 +339,7 @@ public class CloudToMongo implements MqttCallback {
         CloudToMongo.getAlertCollection().insert(alert.getDBObject());
         System.out.println("Alert Insert, " + alert);
         try {
-            CloudToMongo.getFileWriter().append("Alert Insert, ").append(String.valueOf(alert));
+            CloudToMongo.getFileWriter().append("Alert Insert, ,").append(String.valueOf(alert)).append("\n");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
