@@ -33,10 +33,9 @@ public class QueueToMongo extends Thread{
 
     public void run() {
 
-        while (true) {
+        while (CloudToMongo.getExperienceBeginning() != null) {
             //
-            if (!readingsForMongo.isEmpty() && CloudToMongo.getExperienceBeginning() != null
-                    && CloudToMongo.isMongoConnected()) {
+            if (!readingsForMongo.isEmpty() && CloudToMongo.isMongoConnected()) {
                 String reading = readingsForMongo.peek();
                 String[] tempValues = parseSensorReadingToArray(reading);
                 SensorReading sensorReading = null;
@@ -128,7 +127,6 @@ public class QueueToMongo extends Thread{
          return false;
     }
 
-    // TOMORROW IF Z-SCORE BIGGER THAN 2 ALERT
     private void temperatureReadingIsToAlert(SensorReading sensorReading) {
 
         TemperatureReading temperatureReading = (TemperatureReading) sensorReading;
