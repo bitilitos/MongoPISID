@@ -29,13 +29,16 @@ public class CollectDataMongo extends Thread {
     public BlockingQueue<String> data;
     String mongo_replica;
     String mongo_address;
-    String mongo_database;
     String mongo_authentication;
 
 
-    public CollectDataMongo(BlockingQueue<String> messageQueue, String mongoCollection) {
+    public CollectDataMongo(BlockingQueue<String> messageQueue, String mongoCollection, String mongo_database, String mongo_authentication) {
         this.mongoCollection = mongoCollection;
         this.data = messageQueue;
+        this.mongo_replica = mongo_replica;
+        this.mongo_address = mongo_address;
+        this.mongo_authentication = mongo_authentication;
+
     }
 
 
@@ -55,7 +58,7 @@ public class CollectDataMongo extends Thread {
         Iterator it = iterDoc.iterator();
         while (it.hasNext()) {
             data.add(it.next().toString());
-            System.out.println("Took data from Mongo");
+            System.out.println("Took data from Mongo" + data.toString());
         }
     }
 
