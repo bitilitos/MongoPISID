@@ -13,14 +13,14 @@ import java.util.*;
 import java.io.*;
 import javax.swing.*;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
-public class SendCloud  implements MqttCallback  {
+public class SendCloud  extends Thread implements MqttCallback  {
 	static MqttClient mqttclient;
 	static String cloud_server = new String();
     static String cloud_topic = new String();
 	static String mongo_collections = new String();
-	static JTextArea textArea = new JTextArea(10, 50);
-	static Map<String, String> collectionsToTablesMap = new HashMap<>();
+	public BlockingQueue<String> data;
 
 	public static void publishSensor(String leitura) {
 		try {
@@ -31,9 +31,21 @@ public class SendCloud  implements MqttCallback  {
 			e.printStackTrace();}
 	}
 
-	public void readData(List<String> data){
-		for (String s : data) {
-			publishSensor(s);
+	public SendCloud(BlockingQueue<String> data, String cloud_topic) {
+		this.data = data;
+		this.cloud_topic = cloud_topic;
+		connecCloud(cloud_topic);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				String leitura = data.take();
+				publishSensor(leitura);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

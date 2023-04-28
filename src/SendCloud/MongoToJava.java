@@ -9,6 +9,8 @@ import org.bson.Document;
 import javax.swing.*;
 import java.io.FileInputStream;
 import java.util.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class MongoToJava {
@@ -18,18 +20,6 @@ public class MongoToJava {
     private MongoDatabase connectToMongoDB () {
         return mongoClient.getDatabase("data");
     }
-
-    private List<String> getDataFromMongo (MongoDatabase database, String collectionName) {
-        List<String> data = new ArrayList<>();
-        MongoCollection<Document> collection = database.getCollection(collectionName);
-        FindIterable<Document> iterDoc = collection.find();
-        Iterator it = iterDoc.iterator();
-        while (it.hasNext()) {
-            data.add(it.next().toString());
-        }
-        return data;
-    }
-
 
     private static void setCollectionsToTablesMap() {
         try {
@@ -55,18 +45,11 @@ public class MongoToJava {
     public static void main(String[] args) {
         setCollectionsToTablesMap();
         for (Map.Entry<String, String> collection : collectionsToTablesMap.entrySet()){
-            Runnable thread = new Runnable() {
-                @Override
-                public void run() {
-                    MongoToJava mongoToJava = new MongoToJava();
-                    MongoDatabase database = mongoToJava.connectToMongoDB();
-                    List<String> data = mongoToJava.getDataFromMongo(database, collection.getKey());
-                    SendCloud publishTopic = new SendCloud();
-                    publishTopic.connecCloud(collection.getValue());
-                    publishTopic.readData(data);
-                }
-            };
-            thread.run();
+            BlockingQueue<String> messageQueue = new LinkedBlockingQueue<>();
+            CollectDataMongo collectDataMongo = new CollectDataMongo(messageQueue, collection.getKey());
+            SendCloud publishTopic = new SendCloud(messageQueue, collection.getValue());
+            collectDataMongo.start();
+            publishTopic.start();
         }
 
     }
