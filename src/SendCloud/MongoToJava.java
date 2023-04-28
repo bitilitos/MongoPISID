@@ -58,7 +58,7 @@ public class MongoToJava {
         setCollectionsToTablesMap();
         for (Map.Entry<String, String> collection : collectionsToTablesMap.entrySet()){
             BlockingQueue<String> messageQueue = new LinkedBlockingQueue<>();
-            CollectDataMongo collectDataMongo = new CollectDataMongo(messageQueue, collection.getKey(), mongo_replica, mongo_database, mongo_authentication);
+            CollectDataMongo collectDataMongo = new CollectDataMongo(messageQueue, collection.getKey(), mongo_replica, mongo_authentication);
             SendCloud publishTopic = new SendCloud(messageQueue, collection.getValue());
             collectDataMongo.start();
             publishTopic.start();

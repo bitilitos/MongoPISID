@@ -32,11 +32,10 @@ public class CollectDataMongo extends Thread {
     String mongo_authentication;
 
 
-    public CollectDataMongo(BlockingQueue<String> messageQueue, String mongoCollection, String mongo_database, String mongo_authentication) {
+    public CollectDataMongo(BlockingQueue<String> messageQueue, String mongoCollection, String mongo_replica, String mongo_authentication) {
         this.mongoCollection = mongoCollection;
         this.data = messageQueue;
         this.mongo_replica = mongo_replica;
-        this.mongo_address = mongo_address;
         this.mongo_authentication = mongo_authentication;
 
     }
