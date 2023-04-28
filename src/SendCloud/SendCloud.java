@@ -27,6 +27,7 @@ public class SendCloud  extends Thread implements MqttCallback  {
 			MqttMessage mqtt_message = new MqttMessage();
 			mqtt_message.setPayload(leitura.getBytes());
 			mqttclient.publish(cloud_topic, mqtt_message);
+			System.out.println("Published a topic");
 		} catch (MqttException e) {
 			e.printStackTrace();}
 	}

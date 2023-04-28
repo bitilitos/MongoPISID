@@ -27,6 +27,10 @@ public class MongoToJava {
             p.load(new FileInputStream("SendCloud.ini"));
             String mongoCollections = p.getProperty("mongo_collections");
             String cloud_topics = p.getProperty("cloud_topics");
+            String mongo_authentication = p.getProperty("mongo_authentication");
+            String mongo_database = p.getProperty("mongo_database");
+            String mongo_replica = p.getProperty("mongo_replica");
+            String mqtt_broker = p.getProperty("cloud_server");
             if (mongoCollections.contains(",")){
                 String[] mongoCollections_vector = mongoCollections.split(",");
                 String[] mqttTopics_vector = cloud_topics.split(",");

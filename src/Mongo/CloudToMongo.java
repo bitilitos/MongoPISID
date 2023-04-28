@@ -42,7 +42,7 @@ public class CloudToMongo implements MqttCallback {
     private static String mongo_replica = new String();
     private static String mongo_database = new String();
     private static String mongo_collection = new String();
-    private static String mongo_authentication = new String();
+    public static String mongo_authentication = new String();
     private static JTextArea documentLabel = new JTextArea("\n");
     private static Map<String, String> topics = new HashMap<>();
     private BlockingQueue <String> readingsForMongo = new LinkedBlockingQueue<>();
