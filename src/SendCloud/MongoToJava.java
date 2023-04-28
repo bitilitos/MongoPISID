@@ -19,6 +19,7 @@ public class MongoToJava {
     static String mongoCollections;
     static String cloud_topics;
     static String mongo_authentication;
+    static String mongo_address;
     static String mongo_database;
     static String mongo_replica;
     static String mqtt_broker;
@@ -39,6 +40,7 @@ public class MongoToJava {
              mongo_database = p.getProperty("mongo_database");
              mongo_replica = p.getProperty("mongo_replica");
              mqtt_broker = p.getProperty("cloud_server");
+             mongo_address = p.getProperty("mongo_address");
             if (mongoCollections.contains(",")){
                 String[] mongoCollections_vector = mongoCollections.split(",");
                 String[] mqttTopics_vector = cloud_topics.split(",");
