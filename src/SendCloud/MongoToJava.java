@@ -1,18 +1,15 @@
 package SendCloud;
 
-import com.mongodb.*;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
 import javax.swing.*;
 import java.io.FileInputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
-import static Mongo.CloudToMongo.*;
 
 
 public class MongoToJava {
@@ -56,11 +53,12 @@ public class MongoToJava {
         }
     }
 
+
     public static void main(String[] args) {
         setCollectionsToTablesMap();
         for (Map.Entry<String, String> collection : collectionsToTablesMap.entrySet()){
             BlockingQueue<String> messageQueue = new LinkedBlockingQueue<>();
-            CollectDataMongo collectDataMongo = new CollectDataMongo(messageQueue, collection.getKey(), mongo_replica, mongo_authentication);
+            CollectDataMongo collectDataMongo = new CollectDataMongo(messageQueue, collection.getKey(), mongo_replica, mongo_authentication, mongo_address);
             SendCloud publishTopic = new SendCloud(messageQueue, collection.getValue());
             collectDataMongo.start();
             publishTopic.start();
