@@ -62,6 +62,8 @@ public abstract class SensorReading {
                     this.timestamp = time;
                     lastTimeStamp = time;
                 }
+        } else {
+            timestamp = time;
         }
     }
 

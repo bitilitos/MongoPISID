@@ -1,6 +1,9 @@
 package Mongo;
 
 import Sensor.Alert;
+import Sensor.MoveReading;
+import Sensor.SensorReading;
+import Sensor.TemperatureReading;
 import com.mongodb.*;
 import com.mongodb.util.JSON;
 import org.eclipse.paho.client.mqttv3.*;
@@ -11,8 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.sql.Timestamp;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -33,6 +36,9 @@ public class CloudToMongo implements MqttCallback {
     private static DB db;
     private DBCollection mongocol;
     public static DBCollection alertCollection;
+    public static DBCollection backupAlertCollection;
+
+    private DBCollection backupCollection;
     private static String mongo_user = new String();
     private static String mongo_password = new String();
     private static String mongo_address = new String();
@@ -46,6 +52,8 @@ public class CloudToMongo implements MqttCallback {
     private static JTextArea documentLabel = new JTextArea("\n");
     private static Map<String, String> topics = new HashMap<>();
     private BlockingQueue <String> readingsForMongo = new LinkedBlockingQueue<>();
+
+
 
 
     // Flag -> Waiting for Experience Reading to arrive
@@ -109,6 +117,8 @@ public class CloudToMongo implements MqttCallback {
             mongo_database = p.getProperty("mongo_database");
             mongo_authentication = p.getProperty("mongo_authentication");
 
+
+
         } catch (Exception e) {
             System.out.println("Error reading CloudToMongo.ini file " + e);
             JOptionPane.showMessageDialog(null, "The CloudToMongo.inifile wasn't found.", "CloudToMongo", JOptionPane.ERROR_MESSAGE);
@@ -124,14 +134,17 @@ public class CloudToMongo implements MqttCallback {
                 @Override
                 public void run() {
                     CloudToMongo cloudToMongo = new CloudToMongo();
-                    cloudToMongo.connectCloud(topic.getKey());
                     cloudToMongo.connectMongo(topic.getValue());
+                    cloudToMongo.backupCollection = db.getCollection("backup_" + topic.getValue());
                     cloudToMongoList.add(cloudToMongo);
+                    cloudToMongo.connectCloud(topic.getKey());
+
                 }
             };
             thread.run();
         }
         alertCollection = db.getCollection("alert");
+        backupAlertCollection = db.getCollection("backup_alert");
 
     }
 
@@ -208,35 +221,41 @@ public class CloudToMongo implements MqttCallback {
             System.out.println("Sucesso");
 
         }
-
-
     }
 
     @Override
     public void messageArrived(String topic, MqttMessage c)
             throws Exception {
         try {
-            documentLabel.insert(c.toString()+"\n", 0);
+            String reading = c.toString();
+            if (reading.contains("movimentação ratos: "))
+                reading = reading.replace("movimentação ratos: ", "");
+            documentLabel.insert(reading+"\n", 0);
             //**************************//
             // for testing purpose only
             // insertToQueue(topic, c.toString());
-            DBObject json = getDBObjectFromReading(c.toString());
+            DBObject json = getDBObjectFromReading(reading);
+
+            // Main when down and recovery from crash
+            if (runFromBackup && experienceBeginning != null) {
+                recoverFromCrash(reading);
+            }
+
 
                 // To get Start Message when expecting experience to Start
                 if (isWaitingForExperienceStart) {
                     if (json != null) {
-                        if (isReadingExperienceStart(json)) insertToQueue(topic, c.toString());
+                        if (isReadingExperienceStart(json)) insertToQueue(topic, reading);
                         return;
                     }
                 }
-
 
                 // To get first timeStamp after start experience message
                 if (hasStartReadingArrived && experienceBeginning == null) {
                     if (json != null) {
                         String timestamp = json.get("Hora").toString();
                         if (timestamp != null && !timestamp.isEmpty()) startExperience(timestamp);
-                        insertToQueue(topic, c.toString());
+                        insertToQueue(topic, reading);
                     }
                 }
 
@@ -245,13 +264,43 @@ public class CloudToMongo implements MqttCallback {
                     if (json != null) {
                         isReadingExperienceStart(json);
                     }
-                    insertToQueue(topic, c.toString());
+                    insertToQueue(topic, reading);
                 }
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
+
+    private void recoverFromCrash(String reading) {
+        String[] tempValues = QueueToMongo.parseSensorReadingToArray(reading);
+        SensorReading sensorReading = null;
+
+        if (mongocol.getName().equals("temp")) {
+            sensorReading = new TemperatureReading(tempValues[0], tempValues[1], tempValues[2]);
+        }
+        else {
+            sensorReading = new MoveReading(tempValues[0], tempValues[1], tempValues[2]);
+        }
+
+        if (sensorReading.isReadingGood()) {
+            for (CloudToMongo cloudToMongo : cloudToMongoList) {
+                DBCursor cursor = cloudToMongo.mongocol.find().sort(new BasicDBObject("Hour", -1)).limit(1);
+                DBObject lastInsertedDocument = cursor.next();
+                Timestamp lastInsertedDocumentTime = Timestamp.valueOf((String)lastInsertedDocument.get("Hour"));
+                BasicDBObject query = new BasicDBObject();
+                query.put("Hour", new BasicDBObject("$gt", lastInsertedDocumentTime.toString()).append("$lt", sensorReading.getTimestamp().toString()));
+                cursor = backupCollection.find(query);
+
+                System.out.println("List to Copy");
+                while (cursor.hasNext()) {
+                    System.out.println(cursor.next());
+                }
+            }
+            runFromBackup = false;
+        }
+    }
+
     public BlockingQueue<String> getReadingsForMongo() {
         return readingsForMongo;
     }
@@ -415,7 +464,7 @@ public class CloudToMongo implements MqttCallback {
             @Override
             public void run() {
                 try {
-                    runProcess("java -jar " + CloudToMongo.BACKUP_JAR_PATH + " " +ProcessHandle.current().pid());
+                    runProcess("java -jar " + CloudToMongo.BACKUP_JAR_PATH + " " + ProcessHandle.current().pid());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -426,18 +475,36 @@ public class CloudToMongo implements MqttCallback {
 
     }
 
-    private static void backupAutomaticRun() {
+    //args[0]=BACKUP_AUTOMATIC_RUN ** String
+    //args[1]="hasStartReadingArrived," + hasStartReadingArrived ** Boolean
+    //args[2]="isWaitingForExperienceStart," + isWaitingForExperienceStart ** Boolean
+    //args[3]="experienceMustEnd," + experienceMustEnd + " " ** Boolean
+    //args[4]="experienceBeginning," + expBeginningString ** Timestamp - can be null
+    private static void backupAutomaticRun(String[] args) {
         runFromBackup = true;
+        String[] values = new String[args.length-1];
+        for (int i = 1; i < args.length; i++) {
+            String[] temp = args[i].split(",");
+            values[i-1] = temp[1];
+        }
+        hasStartReadingArrived = Boolean.parseBoolean((values[0]));
+        isWaitingForExperienceStart = Boolean.parseBoolean(values[1]);
+        experienceMustEnd = Boolean.parseBoolean(values[2]);
+        if (values[3].equals("null"))
+         experienceBeginning = null;
+        else
+            experienceBeginning = Timestamp.valueOf(values[3]);
+
         System.out.println(BACKUP_AUTOMATIC_RUN);
         CloudToMongo.initiate();
-
     }
 
 
-
+    //**********************
+    //Runnable MongoToJava
     public static void main(String[] args) {
         if (args.length != 0 && args[0] != null && args[0].equals(BACKUP_AUTOMATIC_RUN))
-            backupAutomaticRun();
+            backupAutomaticRun(args);
 
         else manualRun();
     }

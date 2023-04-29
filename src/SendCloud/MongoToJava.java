@@ -32,7 +32,7 @@ public class MongoToJava {
             Properties p = new Properties();
             p.load(new FileInputStream("SendCloud.ini"));
              mongoCollections = p.getProperty("mongo_collections");
-             cloud_topics = p.getProperty("cloud_topics");
+             cloud_topics = p.getProperty("cloud_topic");
              mongo_authentication = p.getProperty("mongo_authentication");
              mongo_database = p.getProperty("mongo_database");
              mongo_replica = p.getProperty("mongo_replica");
@@ -62,6 +62,7 @@ public class MongoToJava {
             SendCloud publishTopic = new SendCloud(messageQueue, collection.getValue());
             collectDataMongo.start();
             publishTopic.start();
+            System.out.println("Sender is running: " + publishTopic.getName());
         }
 
     }

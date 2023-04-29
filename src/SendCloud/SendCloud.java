@@ -1,65 +1,75 @@
 package SendCloud;
 
-import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.*;
 
-
-
-import java.util.*;
-
-import java.io.*;
-import javax.swing.*;
-import java.util.List;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 
 public class SendCloud  extends Thread implements MqttCallback  {
-	static MqttClient mqttclient;
-	static String cloud_server = new String();
-    static String cloud_topic = new String();
-	static String mongo_collections = new String();
+	private static MqttClient mqttclient;
+	private static String cloud_server = new String();
+    private String cloud_topic = new String();
+	private String mongo_collections = new String();
+
 	public BlockingQueue<String> data;
 
-	public static void publishSensor(String leitura) {
+	public void publishSensor(String leitura) {
 		try {
 			MqttMessage mqtt_message = new MqttMessage();
 			mqtt_message.setPayload(leitura.getBytes());
 			mqttclient.publish(cloud_topic, mqtt_message);
-			System.out.println("Published a topic");
+			System.out.println("Published topic " + cloud_topic + " : message:" + mqtt_message);
 		} catch (MqttException e) {
 			e.printStackTrace();}
 	}
 
+
+
 	public SendCloud(BlockingQueue<String> data, String cloud_topic) {
 		this.data = data;
 		this.cloud_topic = cloud_topic;
-		connecCloud(cloud_topic);
+		connectCloud(cloud_topic);
 	}
 
 	@Override
 	public void run() {
 		while (true) {
-			try {
-				String leitura = data.take();
-				publishSensor(leitura);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			if (mqttclient.isConnected()) {
+				try {
+					String leitura = data.take();
+					System.out.println("Pub dataStrut: " + data.hashCode() + " Topic " + cloud_topic);
+					publishSensor(leitura);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
+			else {
+				System.out.println("MQTT on topic " + cloud_topic + " is not connected");
+
+				try {
+					sleep(1000);
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
+				}
+			}
+
 		}
 	}
 
-	public void connecCloud(String cloud_topic) {
+	public void connectCloud(String cloud_topic) {
         try {
 			Properties p = new Properties();
 			p.load(new FileInputStream("SendCloud.ini"));
 			cloud_server = p.getProperty("cloud_server");
 			this.cloud_topic = cloud_topic;
-            mqttclient = new MqttClient(cloud_server, "SimulateSensor"+cloud_topic);
+            mqttclient = new MqttClient(cloud_server, "SimulateSensor" + cloud_topic);
             mqttclient.connect();
             mqttclient.setCallback(this);
             mqttclient.subscribe(cloud_topic);
+			System.out.println("Cloud connected is " + mqttclient.isConnected() + " on topic " + cloud_topic);
         } catch (MqttException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
@@ -77,8 +87,8 @@ public class SendCloud  extends Thread implements MqttCallback  {
 
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken token) {
-		System.out.println("Delivery complete");
-		System.out.println("Message sent: " + token.getMessageId());
+		System.out.println("Delivery complete\n" );
+		System.out.println("Message sent: " + token.getMessageId() + "\n");
 	}
 
 	@Override

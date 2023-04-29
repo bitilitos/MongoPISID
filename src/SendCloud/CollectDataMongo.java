@@ -1,35 +1,22 @@
 package SendCloud;
 
 import com.mongodb.*;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.BlockingQueue;
-
-import static Mongo.CloudToMongo.mongo_authentication;
 
 public class CollectDataMongo extends Thread {
     private MongoClient mongoClient ;
     private DBCollection mongocol;
-    private MongoDatabase connectToMongoDB () {
-        return mongoClient.getDatabase("data");
-    }
+
     private DB database ;
     private String mongoCollection;
-
-    public BlockingQueue<String> getData() {
-        return data;
-    }
 
     public BlockingQueue<String> data;
     String mongo_replica;
     String mongo_address;
     String mongo_authentication;
+
 
 
     public CollectDataMongo(BlockingQueue<String> messageQueue, String mongoCollection, String mongo_replica, String mongo_authentication, String mongo_address) {
@@ -54,11 +41,20 @@ public class CollectDataMongo extends Thread {
     }
 
     private void getDataFromMongo () {
-        DBCursor iterDoc = mongocol.find();
+        BasicDBObject query = new BasicDBObject();
+        query.put("Hour", new BasicDBObject("$gt", "2023-04-28 11:09:37.220358"));
+        DBCursor iterDoc = mongocol.find(query);
         Iterator it = iterDoc.iterator();
         while (it.hasNext()) {
-            data.add(it.next().toString());
-            System.out.println("Took data from Mongo" + data.toString());
+            String reading = it.next().toString();
+            data.add(reading);
+           System.out.println("Took data from Mongo" + reading);
+           System.out.println("dataStru: " + data.hashCode() + Thread.currentThread() + " Collection " + mongocol.getName());
+        }
+        try {
+            sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -77,7 +77,7 @@ public class QueueToMongo extends Thread{
 
     // returns hora, leitura, sensor
     // returns hora, SalaEntrada, SalaSaida
-    private String[] parseSensorReadingToArray(String reading) {
+    public static String[] parseSensorReadingToArray(String reading) {
          String[] fields = reading.split(",");
          String[] values = new String[fields.length];
          int i = 0;
