@@ -1,9 +1,11 @@
 package SendCloud;
 
+import Mongo.*;
 import com.mongodb.*;
 
-import java.util.Iterator;
-import java.util.concurrent.BlockingQueue;
+import java.sql.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class CollectDataMongo extends Thread {
     private MongoClient mongoClient ;
@@ -17,14 +19,17 @@ public class CollectDataMongo extends Thread {
     String mongo_address;
     String mongo_authentication;
 
+    Timestamp timestampOfLastSent;
 
 
-    public CollectDataMongo(BlockingQueue<String> messageQueue, String mongoCollection, String mongo_replica, String mongo_authentication, String mongo_address) {
+
+    public CollectDataMongo(BlockingQueue<String> messageQueue, String mongoCollection, String mongo_replica, String mongo_authentication, String mongo_address, Timestamp experienceStart) {
         this.mongoCollection = mongoCollection;
         this.data = messageQueue;
         this.mongo_replica = mongo_replica;
         this.mongo_authentication = mongo_authentication;
         this.mongo_address = mongo_address;
+        this.timestampOfLastSent = experienceStart;
 
     }
 
@@ -36,27 +41,33 @@ public class CollectDataMongo extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        while(true) getDataFromMongo();
+        while(CloudToMongo.getExperienceBeginning() != null)
+            getDataFromMongo();
 
     }
 
     private void getDataFromMongo () {
         BasicDBObject query = new BasicDBObject();
-        query.put("Hour", new BasicDBObject("$gt", "2023-04-28 11:09:37.220358"));
+        query.put("Hour", new BasicDBObject("$gt", timestampOfLastSent.toString()));
         DBCursor iterDoc = mongocol.find(query);
         Iterator it = iterDoc.iterator();
         while (it.hasNext()) {
             String reading = it.next().toString();
+            System.out.println("Reading took from Mongo:" + reading);
             data.add(reading);
-           System.out.println("Took data from Mongo" + reading);
-           System.out.println("dataStru: " + data.hashCode() + Thread.currentThread() + " Collection " + mongocol.getName());
+            DBObject json = CloudToMongo.getDBObjectFromReading(reading);
+            if (timestampOfLastSent.before(Timestamp.valueOf((String) json.get("Hour")))) {
+                System.out.println(json.get("Hour"));
+                timestampOfLastSent = Timestamp.valueOf((String) json.get("Hour"));
+            }
         }
         try {
-            sleep(5000);
+            sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public void connectMongo(String collection) {
         String mongoURI = new String();
@@ -74,7 +85,5 @@ public class CollectDataMongo extends Thread {
             System.out.println("Sucesso");
 
         }
-
-
     }
 }

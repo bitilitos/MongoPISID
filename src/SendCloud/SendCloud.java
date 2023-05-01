@@ -1,12 +1,11 @@
 package SendCloud;
 
+import Mongo.*;
 import org.eclipse.paho.client.mqttv3.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.concurrent.BlockingQueue;
+import java.io.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class SendCloud  extends Thread implements MqttCallback  {
 	private static MqttClient mqttclient;
@@ -36,8 +35,17 @@ public class SendCloud  extends Thread implements MqttCallback  {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (CloudToMongo.getExperienceBeginning() != null) {
 			if (mqttclient.isConnected()) {
+				if(data.isEmpty()) {
+					System.out.println("MQTT on topic " + cloud_topic + " has no data");
+					try {
+						sleep(1000);
+					} catch (InterruptedException e) {
+						throw new RuntimeException(e);
+					}
+					continue;
+				}
 				try {
 					String leitura = data.take();
 					System.out.println("Pub dataStrut: " + data.hashCode() + " Topic " + cloud_topic);

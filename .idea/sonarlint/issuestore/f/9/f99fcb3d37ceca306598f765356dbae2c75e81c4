@@ -1,0 +1,11 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(›ÐšÛüÿÿÿÿ
+N
+java:S5993"9Change the visibility of this constructor to "protected".(ïÉß
+g
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ïÉß
+@
+java:S3010?"*Remove this assignment of "lastTimeStamp".(ü¡äÉ
+L
+java:S1874"1Remove this use of "Timestamp"; it is deprecated.(Áó›åùÿÿÿÿ
+S	java:S106L"9Replace this use of System.out or System.err by a logger.(¨¶ÑÍþÿÿÿÿ

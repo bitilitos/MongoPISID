@@ -1,25 +1,20 @@
 package Mongo;
 
-import Sensor.Alert;
-import Sensor.MoveReading;
-import Sensor.SensorReading;
-import Sensor.TemperatureReading;
+import SendCloud.*;
+import Sensor.*;
 import com.mongodb.*;
-import com.mongodb.util.JSON;
+import com.mongodb.util.*;
 import org.eclipse.paho.client.mqttv3.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.*;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.time.*;
 import java.util.List;
 import java.util.*;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-
+import java.util.concurrent.*;
 
 
 
@@ -52,16 +47,18 @@ public class CloudToMongo implements MqttCallback {
     private static JTextArea documentLabel = new JTextArea("\n");
     private static Map<String, String> topics = new HashMap<>();
     private BlockingQueue <String> readingsForMongo = new LinkedBlockingQueue<>();
+    private static final String EXPERIENCE_CLOUD_TOPIC = "g7_experiment";
 
 
-
+    private static boolean testing = false;
 
     // Flag -> Waiting for Experience Reading to arrive
-    private static boolean isWaitingForExperienceStart = true;
+    private static boolean isWaitingForExperienceStart = false;
     // Flag -> Message indicating experience start has arrived
     private static boolean hasStartReadingArrived = false;
 
     private static boolean experienceMustEnd = false;
+    private static boolean isExperienceActive = false;
 
 
     private static Timestamp experienceBeginning = null;
@@ -74,6 +71,8 @@ public class CloudToMongo implements MqttCallback {
 
     private static boolean runFromBackup = false;
     private static List<CloudToMongo> cloudToMongoList = new ArrayList<CloudToMongo>();
+    private static List<Runnable> threads = new ArrayList<>();
+
 
     private static void createWindow() {
         JFrame frame = new JFrame("Cloud to Mongo");
@@ -100,30 +99,6 @@ public class CloudToMongo implements MqttCallback {
 
         createWindow();
 
-        try {
-            Properties p = new Properties();
-            p.load(new FileInputStream(CLOUD_TO_MONGO_INI_PATH));
-            String cloud_topics = p.getProperty("cloud_topic");
-            mongo_collection = p.getProperty("mongo_collection");
-            topics = topicsList(cloud_topics, mongo_collection);
-
-            mongo_address = p.getProperty("mongo_address");
-            mongo_user = p.getProperty("mongo_user");
-            mongo_password = p.getProperty("mongo_password");
-            mongo_replica = p.getProperty("mongo_replica");
-            cloud_server = p.getProperty("cloud_server");
-
-            mongo_host = p.getProperty("mongo_host");
-            mongo_database = p.getProperty("mongo_database");
-            mongo_authentication = p.getProperty("mongo_authentication");
-
-
-
-        } catch (Exception e) {
-            System.out.println("Error reading CloudToMongo.ini file " + e);
-            JOptionPane.showMessageDialog(null, "The CloudToMongo.inifile wasn't found.", "CloudToMongo", JOptionPane.ERROR_MESSAGE);
-        }
-
 
         //**************************//
         // for testing purposes only
@@ -142,6 +117,7 @@ public class CloudToMongo implements MqttCallback {
                 }
             };
             thread.run();
+            threads.add(thread);
         }
         alertCollection = db.getCollection("alert");
         backupAlertCollection = db.getCollection("backup_alert");
@@ -201,6 +177,48 @@ public class CloudToMongo implements MqttCallback {
         }
     }
 
+    private static void loadConfig() {
+        try {
+            Properties p = new Properties();
+            p.load(new FileInputStream(CLOUD_TO_MONGO_INI_PATH));
+            String cloud_topics = p.getProperty("cloud_topic");
+            mongo_collection = p.getProperty("mongo_collection");
+            topics = topicsList(cloud_topics, mongo_collection);
+
+            mongo_address = p.getProperty("mongo_address");
+            mongo_user = p.getProperty("mongo_user");
+            mongo_password = p.getProperty("mongo_password");
+            mongo_replica = p.getProperty("mongo_replica");
+            cloud_server = p.getProperty("cloud_server");
+
+            mongo_host = p.getProperty("mongo_host");
+            mongo_database = p.getProperty("mongo_database");
+            mongo_authentication = p.getProperty("mongo_authentication");
+
+
+
+        } catch (Exception e) {
+            System.out.println("Error reading CloudToMongo.ini file " + e);
+            JOptionPane.showMessageDialog(null, "The CloudToMongo.inifile wasn't found.", "CloudToMongo", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private static void startService() {
+        loadConfig();
+        Runnable thread = new Runnable() {
+
+            @Override
+            public void run() {
+                CloudToMongo cloudToMongo = new CloudToMongo();
+                cloudToMongo.connectCloud(EXPERIENCE_CLOUD_TOPIC);
+            }
+        };
+        thread.run();
+
+    }
+
+
+
     public void connectMongo(String collection) {
 
         String mongoURI = new String();
@@ -227,19 +245,41 @@ public class CloudToMongo implements MqttCallback {
     public void messageArrived(String topic, MqttMessage c)
             throws Exception {
         try {
-            String reading = c.toString();
-            if (reading.contains("movimentação ratos: "))
-                reading = reading.replace("movimentação ratos: ", "");
-            documentLabel.insert(reading+"\n", 0);
-            //**************************//
-            // for testing purpose only
-            // insertToQueue(topic, c.toString());
-            DBObject json = getDBObjectFromReading(reading);
-
-            // Main when down and recovery from crash
-            if (runFromBackup && experienceBeginning != null) {
-                recoverFromCrash(reading);
+            String reading = "";
+            if (testing && !cloud_topic.equals(EXPERIENCE_CLOUD_TOPIC)) {
+                reading = "{Hora:\"2000-01-01 00:00:00\",SalaEntrada:0,SalaSaida:0}";
+                testing = false;
             }
+            else{
+                reading = c.toString();
+            }
+
+            if (cloud_topic.equals(EXPERIENCE_CLOUD_TOPIC)) {
+                if (reading.toString().equals("START_EXPERIMENT") && !isExperienceActive){
+                    waitingForExperienceStart();
+                } else if (reading.toString().equals("STOP_EXPERIMENT") && isExperienceActive) {
+                    endExperience(Timestamp.from(Instant.now()), "Received Stop Message");
+                }
+            }
+            else {
+
+                if (!isExperienceActive) {
+                    Thread.currentThread().interrupt();
+                }
+
+                if (reading.contains("movimentação ratos: "))
+                    reading = reading.replace("movimentação ratos: ", "");
+
+                documentLabel.insert(reading+"\n", 0);
+                //**************************//
+                // for testing purpose only
+                // insertToQueue(topic, c.toString());
+                DBObject json = getDBObjectFromReading(reading);
+
+                // Main when down and recovery from crash
+                if (runFromBackup && experienceBeginning != null) {
+                    recoverFromCrash(reading);
+                }
 
 
                 // To get Start Message when expecting experience to Start
@@ -266,6 +306,7 @@ public class CloudToMongo implements MqttCallback {
                     }
                     insertToQueue(topic, reading);
                 }
+            }
 
         } catch (Exception e) {
             System.out.println(e);
@@ -319,6 +360,7 @@ public class CloudToMongo implements MqttCallback {
 
     // checks if reading is experience start
     private boolean isReadingExperienceStart (DBObject json) {
+
         if (json==null) return false;
         if (json.get("Hora").toString().equals("2000-01-01 00:00:00") && json.get("SalaEntrada").toString().equals("0") &&
                 json.get("SalaSaida").toString().equals("0")) {
@@ -329,12 +371,18 @@ public class CloudToMongo implements MqttCallback {
             }else if (experienceBeginning != null) {
                 experienceMustEnd = true;
                 System.out.println("IMPORTANT -> NEW EXPERIENCE STARTED, MUST END THIS ONE!!");
-
             }
             return true;
-
         }
         return false;
+    }
+
+
+
+    private static void waitingForExperienceStart() {
+        isExperienceActive = true;
+        isWaitingForExperienceStart = true;
+        initiate();
     }
 
     private void startExperience(String timestamp) {
@@ -343,6 +391,7 @@ public class CloudToMongo implements MqttCallback {
         System.out.println("IMPORTANT -> Experience started at: " + timestamp);
         System.out.println("IMPORTANT -> Experience must end until: " + getExperienceLimitTimestamp());
         startQueueToMongo();
+        MongoToJava.initiate(experienceBeginning);
 
         // For better data analysis
         try {
@@ -353,6 +402,7 @@ public class CloudToMongo implements MqttCallback {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
 
         experienceMustEnd = false;
     }
@@ -369,6 +419,8 @@ public class CloudToMongo implements MqttCallback {
         hasStartReadingArrived = false;
         experienceMustEnd = false;
         cleanDataReadingsForMongo();
+        cloudToMongoList.clear();
+        isExperienceActive = false;
 
         try {
             fw.close();
@@ -377,13 +429,14 @@ public class CloudToMongo implements MqttCallback {
         }
     }
 
+
     private static void cleanDataReadingsForMongo() {
         for (CloudToMongo cloudToMongo : cloudToMongoList) {
             cloudToMongo.readingsForMongo.clear();
         }
     }
 
-    private DBObject getDBObjectFromReading (String reading) {
+   public static DBObject getDBObjectFromReading (String reading) {
         try{
             DBObject document_json;
             document_json = (DBObject) JSON.parse(reading);
@@ -392,7 +445,6 @@ public class CloudToMongo implements MqttCallback {
             System.out.println(e);
             return null;
         }
-
     }
 
     public static void insertAlert(Alert alert) {
@@ -458,8 +510,8 @@ public class CloudToMongo implements MqttCallback {
         }
     }
 
-    private static void manualRun() {
-        CloudToMongo.initiate();
+
+    private static void startBackup() {
         Runnable backup = new Runnable() {
             @Override
             public void run() {
@@ -472,6 +524,12 @@ public class CloudToMongo implements MqttCallback {
             }
         };
         backup.run();
+    }
+
+
+    private static void manualRun() {
+        CloudToMongo.startService();
+        // startBackup();
 
     }
 
