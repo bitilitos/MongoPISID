@@ -18,7 +18,11 @@ public class SendCloud  extends Thread implements MqttCallback  {
 		try {
 			MqttMessage mqtt_message = new MqttMessage();
 			mqtt_message.setPayload(leitura.getBytes());
-			//mqtt_message.publish(cloud_topic, mqtt_message, <QOS>, <RETAINES>);
+			//Fazer um if aqui dentro para o cloud_topic.
+			// se ele for do tópico das leituras, QoS1 e envia a mensagem assim
+			//mqtt_message.publish(cloud_topic, mqtt_message, 1, false);
+			// Se for do topico dos warning, faz QoS 2
+			//mqtt_message.publish(cloud_topic, mqtt_message, 2, false);
 			//para cada topico diferente, QOS diferente
 			mqttclient.publish(cloud_topic, mqtt_message);
 			System.out.println("Published a topic");
