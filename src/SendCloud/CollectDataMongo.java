@@ -2,6 +2,8 @@ package SendCloud;
 
 import Mongo.*;
 import com.mongodb.*;
+import com.mongodb.DBObject;
+import org.bson.types.*;
 
 import java.sql.*;
 import java.util.*;
@@ -19,7 +21,9 @@ public class CollectDataMongo extends Thread {
     String mongo_address;
     String mongo_authentication;
 
-    Timestamp timestampOfLastSent;
+    Timestamp experienceStart;
+    ObjectId lastReadingObjectId = null;
+
 
 
 
@@ -29,8 +33,7 @@ public class CollectDataMongo extends Thread {
         this.mongo_replica = mongo_replica;
         this.mongo_authentication = mongo_authentication;
         this.mongo_address = mongo_address;
-        this.timestampOfLastSent = experienceStart;
-
+        this.experienceStart = experienceStart;
     }
 
 
@@ -48,7 +51,13 @@ public class CollectDataMongo extends Thread {
 
     private void getDataFromMongo () {
         BasicDBObject query = new BasicDBObject();
-        query.put("Hour", new BasicDBObject("$gt", timestampOfLastSent.toString()));
+        if (lastReadingObjectId == null) {
+            query.put("Hour", new BasicDBObject("$gt", experienceStart.toString()));
+        }
+        else{
+            query.put("_id", new BasicDBObject("$gt", lastReadingObjectId));
+        }
+
         DBCursor iterDoc = mongocol.find(query);
         Iterator it = iterDoc.iterator();
         while (it.hasNext()) {
@@ -56,9 +65,10 @@ public class CollectDataMongo extends Thread {
             System.out.println("Reading took from Mongo:" + reading);
             data.add(reading);
             DBObject json = CloudToMongo.getDBObjectFromReading(reading);
-            if (timestampOfLastSent.before(Timestamp.valueOf((String) json.get("Hour")))) {
-                System.out.println(json.get("Hour"));
-                timestampOfLastSent = Timestamp.valueOf((String) json.get("Hour"));
+            ObjectId readingID = (ObjectId) json.get("_id");
+
+            if (lastReadingObjectId == null || lastReadingObjectId.compareTo(readingID) < 0) {
+                lastReadingObjectId = readingID;
             }
         }
         try {

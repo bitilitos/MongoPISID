@@ -50,7 +50,7 @@ public class CloudToMongo implements MqttCallback {
     private static final String EXPERIENCE_CLOUD_TOPIC = "g7_experiment";
 
 
-    private static boolean testing = false;
+    private static boolean testing = true;
 
     // Flag -> Waiting for Experience Reading to arrive
     private static boolean isWaitingForExperienceStart = false;

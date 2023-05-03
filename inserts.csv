@@ -1,807 +1,414 @@
 Insert,Topic,Time,Field1,Field2,isValid,Error
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:39.438578", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:39.438578", Leitura: 14, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:14:39.438578 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 14.0, Z-Score: NaN,  ,AlertType:Low ,Message:INFO: Sensor1 first reading is 14.0.
-Mongo Insert,, Time: 2023-05-01 21:14:39.438578 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 14.0, Z-Score: NaN, 
-Alert Insert, ,Time: 2023-05-01 21:14:39.438578 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 14.0, Z-Score: NaN,  ,AlertType:Low ,Message:INFO: Sensor2 first reading is 14.0.
-Mongo Insert,, Time: 2023-05-01 21:14:39.438578 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 14.0, Z-Score: NaN, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:40.440896", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:40.440896", Leitura: 13.7, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:14:40.440896 ,  Temp: 13.7,Sensor: 2, isValid: true , Mean: 13.925, Z-Score: 1.7320508075688807, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:41.443215", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:41.443215", Leitura: 13.399999999999999, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:14:41.443215 ,  Temp: 13.399999999999999,Sensor: 2, isValid: true , Mean: 13.850000000000001, Z-Score: 1.9639610121239341, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:42.445535", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:42.445535", Leitura: 13.099999999999998, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:14:42.445535 ,  Temp: 13.099999999999998,Sensor: 2, isValid: true , Mean: 13.775, Z-Score: 2.0647416048350555, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:43.447854", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:43.447854", Leitura: 12.799999999999997, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:14:43.447854 ,  Temp: 12.799999999999997,Sensor: 2, isValid: true , Mean: 13.700000000000001, Z-Score: 2.1213203435596437,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 12.799999999999997.
-Alert Insert, ,Time: 2023-05-01 21:14:43.447854 ,  Temp: 12.799999999999997,Sensor: 2, isValid: true , Mean: 13.700000000000001, Z-Score: 2.1213203435596437,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:14:43.447854 ,  Temp: 12.799999999999997,Sensor: 2, isValid: true , Mean: 13.700000000000001, Z-Score: 2.1213203435596437, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:44.450174", Leitura: 14, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:14:44.450174 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 13.727272727272728, Z-Score: 0.6593804733957821, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:44.450174", Leitura: 12.499999999999996, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:14:44.450174 ,  Temp: 12.499999999999996,Sensor: 2, isValid: true , Mean: 13.625, Z-Score: 2.1575848566842284, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:44.930888", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:14:44.930888 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:45.452493", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 12.199999999999996, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 12.199999999999996,Sensor: 2, isValid: false , Mean: 13.549999999999999, Z-Score: 2.182820625326995,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:46.454813", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:46.454813", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:14:46.454813 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 13.579999999999998, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:47.457132", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:47.457132", Leitura: 11.599999999999994, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:14:47.457132 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 13.488235294117645, Z-Score: 2.526228080876886,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 11.599999999999994.
-Alert Insert, ,Time: 2023-05-01 21:14:47.457132 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 13.488235294117645, Z-Score: 2.526228080876886,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:14:47.457132 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 13.488235294117645, Z-Score: 2.526228080876886, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:47.931862", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:14:47.931862 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:48.459451", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.599999999999994,Sensor: 2, isValid: false , Mean: 13.415789473684208, Z-Score: 2.176407096800334,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:49.462768", Leitura: 14, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:14:49.462768 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 13.444999999999999, Z-Score: 0.6742894214251759, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:49.462768", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:50.465088", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:50.465088", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:50.933834", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:14:50.933834 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:50.934835", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:14:50.934835 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:51.467407", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:51.467407", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:52.469727", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:52.469727", Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:14:52.469727 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 13.233333333333333, Z-Score: 1.6369751067136, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:53.472046", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:53.472046", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:53.936803", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:14:53.936803 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:54.475363", Leitura: 14, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:14:54.475363 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 13.229999999999999, Z-Score: 0.7608859102526816, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:54.475363", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:55.479677", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:55.479677", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:56.482994", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:56.482994", Leitura: 11.299999999999994, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:14:56.482994 ,  Temp: 11.299999999999994,Sensor: 2, isValid: true , Mean: 13.125714285714285, Z-Score: 1.695825473482209, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:56.936780", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:14:56.93678 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:57.486310", Leitura: 14, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:57.486310", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:14:57.48631 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 13.149999999999999, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:57.932119", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:14:57.932119 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:58.489627", Leitura: 13.7, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:14:58.489627 ,  Temp: 13.7,Sensor: 1, isValid: true , Mean: 13.164864864864864, Z-Score: 0.5046555939204573, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 10.699999999999992, Sensor: 2},
-Alert Insert, ,Time: 1899-12-31 00:00:00.0 ,  Temp: 10.699999999999992,Sensor: 2, isValid: false , Mean: 13.1, Z-Score: 2.1461734799546406,  , Error: This timestamp wasn't parsable.  ,AlertType:Medium ,Message:Sensor with 5 malfunctions! 
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 10.699999999999992,Sensor: 2, isValid: false , Mean: 13.1, Z-Score: 2.1461734799546406,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:59.491947", Leitura: 13.399999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:14:59.491947 ,  Temp: 13.399999999999999,Sensor: 1, isValid: true , Mean: 13.107692307692307, Z-Score: 0.2645659703935033, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:14:59.491947", Leitura: 10.399999999999991, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:14:59.491947 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 13.04, Z-Score: 2.2564102564102577,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 10.399999999999991.
-Alert Insert, ,Time: 2023-05-01 21:14:59.491947 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 13.04, Z-Score: 2.2564102564102577,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:14:59.491947 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 13.04, Z-Score: 2.2564102564102577, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:59.937754", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:14:59.937754 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:14:59.939259", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:14:59.939259 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:00.494776", Leitura: 13.099999999999998, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:00.494776 ,  Temp: 13.099999999999998,Sensor: 1, isValid: true , Mean: 13.041463414634146, Z-Score: 0.050651175403840176, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 10.09999999999999, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 10.09999999999999,Sensor: 2, isValid: false , Mean: 12.971428571428572, Z-Score: 2.3406931855962743,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:01.497096", Leitura: 12.799999999999997, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:15:01.497096 ,  Temp: 12.799999999999997,Sensor: 1, isValid: true , Mean: 12.967441860465117, Z-Score: 0.13807705123343622,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 12.799999999999997.
-Mongo Insert,, Time: 2023-05-01 21:15:01.497096 ,  Temp: 12.799999999999997,Sensor: 1, isValid: true , Mean: 12.967441860465117, Z-Score: 0.13807705123343622, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:01.497096", Leitura: 9.79999999999999, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:01.497096 ,  Temp: 9.79999999999999,Sensor: 2, isValid: true , Mean: 12.895454545454546, Z-Score: 2.40255362446911, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:02.499416", Leitura: 12.499999999999996, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:02.499416 ,  Temp: 12.499999999999996,Sensor: 1, isValid: true , Mean: 12.886666666666667, Z-Score: 0.30318742469533344, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:02.499416", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:02.499416 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.886666666666667, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:02.940236", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:02.940236 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:03.501738", Leitura: 12.199999999999996, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:03.501738 ,  Temp: 12.199999999999996,Sensor: 1, isValid: true , Mean: 12.871739130434783, Z-Score: 0.5308643653192291, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:03.501738", Leitura: 9.199999999999989, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:15:03.501738 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 12.793617021276596, Z-Score: 2.6436295457403545,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 9.199999999999989.
-Alert Insert, ,Time: 2023-05-01 21:15:03.501738 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 12.793617021276596, Z-Score: 2.6436295457403545,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:15:03.501738 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 12.793617021276596, Z-Score: 2.6436295457403545, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:03.934577", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:03.934577 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:04.504055", Leitura: 11.899999999999995, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:04.504055 ,  Temp: 11.899999999999995,Sensor: 1, isValid: true , Mean: 12.775, Z-Score: 0.6475931791722145, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:29.619130", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 9.79999999999999, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:21:29.61913 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 14.0, Z-Score: NaN,  ,AlertType:Low ,Message:INFO: Sensor1 first reading is 14.0.
+Mongo Insert,, Time: 2023-05-03 12:21:29.61913 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 14.0, Z-Score: NaN, 
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.79999999999999,Sensor: 2, isValid: false , Mean: 11.899999999999995, Z-Score: 1.0,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:30.531689", SalaEntrada:2, SalaSaida:5},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:30.620452", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:30.547647", SalaEntrada:5, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:21:30.531689 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
+Mongo Insert,, Time: 2023-05-03 12:21:30.547647 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:30.620452", Leitura: 10.09999999999999, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:21:30.620452 ,  Temp: 10.09999999999999,Sensor: 2, isValid: true , Mean: 11.974999999999994, Z-Score: 0.924658401819136,  ,AlertType:Low ,Message:INFO: Sensor2 first reading is 10.09999999999999.
+Mongo Insert,, Time: 2023-05-03 12:21:30.620452 ,  Temp: 10.09999999999999,Sensor: 2, isValid: true , Mean: 11.974999999999994, Z-Score: 0.924658401819136, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:31.020382", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:31.020382 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:31.036340", SalaEntrada:3, SalaSaida:2},
+Mongo Insert,, Time: 2023-05-03 12:21:31.03634 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:31.621774", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:31.621774", Leitura: 10.399999999999991, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:31.621774 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.049999999999995, Z-Score: 0.842835582994015, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:32.000267", SalaEntrada:8, SalaSaida:9},
+Mongo Insert,, Time: 2023-05-03 12:21:32.000267 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:32.000267", SalaEntrada:4, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:32.000267 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:32.622603", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:32.622603", Leitura: 10.699999999999992, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:32.622603 ,  Temp: 10.699999999999992,Sensor: 2, isValid: true , Mean: 12.124999999999995, Z-Score: 0.7539920006259173, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:33.011563", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:33.011563 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:33.011563", SalaEntrada:2, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:33.011563 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:33.623925", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:33.645866", SalaEntrada:7, SalaSaida:5},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:33.623925", Leitura: 10.999999999999993, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:33.645866 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Mongo Insert,, Time: 2023-05-03 12:21:33.623925 ,  Temp: 10.999999999999993,Sensor: 2, isValid: true , Mean: 12.199999999999996, Z-Score: 0.6575959492214292, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:34.625247", Leitura: 14, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:21:34.625247 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 12.36363636363636, Z-Score: 0.9014660745260715, 
+Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 11.299999999999994, Sensor: 2},
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.299999999999994,Sensor: 2, isValid: false , Mean: 12.274999999999995, Z-Score: 0.5531497563836812,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:34.675114", SalaEntrada:5, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:21:34.675114 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:35.054100", SalaEntrada:1, SalaSaida:2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:35.070058", SalaEntrada:4, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:35.0541 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
+Mongo Insert,, Time: 2023-05-03 12:21:35.070058 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:35.165802", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:35.165802 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:35.626569", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:35.626569", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:35.626569 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.407692307692303, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:36.197044", SalaEntrada:5, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:21:36.197044 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:36.627891", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:36.627891", Leitura: 11.599999999999994, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:21:36.627891 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 12.459999999999996, Z-Score: 0.5069006851580236,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 11.599999999999994.
+Mongo Insert,, Time: 2023-05-03 12:21:36.627891 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 12.459999999999996, Z-Score: 0.5069006851580236, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:37.629213", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:37.629213", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:37.629213 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.556249999999995, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:38.044104", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:21:38.044104 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:38.167773", SalaEntrada:4, SalaSaida:5},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:38.293437", SalaEntrada:5, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:21:38.167773 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
+Mongo Insert,, Time: 2023-05-03 12:21:38.293437 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:38.630536", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:38.630536", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:39.312711", SalaEntrada:5, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:21:39.312711 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:39.631858", Leitura: 14, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:21:39.631858 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 12.6578947368421, Z-Score: 0.8249705984576171, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:39.631858", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:40.633180", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:40.633180", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:41.048070", SalaEntrada:2, SalaSaida:4},
+Mongo Insert,, Time: 2023-05-03 12:21:41.04807 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:41.253521", SalaEntrada:2, SalaSaida:4},
+Mongo Insert,, Time: 2023-05-03 12:21:41.253521 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:41.634502", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:41.634502", Leitura: 11.599999999999994, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:41.634502 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 12.637499999999996, Z-Score: 0.6718280621040362, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:42.049393", SalaEntrada:2, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:42.049393 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:42.318672", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:42.318672 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:42.635824", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:42.635824", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:43.156432", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:21:43.156432 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:43.637146", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:43.637146", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:43.788741", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:21:43.788741 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:44.638468", Leitura: 14, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:21:44.638468 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 12.706896551724135, Z-Score: 0.8649328187793704, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:44.638468", Leitura: 11.299999999999994, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:44.638468 ,  Temp: 11.299999999999994,Sensor: 2, isValid: true , Mean: 12.659999999999997, Z-Score: 0.9118690284122615, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:45.639790", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:45.639790", Leitura: 10.999999999999993, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:45.63979 ,  Temp: 10.999999999999993,Sensor: 2, isValid: true , Mean: 12.649999999999997, Z-Score: 1.1055415967851332, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:46.641113", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:46.641113", Leitura: 10.699999999999992, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:46.641113 ,  Temp: 10.699999999999992,Sensor: 2, isValid: true , Mean: 12.632352941176467, Z-Score: 1.284927196955849, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:47.046030", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:47.04603 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:47.472888", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:21:47.472888 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:47.642435", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:47.642435", Leitura: 10.399999999999991, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:21:47.642435 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.60833333333333, Z-Score: 1.4480441929417458,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 10.399999999999991.
+Alert Insert, ,Time: 2023-05-03 12:21:47.642435 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.60833333333333, Z-Score: 1.4480441929417458,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
+Mongo Insert,, Time: 2023-05-03 12:21:47.642435 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.60833333333333, Z-Score: 1.4480441929417458, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:48.184984", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:21:48.184984 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:48.312642", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:21:48.312642 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:48.530061", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:48.530061 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:48.643757", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:48.643757", Leitura: 10.09999999999999, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:48.643757 ,  Temp: 10.09999999999999,Sensor: 2, isValid: true , Mean: 12.57894736842105, Z-Score: 1.593847027124125, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:48.684647", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:21:48.684647 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:49.398738", SalaEntrada:4, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:49.398738 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:49.645079", Leitura: 14, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:21:49.645079 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 12.615384615384613, Z-Score: 0.8923803686278302, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:49.645079", Leitura: 9.79999999999999, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:49.645079 ,  Temp: 9.79999999999999,Sensor: 2, isValid: true , Mean: 12.544999999999998, Z-Score: 1.7222051596693861, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:50.202588", SalaEntrada:2, SalaSaida:4},
+Mongo Insert,, Time: 2023-05-03 12:21:50.202588 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:50.646401", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:50.646401", Leitura: 9.49999999999999, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:50.646401 ,  Temp: 9.49999999999999,Sensor: 2, isValid: true , Mean: 12.507142857142854, Z-Score: 1.8337482290361506, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:50.930641", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:21:50.930641 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:51.136092", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:21:51.136092 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:51.647723", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:51.692603", SalaEntrada:5, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:21:51.692603 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:51.647723", Leitura: 9.199999999999989, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:21:51.647723 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 12.465909090909088, Z-Score: 1.9296484299001926,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 9.199999999999989.
+Alert Insert, ,Time: 2023-05-03 12:21:51.647723 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 12.465909090909088, Z-Score: 1.9296484299001926,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
+Mongo Insert,, Time: 2023-05-03 12:21:51.647723 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 12.465909090909088, Z-Score: 1.9296484299001926, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:52.649045", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:52.649045", Leitura: 9.199999999999989, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:52.785680", SalaEntrada:8, SalaSaida:9},
+Mongo Insert,, Time: 2023-05-03 12:21:52.78568 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:53.162672", SalaEntrada:7, SalaSaida:5},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:53.162672", SalaEntrada:4, SalaSaida:5},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:53.162672", SalaEntrada:5, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:21:53.162672 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Mongo Insert,, Time: 2023-05-03 12:21:53.162672 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
+Mongo Insert,, Time: 2023-05-03 12:21:53.162672 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:53.414997", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:53.414997 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:53.650367", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:53.650367", Leitura: 9.199999999999989, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:54.082212", SalaEntrada:8, SalaSaida:9},
+Mongo Insert,, Time: 2023-05-03 12:21:54.082212 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:54.449231", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:54.449231 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:54.651690", Leitura: 14, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:21:54.65169 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 12.426530612244893, Z-Score: 0.8865337409392539, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:54.651690", Leitura: 9.199999999999989, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:55.462521", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:21:55.462521 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:55.653012", Leitura: 14, Sensor: 1},
 Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 9.199999999999989, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.199999999999989,Sensor: 2, isValid: false , Mean: 12.70204081632653, Z-Score: 2.449594561654551,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:05.506378", Leitura: 11.599999999999994, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:15:05.506378 ,  Temp: 11.599999999999994,Sensor: 1, isValid: true , Mean: 12.68, Z-Score: 0.758609553529963,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 11.599999999999994.
-Mongo Insert,, Time: 2023-05-01 21:15:05.506378 ,  Temp: 11.599999999999994,Sensor: 1, isValid: true , Mean: 12.68, Z-Score: 0.758609553529963, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:05.506378", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:05.506378 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.68, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:05.940214", SalaEntrada:1, SalaSaida:2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:05.941212", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:05.940214 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:15:05.941212 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:06.509691", Leitura: 11.299999999999994, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:06.509691 ,  Temp: 11.299999999999994,Sensor: 1, isValid: true , Mean: 12.652941176470588, Z-Score: 0.9510630339802167, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:06.509691", Leitura: 9.199999999999989, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:06.937548", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:06.937548 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:07.512010", Leitura: 10.999999999999993, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:07.51201 ,  Temp: 10.999999999999993,Sensor: 1, isValid: true , Mean: 12.556603773584904, Z-Score: 1.0460130730804658, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:07.512010", Leitura: 9.199999999999989, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:08.514329", Leitura: 10.999999999999993, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:08.516325", Leitura: 9.199999999999989, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:08.516325 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 12.40892857142857, Z-Score: 2.0215385968647444, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:08.943184", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:08.943184 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:09.517646", Leitura: 10.999999999999993, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:09.517646", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:09.517646 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.384210526315787, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:09.937523", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:09.937523 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:10.519966", Leitura: 10.999999999999993, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:10.519966", Leitura: 9.199999999999989, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:10.942835", SalaEntrada:2, SalaSaida:4},
-Mongo Insert,, Time: 2023-05-01 21:15:10.942835 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:11.522285", Leitura: 10.999999999999993, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 9.199999999999989, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.199999999999989,Sensor: 2, isValid: false , Mean: 12.234426229508191, Z-Score: 1.840569597227315,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:12.524604", Leitura: 10.999999999999993, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:12.524604 ,  Temp: 10.999999999999993,Sensor: 1, isValid: true , Mean: 12.214516129032253, Z-Score: 0.7393586166410868, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:12.524604", Leitura: 9.49999999999999, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:12.524604 ,  Temp: 9.49999999999999,Sensor: 2, isValid: true , Mean: 12.171428571428565, Z-Score: 1.604928509781211, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:13.526924", Leitura: 10.999999999999993, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:13.526924", Leitura: 9.79999999999999, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:13.526924 ,  Temp: 9.79999999999999,Sensor: 2, isValid: true , Mean: 12.11692307692307, Z-Score: 1.3871002680689686, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:14.529243", Leitura: 10.999999999999993, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 10.09999999999999, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 10.09999999999999,Sensor: 2, isValid: false , Mean: 12.070149253731337, Z-Score: 1.1807922089362108,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:14.944134", SalaEntrada:1, SalaSaida:2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:14.944134", SalaEntrada:4, SalaSaida:5},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:14.945132", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:14.944134 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:15:14.944134 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:15:14.945132 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:15.532561", Leitura: 10.999999999999993, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:15.532561", Leitura: 10.399999999999991, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:15:15.532561 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.030434782608689, Z-Score: 0.9816484845527604,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 10.399999999999991.
-Mongo Insert,, Time: 2023-05-01 21:15:15.532561 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.030434782608689, Z-Score: 0.9816484845527604, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:15.941467", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:15.941467 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:16.445120", SalaEntrada:5, SalaSaida:7},
-Mongo Insert,, Time: 2023-05-01 21:15:16.44512 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:16.535877", Leitura: 10.999999999999993, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:16.535877", Leitura: 10.699999999999992, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:16.535877 ,  Temp: 10.699999999999992,Sensor: 2, isValid: true , Mean: 11.997183098591542, Z-Score: 0.7865746622825182, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:17.538196", Leitura: 10.999999999999993, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:17.538196 ,  Temp: 10.999999999999993,Sensor: 1, isValid: true , Mean: 11.983333333333325, Z-Score: 0.5989307592790254, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:17.538196", Leitura: 10.999999999999993, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:17.538196 ,  Temp: 10.999999999999993,Sensor: 2, isValid: true , Mean: 11.969863013698623, Z-Score: 0.5933582692418722, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:17.947103", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:17.947103 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:18.540516", Leitura: 10.699999999999992, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:18.540516 ,  Temp: 10.699999999999992,Sensor: 1, isValid: true , Mean: 11.952702702702695, Z-Score: 0.7685021793405244, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:18.540516", Leitura: 11.299999999999994, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:18.540516 ,  Temp: 11.299999999999994,Sensor: 2, isValid: true , Mean: 11.943999999999992, Z-Score: 0.3973141294415505, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:19.447091", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:19.447091 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:19.542835", Leitura: 10.399999999999991, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:15:19.542835 ,  Temp: 10.399999999999991,Sensor: 1, isValid: true , Mean: 11.923684210526307, Z-Score: 0.9406803066734947,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 10.399999999999991.
-Mongo Insert,, Time: 2023-05-01 21:15:19.542835 ,  Temp: 10.399999999999991,Sensor: 1, isValid: true , Mean: 11.923684210526307, Z-Score: 0.9406803066734947, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:19.542835", Leitura: 11.599999999999994, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:15:19.542835 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 11.91948051948051, Z-Score: 0.1984803176703968,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 11.599999999999994.
-Mongo Insert,, Time: 2023-05-01 21:15:19.542835 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 11.91948051948051, Z-Score: 0.1984803176703968, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:20.545155", Leitura: 10.09999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:20.545155 ,  Temp: 10.09999999999999,Sensor: 1, isValid: true , Mean: 11.896153846153837, Z-Score: 1.1140128977663846, 
+Alert Insert, ,Time: 1899-12-31 00:00:00.0 ,  Temp: 9.199999999999989,Sensor: 2, isValid: false , Mean: 12.332692307692303, Z-Score: 1.6970490227383297,  , Error: This timestamp wasn't parsable.  ,AlertType:Medium ,Message:Sensor with 5 malfunctions! 
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.199999999999989,Sensor: 2, isValid: false , Mean: 12.332692307692303, Z-Score: 1.6970490227383297,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:56.654334", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:56.654334", Leitura: 9.199999999999989, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:56.654334 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 12.305555555555552, Z-Score: 1.6567126857477321, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:57.655656", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:57.655656", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:21:57.655656 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.336363636363632, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:58.656978", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:58.610103", SalaEntrada:8, SalaSaida:9},
+Mongo Insert,, Time: 2023-05-03 12:21:58.610103 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:58.656978", Leitura: 3@ , Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:58.847469", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:21:58.656978 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.366071428571425, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Mongo Insert,, Time: 2023-05-03 12:21:58.847469 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:58.863426", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:21:58.863426 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:21:59.513687", SalaEntrada:9, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:21:59.513687 ,  EntranceRoom: 9, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:59.658300", Leitura: 14, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:21:59.6583 ,  Temp: 14.0,Sensor: 1, isValid: true , Mean: 12.39473684210526, Z-Score: 0.8614925562387009, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:21:59.658300", Leitura: 9.199999999999989, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:00.544929", SalaEntrada:5, SalaSaida:3},
+Mongo Insert,, Time: 2023-05-03 12:22:00.544929 ,  EntranceRoom: 5, ExitRoom: 3, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:00.659622", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:00.659622", Leitura: 9.49999999999999, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:00.659622 ,  Temp: 9.49999999999999,Sensor: 2, isValid: true , Mean: 12.319999999999997, Z-Score: 1.47694594414363, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:01.660945", Leitura: 14, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:01.660945", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:01.660945 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.347540983606555, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:02.356085", SalaEntrada:4, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:22:02.356085 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:02.662267", Leitura: 13.7, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:02.662267 ,  Temp: 13.7,Sensor: 1, isValid: true , Mean: 12.369354838709675, Z-Score: 0.701136042226547, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:02.662267", Leitura: 10.09999999999999, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:02.662267 ,  Temp: 10.09999999999999,Sensor: 2, isValid: true , Mean: 12.33333333333333, Z-Score: 1.1729912929899562, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:03.550890", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:22:03.55089 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:03.663589", Leitura: 13.399999999999999, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:03.663589 ,  Temp: 13.399999999999999,Sensor: 1, isValid: true , Mean: 12.349999999999998, Z-Score: 0.5544826240669366, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:03.663589", Leitura: 10.399999999999991, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:03.690517", SalaEntrada:3, SalaSaida:2},
+Alert Insert, ,Time: 2023-05-03 12:22:03.663589 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.319999999999999, Z-Score: 1.0135674771393461,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 10.399999999999991.
+Alert Insert, ,Time: 2023-05-03 12:22:03.663589 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.319999999999999, Z-Score: 1.0135674771393461,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
+Mongo Insert,, Time: 2023-05-03 12:22:03.663589 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.319999999999999, Z-Score: 1.0135674771393461, 
+Mongo Insert,, Time: 2023-05-03 12:22:03.690517 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:04.579140", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:22:04.57914 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:04.664911", Leitura: 13.099999999999998, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:04.664911 ,  Temp: 13.099999999999998,Sensor: 1, isValid: true , Mean: 12.33181818181818, Z-Score: 0.4081066163301501, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:04.664911", Leitura: 10.699999999999992, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:04.664911 ,  Temp: 10.699999999999992,Sensor: 2, isValid: true , Mean: 12.307462686567163, Z-Score: 0.8556451691573361, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:05.666233", Leitura: 12.799999999999997, Sensor: 1},
+Alert Insert, ,Time: 2023-05-03 12:22:05.666233 ,  Temp: 12.799999999999997,Sensor: 1, isValid: true , Mean: 12.314705882352941, Z-Score: 0.26010907090912005,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 12.799999999999997.
+Mongo Insert,, Time: 2023-05-03 12:22:05.666233 ,  Temp: 12.799999999999997,Sensor: 1, isValid: true , Mean: 12.314705882352941, Z-Score: 0.26010907090912005, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:05.666233", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:05.666233 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 12.314705882352941, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:06.667555", Leitura: 12.499999999999996, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:06.667555 ,  Temp: 12.499999999999996,Sensor: 1, isValid: true , Mean: 12.317391304347826, Z-Score: 0.09858503063073225, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:06.667555", Leitura: 11.299999999999994, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:06.667555 ,  Temp: 11.299999999999994,Sensor: 2, isValid: true , Mean: 12.302857142857142, Z-Score: 0.5441507323044407, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:07.153256", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:22:07.153256 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:07.668877", Leitura: 12.199999999999996, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:07.668877 ,  Temp: 12.199999999999996,Sensor: 1, isValid: true , Mean: 12.301408450704225, Z-Score: 0.055414691755089646, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:07.668877", Leitura: 11.599999999999994, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:22:07.668877 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 12.291666666666666, Z-Score: 0.38022623817043427,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 11.599999999999994.
+Mongo Insert,, Time: 2023-05-03 12:22:07.668877 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 12.291666666666666, Z-Score: 0.38022623817043427, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:08.326119", SalaEntrada:5, SalaSaida:3},
+Mongo Insert,, Time: 2023-05-03 12:22:08.326119 ,  EntranceRoom: 5, ExitRoom: 3, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:08.342077", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:22:08.342077 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:08.670199", Leitura: 11.899999999999995, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:08.670199 ,  Temp: 11.899999999999995,Sensor: 1, isValid: true , Mean: 12.286301369863013, Z-Score: 0.2137611676933782, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:08.670199", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:09.671521", Leitura: 11.599999999999994, Sensor: 1},
+Alert Insert, ,Time: 2023-05-03 12:22:09.671521 ,  Temp: 11.599999999999994,Sensor: 1, isValid: true , Mean: 12.267999999999999, Z-Score: 0.3739509953970226,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 11.599999999999994.
+Mongo Insert,, Time: 2023-05-03 12:22:09.671521 ,  Temp: 11.599999999999994,Sensor: 1, isValid: true , Mean: 12.267999999999999, Z-Score: 0.3739509953970226, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:09.671521", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:10.672843", Leitura: 11.299999999999994, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:10.672843 ,  Temp: 11.299999999999994,Sensor: 1, isValid: true , Mean: 12.246753246753245, Z-Score: 0.5355125626550243, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:10.705756", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:22:10.705756 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:10.672843", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:11.336070", SalaEntrada:8, SalaSaida:10},
+Mongo Insert,, Time: 2023-05-03 12:22:11.33607 ,  EntranceRoom: 8, ExitRoom: 10, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:11.674166", Leitura: 10.999999999999993, Sensor: 1},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:11.716054", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:22:11.716054 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Mongo Insert,, Time: 2023-05-03 12:22:11.674166 ,  Temp: 10.999999999999993,Sensor: 1, isValid: true , Mean: 12.222784810126582, Z-Score: 0.6977809182627593, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:11.674166", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:12.305477", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:22:12.305477 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:12.675488", Leitura: 10.999999999999993, Sensor: 1},
 Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.599999999999994,Sensor: 2, isValid: false , Mean: 11.89240506329113, Z-Score: 0.18247572659524697,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:21.547474", Leitura: 9.79999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:21.547474 ,  Temp: 9.79999999999999,Sensor: 1, isValid: true , Mean: 11.866249999999992, Z-Score: 1.2839707340509992, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:21.547474", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:22.549794", Leitura: 9.49999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:22.549794 ,  Temp: 9.49999999999999,Sensor: 1, isValid: true , Mean: 11.834146341463407, Z-Score: 1.4490572219304725, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:22.549794", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:23.552115", Leitura: 9.199999999999989, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:15:23.552115 ,  Temp: 9.199999999999989,Sensor: 1, isValid: true , Mean: 11.799999999999992, Z-Score: 1.6078202766680743,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 9.199999999999989.
-Alert Insert, ,Time: 2023-05-01 21:15:23.552115 ,  Temp: 9.199999999999989,Sensor: 1, isValid: true , Mean: 11.799999999999992, Z-Score: 1.6078202766680743,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:15:23.552115 ,  Temp: 9.199999999999989,Sensor: 1, isValid: true , Mean: 11.799999999999992, Z-Score: 1.6078202766680743, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:23.552115", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:23.552115 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.799999999999992, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:23.946060", SalaEntrada:7, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:23.94606 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:23.947569", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:23.947569 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:24.554940", Leitura: 8.899999999999988, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:24.55494 ,  Temp: 8.899999999999988,Sensor: 1, isValid: true , Mean: 11.76588235294117, Z-Score: 1.7499593596945637, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:24.554940", Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:24.55494 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 11.763953488372085, Z-Score: 0.1006941232209824, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:25.448550", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:25.44855 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:25.557259", Leitura: 8.599999999999987, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:25.557259 ,  Temp: 8.599999999999987,Sensor: 1, isValid: true , Mean: 11.727586206896543, Z-Score: 1.8913737618455029, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:25.557259", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:26.559579", Leitura: 8.299999999999986, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:26.559579 ,  Temp: 8.299999999999986,Sensor: 1, isValid: true , Mean: 11.687640449438193, Z-Score: 2.0232183781731616, 
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.599999999999994,Sensor: 2, isValid: false , Mean: 12.192682926829267, Z-Score: 0.34302638829769955,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:13.033530", SalaEntrada:3, SalaSaida:2},
+Mongo Insert,, Time: 2023-05-03 12:22:13.03353 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:13.676810", Leitura: 10.999999999999993, Sensor: 1},
 Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.599999999999994,Sensor: 2, isValid: false , Mean: 11.686666666666659, Z-Score: 0.05204957480406178,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:26.947541", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:26.947541 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:27.562408", Leitura: 7.999999999999987, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:15:27.562408 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.646153846153839, Z-Score: 2.144893624515822,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 7.999999999999987.
-Alert Insert, ,Time: 2023-05-01 21:15:27.562408 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.646153846153839, Z-Score: 2.144893624515822,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:15:27.562408 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.646153846153839, Z-Score: 2.144893624515822, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:27.562408", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:27.562408 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.646153846153839, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:28.564727", Leitura: 7.999999999999987, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:28.566723", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:28.566723 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.606521739130427, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:28.946705", SalaEntrada:5, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:28.946705 ,  EntranceRoom: 5, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:29.568046", Leitura: 7.999999999999987, Sensor: 1},
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.599999999999994,Sensor: 2, isValid: false , Mean: 12.171428571428569, Z-Score: 0.33355345859700125,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:13.813444", SalaEntrada:2, SalaSaida:4},
+Mongo Insert,, Time: 2023-05-03 12:22:13.813444 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:13.939108", SalaEntrada:8, SalaSaida:9},
+Mongo Insert,, Time: 2023-05-03 12:22:13.939108 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:14.318095", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:22:14.318095 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:14.678132", Leitura: 10.999999999999993, Sensor: 1},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:14.839700", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:22:14.8397 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:14.678132", Leitura: 11.599999999999994, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:14.678132 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 12.151162790697672, Z-Score: 0.32443873820406843, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:15.679454", Leitura: 10.999999999999993, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:15.679454", Leitura: 11.599999999999994, Sensor: 2},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:15.790158", SalaEntrada:8, SalaSaida:9},
+Mongo Insert,, Time: 2023-05-03 12:22:15.790158 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:15.947737", SalaEntrada:7, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:22:15.947737 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:16.680776", Leitura: 10.999999999999993, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:16.680776 ,  Temp: 10.999999999999993,Sensor: 1, isValid: true , Mean: 12.119101123595502, Z-Score: 0.6663121167185441, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:16.680776", Leitura: 11.299999999999994, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:16.680776 ,  Temp: 11.299999999999994,Sensor: 2, isValid: true , Mean: 12.109999999999996, Z-Score: 0.48433577547892753, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:16.980973", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:22:16.980973 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:17.682098", Leitura: 10.999999999999993, Sensor: 1},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:17.503576", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:22:17.503576 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
 Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 10.999999999999993, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 10.999999999999993,Sensor: 2, isValid: false , Mean: 11.561702127659567, Z-Score: 0.32017998644907597,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:29.949024", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:29.949024 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:29.950024", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:29.950024 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:30.447691", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:30.447691 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:30.570364", Leitura: 7.999999999999987, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:30.570364", Leitura: 10.699999999999992, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:30.570364 ,  Temp: 10.699999999999992,Sensor: 2, isValid: true , Mean: 11.515624999999993, Z-Score: 0.45945648864291, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:30.948352", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:30.948352 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:31.572682", Leitura: 7.999999999999987, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:31.572682", Leitura: 10.399999999999991, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:15:31.572682 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 11.468367346938768, Z-Score: 0.5950461154670548,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 10.399999999999991.
-Mongo Insert,, Time: 2023-05-01 21:15:31.572682 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 11.468367346938768, Z-Score: 0.5950461154670548, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:32.575002", Leitura: 7.999999999999987, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:32.575002 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.433333333333326, Z-Score: 1.8867564542456787, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 10.09999999999999, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 10.09999999999999,Sensor: 2, isValid: false , Mean: 11.419999999999993, Z-Score: 0.7270989316197919,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:32.949999", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:32.949999 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:32.950997", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:32.950997 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:33.577321", Leitura: 7.999999999999987, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:33.577321", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:33.577321 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.386138613861378, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:34.452980", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:34.45298 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:34.579641", Leitura: 7.999999999999987, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 9.49999999999999, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.49999999999999,Sensor: 2, isValid: false , Mean: 11.334951456310671, Z-Score: 0.9871213597729377,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:35.449315", SalaEntrada:2, SalaSaida:4},
-Mongo Insert,, Time: 2023-05-01 21:15:35.449315 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:35.581961", Leitura: 7.999999999999987, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:35.581961", Leitura: 9.199999999999989, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:15:35.581961 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 11.282857142857134, Z-Score: 1.1076085816019863,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 9.199999999999989.
-Alert Insert, ,Time: 2023-05-01 21:15:35.581961 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 11.282857142857134, Z-Score: 1.1076085816019863,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:15:35.581961 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 11.282857142857134, Z-Score: 1.1076085816019863, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:35.953966", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:35.953966 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:36.584280", Leitura: 7.999999999999987, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:36.585279", Leitura: 9.199999999999989, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:37.587597", Leitura: 7.999999999999987, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:37.587597 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.202777777777769, Z-Score: 1.6715218894728128, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:37.587597", Leitura: 9.199999999999989, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:38.589916", Leitura: 7.699999999999987, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:38.589916 ,  Temp: 7.699999999999987,Sensor: 1, isValid: true , Mean: 11.152727272727263, Z-Score: 1.7829500480405975, 
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 10.999999999999993,Sensor: 2, isValid: false , Mean: 12.085869565217388, Z-Score: 0.6533444604361011,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:18.683421", Leitura: 10.999999999999993, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:18.683421", Leitura: 10.699999999999992, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:18.683421 ,  Temp: 10.699999999999992,Sensor: 2, isValid: true , Mean: 12.059574468085103, Z-Score: 0.821977308782506, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:18.961676", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:22:18.961676 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:19.500236", SalaEntrada:5, SalaSaida:7},
+Mongo Insert,, Time: 2023-05-03 12:22:19.500236 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:19.684743", Leitura: 10.999999999999993, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:19.684743", Leitura: 10.399999999999991, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:22:19.684743 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.031249999999996, Z-Score: 0.9893819175970208,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 10.399999999999991.
+Mongo Insert,, Time: 2023-05-03 12:22:19.684743 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 12.031249999999996, Z-Score: 0.9893819175970208, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:20.686065", Leitura: 10.999999999999993, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:20.686065", Leitura: 10.09999999999999, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:20.686065 ,  Temp: 10.09999999999999,Sensor: 2, isValid: true , Mean: 12.001020408163262, Z-Score: 1.1545922620404505, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:21.687387", Leitura: 10.999999999999993, Sensor: 1},
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:21.941707", SalaEntrada:4, SalaSaida:5},
+Mongo Insert,, Time: 2023-05-03 12:22:21.941707 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
+Mongo Insert,, Time: 2023-05-03 12:22:21.687387 ,  Temp: 10.999999999999993,Sensor: 1, isValid: true , Mean: 11.990909090909087, Z-Score: 0.6037692520899594, 
+Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 9.79999999999999, Sensor: 2},
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.79999999999999,Sensor: 2, isValid: false , Mean: 11.968999999999996, Z-Score: 1.3165686492093815,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:22.688709", Leitura: 10.699999999999992, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:22.688709 ,  Temp: 10.699999999999992,Sensor: 1, isValid: true , Mean: 11.956435643564353, Z-Score: 0.764210493008883, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:22.688709", Leitura: 9.49999999999999, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:22.688709 ,  Temp: 9.49999999999999,Sensor: 2, isValid: true , Mean: 11.932352941176466, Z-Score: 1.470745828313225, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:23.623210", SalaEntrada:8, SalaSaida:9},
+Mongo Insert,, Time: 2023-05-03 12:22:23.62321 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:23.690032", Leitura: 10.399999999999991, Sensor: 1},
+Alert Insert, ,Time: 2023-05-03 12:22:23.690032 ,  Temp: 10.399999999999991,Sensor: 1, isValid: true , Mean: 11.917475728155335, Z-Score: 0.9182245593146382,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 10.399999999999991.
+Mongo Insert,, Time: 2023-05-03 12:22:23.690032 ,  Temp: 10.399999999999991,Sensor: 1, isValid: true , Mean: 11.917475728155335, Z-Score: 0.9182245593146382, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:23.690032", Leitura: 9.199999999999989, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:22:23.690032 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 11.891346153846149, Z-Score: 1.615553534437962,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 9.199999999999989.
+Alert Insert, ,Time: 2023-05-03 12:22:23.690032 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 11.891346153846149, Z-Score: 1.615553534437962,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
+Mongo Insert,, Time: 2023-05-03 12:22:23.690032 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 11.891346153846149, Z-Score: 1.615553534437962, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:24.640489", SalaEntrada:8, SalaSaida:10},
+Mongo Insert,, Time: 2023-05-03 12:22:24.640489 ,  EntranceRoom: 8, ExitRoom: 10, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:24.691353", Leitura: 10.09999999999999, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:24.691353 ,  Temp: 10.09999999999999,Sensor: 1, isValid: true , Mean: 11.874285714285708, Z-Score: 1.0643271392257871, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:24.691353", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:24.691353 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.874285714285708, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:24.973598", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:22:24.973598 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:25.692675", Leitura: 9.79999999999999, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:25.692675 ,  Temp: 9.79999999999999,Sensor: 1, isValid: true , Mean: 11.85471698113207, Z-Score: 1.2294564167692483, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:25.692675", Leitura: 9.199999999999989, Sensor: 2},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:26.693997", Leitura: 9.49999999999999, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:26.693997 ,  Temp: 9.49999999999999,Sensor: 1, isValid: true , Mean: 11.808333333333326, Z-Score: 1.3659580886288454, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:26.693997", Leitura: 9.199999999999989, Sensor: 2},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:27.695319", Leitura: 9.199999999999989, Sensor: 1},
+Alert Insert, ,Time: 2023-05-03 12:22:27.695319 ,  Temp: 9.199999999999989,Sensor: 1, isValid: true , Mean: 11.760909090909085, Z-Score: 1.4973029920101006,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 9.199999999999989.
+Alert Insert, ,Time: 2023-05-03 12:22:27.695319 ,  Temp: 9.199999999999989,Sensor: 1, isValid: true , Mean: 11.760909090909085, Z-Score: 1.4973029920101006,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
+Mongo Insert,, Time: 2023-05-03 12:22:27.695319 ,  Temp: 9.199999999999989,Sensor: 1, isValid: true , Mean: 11.760909090909085, Z-Score: 1.4973029920101006, 
 Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 9.199999999999989, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.199999999999989,Sensor: 2, isValid: false , Mean: 11.135135135135126, Z-Score: 0.9992479077720626,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:38.947958", SalaEntrada:2, SalaSaida:4},
-Mongo Insert,, Time: 2023-05-01 21:15:38.947958 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:39.451612", SalaEntrada:4, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:39.451612 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:39.592235", Leitura: 7.399999999999987, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:39.592235 ,  Temp: 7.399999999999987,Sensor: 1, isValid: true , Mean: 11.101785714285706, Z-Score: 1.888972555372295, 
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.199999999999989,Sensor: 2, isValid: false , Mean: 11.737837837837832, Z-Score: 1.475714790686164,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:28.151101", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:22:28.151101 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:28.696642", Leitura: 8.899999999999988, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:28.696642 ,  Temp: 8.899999999999988,Sensor: 1, isValid: true , Mean: 11.712499999999993, Z-Score: 1.6231637075617675, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:28.696642", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:28.696642 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.712499999999993, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:29.611196", SalaEntrada:8, SalaSaida:9},
+Mongo Insert,, Time: 2023-05-03 12:22:29.611196 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:29.697964", Leitura: 8.599999999999987, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:29.697964 ,  Temp: 8.599999999999987,Sensor: 1, isValid: true , Mean: 11.684955752212382, Z-Score: 1.7633365696567862, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:29.697964", Leitura: 9.199999999999989, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:29.697964 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 11.663157894736834, Z-Score: 1.4017883209853548, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:30.699286", Leitura: 8.299999999999986, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:30.699286 ,  Temp: 8.299999999999986,Sensor: 1, isValid: true , Mean: 11.633913043478252, Z-Score: 1.8759947564420731, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:30.699286", Leitura: 9.199999999999989, Sensor: 2},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:31.700608", Leitura: 7.999999999999987, Sensor: 1},
+Alert Insert, ,Time: 2023-05-03 12:22:31.700608 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.582051282051273, Z-Score: 1.98237609646547,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 7.999999999999987.
+Alert Insert, ,Time: 2023-05-03 12:22:31.700608 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.582051282051273, Z-Score: 1.98237609646547,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
+Mongo Insert,, Time: 2023-05-03 12:22:31.700608 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.582051282051273, Z-Score: 1.98237609646547, 
 Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 9.199999999999989, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.199999999999989,Sensor: 2, isValid: false , Mean: 11.08495575221238, Z-Score: 0.9621514865966257,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:40.453931", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:40.453931 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:40.594555", Leitura: 7.099999999999987, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:40.594555 ,  Temp: 7.099999999999987,Sensor: 1, isValid: true , Mean: 11.04999999999999, Z-Score: 1.9893502124052198, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:40.594555", Leitura: 9.199999999999989, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:40.594555 ,  Temp: 9.199999999999989,Sensor: 2, isValid: true , Mean: 11.03391304347825, Z-Score: 0.924179546823661, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:41.597872", Leitura: 6.799999999999987, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:15:41.597872 ,  Temp: 6.799999999999987,Sensor: 1, isValid: true , Mean: 10.997413793103437, Z-Score: 2.08391769465432,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 6.799999999999987.
-Alert Insert, ,Time: 2023-05-01 21:15:41.597872 ,  Temp: 6.799999999999987,Sensor: 1, isValid: true , Mean: 10.997413793103437, Z-Score: 2.08391769465432,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:15:41.597872 ,  Temp: 6.799999999999987,Sensor: 1, isValid: true , Mean: 10.997413793103437, Z-Score: 2.08391769465432, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:41.597872", Leitura: 9.199999999999989, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:41.948932", SalaEntrada:2, SalaSaida:4},
-Mongo Insert,, Time: 2023-05-01 21:15:41.948932 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:42.454581", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:42.454581 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:42.600192", Leitura: 6.499999999999988, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:42.600192 ,  Temp: 6.499999999999988,Sensor: 1, isValid: true , Mean: 10.94406779661016, Z-Score: 2.172583857397173, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:42.600192", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:42.600192 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.94406779661016, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:42.950255", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:42.950255 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:43.602510", Leitura: 6.199999999999988, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:43.60251 ,  Temp: 6.199999999999988,Sensor: 1, isValid: true , Mean: 10.904201680672259, Z-Score: 2.258990508918759, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:43.602510", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:43.60251 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.904201680672259, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:43.955566", SalaEntrada:5, SalaSaida:7},
-Mongo Insert,, Time: 2023-05-01 21:15:43.955566 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:44.452238", SalaEntrada:5, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:44.452238 ,  EntranceRoom: 5, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:44.604830", Leitura: 5.899999999999988, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:44.60483 ,  Temp: 5.899999999999988,Sensor: 1, isValid: true , Mean: 10.86249999999999, Z-Score: 2.337438427109237, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:44.604830", Leitura: 9.49999999999999, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:44.60483 ,  Temp: 9.49999999999999,Sensor: 2, isValid: true , Mean: 10.851239669421478, Z-Score: 0.6380228501871714, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:44.955891", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:44.955891 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:44.955891", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:44.955891 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:45.607150", Leitura: 5.599999999999988, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:15:45.60715 ,  Temp: 5.599999999999988,Sensor: 1, isValid: true , Mean: 10.808196721311466, Z-Score: 2.4093645431413995,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 5.599999999999988.
-Alert Insert, ,Time: 2023-05-01 21:15:45.60715 ,  Temp: 5.599999999999988,Sensor: 1, isValid: true , Mean: 10.808196721311466, Z-Score: 2.4093645431413995,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:15:45.60715 ,  Temp: 5.599999999999988,Sensor: 1, isValid: true , Mean: 10.808196721311466, Z-Score: 2.4093645431413995, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:45.607150", Leitura: 9.79999999999999, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:45.60715 ,  Temp: 9.79999999999999,Sensor: 2, isValid: true , Mean: 10.79999999999999, Z-Score: 0.4640919980385482, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:45.951229", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:45.951229 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:45.952732", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:45.952732 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:46.609977", Leitura: 5.299999999999988, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:46.609977 ,  Temp: 5.299999999999988,Sensor: 1, isValid: true , Mean: 10.755645161290312, Z-Score: 2.47792772220897, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:46.609977", Leitura: 10.09999999999999, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:46.609977 ,  Temp: 10.09999999999999,Sensor: 2, isValid: true , Mean: 10.75039999999999, Z-Score: 0.29649216265456035, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:47.612296", Leitura: 5, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:47.612296 ,  Temp: 5.0,Sensor: 1, isValid: true , Mean: 10.704761904761895, Z-Score: 2.542550405934881, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:47.612296", Leitura: 10.399999999999991, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:15:47.612296 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 10.7023622047244, Z-Score: 0.13528342705316898,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 10.399999999999991.
-Mongo Insert,, Time: 2023-05-01 21:15:47.612296 ,  Temp: 10.399999999999991,Sensor: 2, isValid: true , Mean: 10.7023622047244, Z-Score: 0.13528342705316898, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:47.955380", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:47.95538 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:48.614616", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:48.616612", Leitura: 10.699999999999992, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:48.616612 ,  Temp: 10.699999999999992,Sensor: 2, isValid: true , Mean: 10.658139534883713, Z-Score: 0.018413746532712, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:49.451378", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:49.451378 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:49.616935", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:49.616935", Leitura: 10.999999999999993, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:49.616935 ,  Temp: 10.999999999999993,Sensor: 2, isValid: true , Mean: 10.617557251908389, Z-Score: 0.16561169967836079, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:50.619255", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:50.619255", Leitura: 11.299999999999994, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:50.619255 ,  Temp: 11.299999999999994,Sensor: 2, isValid: true , Mean: 10.580451127819542, Z-Score: 0.30704148801507625, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:50.948375", SalaEntrada:4, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:50.948375 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:50.956354", SalaEntrada:1, SalaSaida:2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:50.957855", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:50.956354 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:15:50.957855 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:51.457522", SalaEntrada:7, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:51.457522 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:51.622080", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:51.622080", Leitura: 11.599999999999994, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:15:51.62208 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 10.54666666666666, Z-Score: 0.44322609228430393,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 11.599999999999994.
-Mongo Insert,, Time: 2023-05-01 21:15:51.62208 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 10.54666666666666, Z-Score: 0.44322609228430393, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:52.454854", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:52.454854 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:52.625397", Leitura: 5, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:52.625397 ,  Temp: 5.0,Sensor: 1, isValid: true , Mean: 10.50588235294117, Z-Score: 2.2801377062616406, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:52.625397", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:53.627717", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:53.628715", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:53.949855", SalaEntrada:4, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:15:53.949855 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:54.631033", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:54.631033", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:55.633353", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:55.633353", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:56.458147", SalaEntrada:5, SalaSaida:6},
-Mongo Insert,, Time: 2023-05-01 21:15:56.458147 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:56.635672", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.599999999999994,Sensor: 2, isValid: false , Mean: 10.39172413793103, Z-Score: 0.480115767895825,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:56.958808", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:56.958808 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:57.455480", SalaEntrada:5, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:57.45548 ,  EntranceRoom: 5, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:57.638989", Leitura: 5, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:15:57.638989 ,  Temp: 5.0,Sensor: 1, isValid: true , Mean: 10.35479452054794, Z-Score: 2.1022939073643094, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.599999999999994,Sensor: 2, isValid: false , Mean: 10.363265306122445, Z-Score: 0.4868068207924309,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:58.641309", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:58.641309", Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:15:58.641309 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 10.335570469798654, Z-Score: 0.4932980509572883, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:58.956466", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:15:58.956466 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:59.644625", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:15:59.644625", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:59.958786", SalaEntrada:6, SalaSaida:8},
-Mongo Insert,, Time: 2023-05-01 21:15:59.958786 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:15:59.962775", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:15:59.962775 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:00.646945", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 11.899999999999995, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.899999999999995,Sensor: 2, isValid: false , Mean: 10.284313725490193, Z-Score: 0.6198488999385556,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:00.956121", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:00.956121 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:01.649265", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 12.199999999999996, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 12.199999999999996,Sensor: 2, isValid: false , Mean: 10.262580645161286, Z-Score: 0.7370314771050916,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:02.651584", Leitura: 5, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:02.651584 ,  Temp: 5.0,Sensor: 1, isValid: true , Mean: 10.228846153846149, Z-Score: 1.9704083273137007, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:02.652582", Leitura: 12.499999999999996, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:02.652582 ,  Temp: 12.499999999999996,Sensor: 2, isValid: true , Mean: 10.243312101910822, Z-Score: 0.8511354160832613, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:02.959760", SalaEntrada:1, SalaSaida:2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:02.963749", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:02.95976 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:02.963749 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:03.654901", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:03.654901", Leitura: 12.799999999999997, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:16:03.654901 ,  Temp: 12.799999999999997,Sensor: 2, isValid: true , Mean: 10.226415094339616, Z-Score: 0.9621196617690334,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 12.799999999999997.
-Mongo Insert,, Time: 2023-05-01 21:16:03.654901 ,  Temp: 12.799999999999997,Sensor: 2, isValid: true , Mean: 10.226415094339616, Z-Score: 0.9621196617690334, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:03.958090", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:16:03.95809 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:04.451769", SalaEntrada:2, SalaSaida:4},
-Mongo Insert,, Time: 2023-05-01 21:16:04.451769 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:04.458751", SalaEntrada:5, SalaSaida:6},
-Mongo Insert,, Time: 2023-05-01 21:16:04.458751 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:04.657220", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:04.657220", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:04.65722 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.193749999999994, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:05.467054", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:05.467054 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:05.659539", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 13.399999999999999, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 13.399999999999999,Sensor: 2, isValid: false , Mean: 10.181481481481475, Z-Score: 1.1815531348175183,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:05.949763", SalaEntrada:5, SalaSaida:3},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:05.964724", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:16:05.949763 ,  EntranceRoom: 5, ExitRoom: 3, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:05.964724 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:06.662856", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:06.662856", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:06.662856 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.149693251533735, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:07.459725", SalaEntrada:8, SalaSaida:10},
-Mongo Insert,, Time: 2023-05-01 21:16:07.459725 ,  EntranceRoom: 8, ExitRoom: 10, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:07.665176", Leitura: 5, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:07.665176 ,  Temp: 5.0,Sensor: 1, isValid: true , Mean: 10.118292682926823, Z-Score: 1.850164953605664, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:07.665176", Leitura: 14, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:16:07.665176 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.141818181818175, Z-Score: 1.3906322419507302,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 14.0.
-Alert Insert, ,Time: 2023-05-01 21:16:07.665176 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.141818181818175, Z-Score: 1.3906322419507302,  ,AlertType:High ,Message:HIGH: Temperature is rising fast above mean value
-Mongo Insert,, Time: 2023-05-01 21:16:07.665176 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.141818181818175, Z-Score: 1.3906322419507302, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:08.453069", SalaEntrada:4, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:08.453069 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:08.667495", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:08.668493", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:08.950738", SalaEntrada:5, SalaSaida:6},
-Mongo Insert,, Time: 2023-05-01 21:16:08.950738 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:08.965697", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:16:08.965697 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:09.669814", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:09.669814", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:10.450726", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:10.450726 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:10.672134", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:10.672134", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:11.674453", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:11.674453", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:11.966672", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:11.966672 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:11.966672", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:16:11.966672 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:12.676773", Leitura: 5, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:12.676773 ,  Temp: 5.0,Sensor: 1, isValid: true , Mean: 10.08275862068965, Z-Score: 1.7539653935704393, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:12.676773", Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:12.676773 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.105142857142852, Z-Score: 1.3409169052982213, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:13.453695", SalaEntrada:5, SalaSaida:6},
-Mongo Insert,, Time: 2023-05-01 21:16:13.453695 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:13.679093", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:13.679093", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:14.681413", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:14.681413", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:14.681413 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.069662921348309, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:14.959667", SalaEntrada:6, SalaSaida:8},
-Mongo Insert,, Time: 2023-05-01 21:16:14.959667 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:14.967646", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:14.967646 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:15.683731", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:15.683731", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:15.964980", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:15.96498 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:16.686051", Leitura: 5, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:16.686051", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:16.686051 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.035359116022093, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:16.954333", SalaEntrada:6, SalaSaida:8},
-Mongo Insert,, Time: 2023-05-01 21:16:16.954333 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:17.688370", Leitura: 5, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:17.68837 ,  Temp: 5.0,Sensor: 1, isValid: true , Mean: 10.0076923076923, Z-Score: 1.6705728503402522, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:17.688370", Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:17.68837 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.029508196721304, Z-Score: 1.3218047015744845, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:17.960642", SalaEntrada:2, SalaSaida:4},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:17.967624", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:17.960642 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:17.967624 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:18.455319", SalaEntrada:8, SalaSaida:9},
-Mongo Insert,, Time: 2023-05-01 21:16:18.455319 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:18.690689", Leitura: 5.3, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:18.690689 ,  Temp: 5.3,Sensor: 1, isValid: true , Mean: 10.00380434782608, Z-Score: 1.5597304135219638, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:18.690689", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:19.451654", SalaEntrada:6, SalaSaida:8},
-Mongo Insert,, Time: 2023-05-01 21:16:19.451654 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:19.693009", Leitura: 5.6, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:19.693009 ,  Temp: 5.6,Sensor: 1, isValid: true , Mean: 10.001612903225798, Z-Score: 1.45217497989237, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:19.693009", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:20.467936", SalaEntrada:5, SalaSaida:6},
-Mongo Insert,, Time: 2023-05-01 21:16:20.467936 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:20.695329", Leitura: 5.8999999999999995, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:20.695329 ,  Temp: 5.8999999999999995,Sensor: 1, isValid: true , Mean: 10.001063829787226, Z-Score: 1.3473991985189586, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:20.695329", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:20.968598", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:20.968598 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:21.697648", Leitura: 6.199999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:21.697648 ,  Temp: 6.199999999999999,Sensor: 1, isValid: true , Mean: 10.002105263157885, Z-Score: 1.244971409243347, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 14.0,Sensor: 2, isValid: false , Mean: 10.02303664921465, Z-Score: 1.299831655859478,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:22.699967", Leitura: 6.499999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:22.699967 ,  Temp: 6.499999999999999,Sensor: 1, isValid: true , Mean: 10.00468749999999, Z-Score: 1.1445225757420028, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 14.0,Sensor: 2, isValid: false , Mean: 10.02538860103626, Z-Score: 1.2956593204467266,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:23.703284", Leitura: 6.799999999999999, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:16:23.703284 ,  Temp: 6.799999999999999,Sensor: 1, isValid: true , Mean: 10.008762886597928, Z-Score: 1.0457361023229295,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 6.799999999999999.
-Alert Insert, ,Time: 2023-05-01 21:16:23.703284 ,  Temp: 6.799999999999999,Sensor: 1, isValid: true , Mean: 10.008762886597928, Z-Score: 1.0457361023229295,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
-Mongo Insert,, Time: 2023-05-01 21:16:23.703284 ,  Temp: 6.799999999999999,Sensor: 1, isValid: true , Mean: 10.008762886597928, Z-Score: 1.0457361023229295, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:23.703284", Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:23.703284 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.02923076923076, Z-Score: 1.2918128259684398, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:23.969572", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:23.969572 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:24.456271", SalaEntrada:9, SalaSaida:7},
-Mongo Insert,, Time: 2023-05-01 21:16:24.456271 ,  EntranceRoom: 9, ExitRoom: 7, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:24.705604", Leitura: 7.099999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:24.705604 ,  Temp: 7.099999999999999,Sensor: 1, isValid: true , Mean: 10.014285714285704, Z-Score: 0.9483398331671203, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:24.705604", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:24.968900", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:24.9689 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:25.451609", SalaEntrada:2, SalaSaida:4},
-Mongo Insert,, Time: 2023-05-01 21:16:25.451609 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:25.707923", Leitura: 7.399999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:25.707923 ,  Temp: 7.399999999999999,Sensor: 1, isValid: true , Mean: 10.02121212121211, Z-Score: 0.8520997220688632, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 14.0,Sensor: 2, isValid: false , Mean: 10.041206030150743, Z-Score: 1.2847754821031143,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:26.710242", Leitura: 7.699999999999998, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:26.710242 ,  Temp: 7.699999999999998,Sensor: 1, isValid: true , Mean: 10.02949999999999, Z-Score: 0.7568147936132571, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:26.710242", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:26.971544", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:26.971544 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:27.712562", Leitura: 7.999999999999998, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:16:27.712562 ,  Temp: 7.999999999999998,Sensor: 1, isValid: true , Mean: 10.03910891089108, Z-Score: 0.6623131112479737,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 7.999999999999998.
-Mongo Insert,, Time: 2023-05-01 21:16:27.712562 ,  Temp: 7.999999999999998,Sensor: 1, isValid: true , Mean: 10.03910891089108, Z-Score: 0.6623131112479737, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:27.712562", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:27.968876", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:27.968876 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:28.714882", Leitura: 7.999999999999998, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:28.716877", Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:28.716877 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.067804878048772, Z-Score: 1.2749258887119677, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:29.717202", Leitura: 7.999999999999998, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:29.717202", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:29.717202 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.057766990291254, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:29.961548", SalaEntrada:4, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:29.961548 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:29.972518", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:29.972518 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:30.719520", Leitura: 7.999999999999998, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:30.719520", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:30.968855", SalaEntrada:6, SalaSaida:8},
-Mongo Insert,, Time: 2023-05-01 21:16:30.968855 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:31.721839", Leitura: 7.999999999999998, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:31.721839", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:31.721839 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.056937799043054, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:31.957211", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:31.957211 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:32.724159", Leitura: 7.999999999999998, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:32.724159 ,  Temp: 7.999999999999998,Sensor: 1, isValid: true , Mean: 10.047142857142848, Z-Score: 0.6662608093661535, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:32.724159", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:32.963519", SalaEntrada:7, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:32.963519 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:32.973493", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:32.973493 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:33.726479", Leitura: 7.999999999999998, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 14.0,Sensor: 2, isValid: false , Mean: 10.074647887323934, Z-Score: 1.2753363105754523,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:34.464505", SalaEntrada:5, SalaSaida:7},
-Mongo Insert,, Time: 2023-05-01 21:16:34.464505 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:34.728798", Leitura: 7.999999999999998, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:34.728798", Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:34.728798 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.083255813953478, Z-Score: 1.272305473288049, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:35.469816", SalaEntrada:8, SalaSaida:9},
-Mongo Insert,, Time: 2023-05-01 21:16:35.469816 ,  EntranceRoom: 8, ExitRoom: 9, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:35.731117", Leitura: 7.999999999999998, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:35.731117", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:35.974467", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:35.974467 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:36.733437", Leitura: 7.999999999999998, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:36.733437", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:36.970802", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:36.970802 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:37.452514", SalaEntrada:4, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:37.452514 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:37.460494", SalaEntrada:8, SalaSaida:10},
-Mongo Insert,, Time: 2023-05-01 21:16:37.460494 ,  EntranceRoom: 8, ExitRoom: 10, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:37.735757", Leitura: 7.999999999999998, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:37.735757 ,  Temp: 7.999999999999998,Sensor: 1, isValid: true , Mean: 10.090454545454536, Z-Score: 0.6796605070992663, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:37.735757", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:38.738077", Leitura: 8.299999999999999, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:38.738077 ,  Temp: 8.299999999999999,Sensor: 1, isValid: true , Mean: 10.09999999999999, Z-Score: 0.5852890083690394, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:38.738077", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:38.738077 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.09999999999999, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:39.740396", Leitura: 8.6, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:39.740396 ,  Temp: 8.6,Sensor: 1, isValid: true , Mean: 10.093273542600887, Z-Score: 0.48638665848474083, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:39.740396", Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:39.740396 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.110714285714275, Z-Score: 1.265084850076642, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:40.742715", Leitura: 8.9, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:40.742715 ,  Temp: 8.9,Sensor: 1, isValid: true , Mean: 10.105333333333324, Z-Score: 0.39280282102837727, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 14.0,Sensor: 2, isValid: false , Mean: 10.122566371681406, Z-Score: 1.2619217663300026,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:41.745035", Leitura: 9.200000000000001, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:16:41.745035 ,  Temp: 9.200000000000001,Sensor: 1, isValid: true , Mean: 10.118502202643162, Z-Score: 0.2995302912986681,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 9.200000000000001.
-Mongo Insert,, Time: 2023-05-01 21:16:41.745035 ,  Temp: 9.200000000000001,Sensor: 1, isValid: true , Mean: 10.118502202643162, Z-Score: 0.2995302912986681, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:41.745035", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:41.952481", SalaEntrada:8, SalaSaida:10},
-Mongo Insert,, Time: 2023-05-01 21:16:41.952481 ,  EntranceRoom: 8, ExitRoom: 10, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:41.953477", SalaEntrada:5, SalaSaida:7},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:41.965445", SalaEntrada:7, SalaSaida:5},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:41.975420", SalaEntrada:1, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:41.953477 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:41.965445 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:41.97542 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:42.748351", Leitura: 9.500000000000002, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:42.748351 ,  Temp: 9.500000000000002,Sensor: 1, isValid: true , Mean: 10.132751091703048, Z-Score: 0.20650807259130144, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:42.748351", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:42.748351 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.132751091703048, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:42.973748", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:42.973748 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:43.480393", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:16:43.480393 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:43.750671", Leitura: 9.800000000000002, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:43.750671 ,  Temp: 9.800000000000002,Sensor: 1, isValid: true , Mean: 10.131304347826077, Z-Score: 0.10835932924283685, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:43.750671", Leitura: 14, Sensor: 2},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:44.752991", Leitura: 10.100000000000003, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:44.752991 ,  Temp: 10.100000000000003,Sensor: 1, isValid: true , Mean: 10.147844827586196, Z-Score: 0.01566225015155243, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:44.752991", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:44.752991 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.147844827586196, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:44.962430", SalaEntrada:5, SalaSaida:6},
-Mongo Insert,, Time: 2023-05-01 21:16:44.96243 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:44.977390", SalaEntrada:1, SalaSaida:2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:44.978904", SalaEntrada:1, SalaSaida:2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:44.981397", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:44.97739 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:44.978904 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:44.981397 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:45.755329", Leitura: 10.400000000000004, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:16:45.755329 ,  Temp: 10.400000000000004,Sensor: 1, isValid: true , Mean: 10.1489270386266, Z-Score: 0.08236576290857929,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 10.400000000000004.
-Mongo Insert,, Time: 2023-05-01 21:16:45.755329 ,  Temp: 10.400000000000004,Sensor: 1, isValid: true , Mean: 10.1489270386266, Z-Score: 0.08236576290857929, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 14.0,Sensor: 2, isValid: false , Mean: 10.165384615384605, Z-Score: 1.2563841515335554,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:46.757650", Leitura: 10.700000000000005, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:46.75765 ,  Temp: 10.700000000000005,Sensor: 1, isValid: true , Mean: 10.167659574468075, Z-Score: 0.17477839208472254, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:46.757650", Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:46.75765 ,  Temp: 14.0,Sensor: 2, isValid: true , Mean: 10.183898305084735, Z-Score: 1.251377888101253, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:46.966091", SalaEntrada:5, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:16:46.966091 ,  EntranceRoom: 5, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:47.759969", Leitura: 11.000000000000005, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:47.759969 ,  Temp: 11.000000000000005,Sensor: 1, isValid: true , Mean: 10.187341772151889, Z-Score: 0.26701092787148684, 
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 14, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 14.0,Sensor: 2, isValid: false , Mean: 10.203361344537806, Z-Score: 1.2459700203235022,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:47.980378", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:16:47.980378 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:48.467077", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:48.467077 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:48.762288", Leitura: 11.000000000000005, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:48.764284", Leitura: 13.7, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:48.764284 ,  Temp: 13.7,Sensor: 2, isValid: true , Mean: 10.221249999999989, Z-Score: 1.1431311845697547, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:49.764608", Leitura: 11.000000000000005, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:49.764608", Leitura: 13.399999999999999, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:49.764608 ,  Temp: 13.399999999999999,Sensor: 2, isValid: true , Mean: 10.237603305785113, Z-Score: 1.0410069459769085, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:50.766928", Leitura: 11.000000000000005, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:50.766928", Leitura: 13.099999999999998, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:50.766928 ,  Temp: 13.099999999999998,Sensor: 2, isValid: true , Mean: 10.252459016393432, Z-Score: 0.9393949126841592, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:51.482014", SalaEntrada:2, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:51.482014 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:51.769246", Leitura: 11.000000000000005, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:51.769246", Leitura: 12.799999999999997, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:16:51.769246 ,  Temp: 12.799999999999997,Sensor: 2, isValid: true , Mean: 10.265853658536574, Z-Score: 0.8381180156199101,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 12.799999999999997.
-Mongo Insert,, Time: 2023-05-01 21:16:51.769246 ,  Temp: 12.799999999999997,Sensor: 2, isValid: true , Mean: 10.265853658536574, Z-Score: 0.8381180156199101, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:52.771566", Leitura: 11.000000000000005, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:52.771566 ,  Temp: 11.000000000000005,Sensor: 1, isValid: true , Mean: 10.268825910931163, Z-Score: 0.24228324325263328, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:52.771566", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:52.771566 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.268825910931163, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:52.983000", SalaEntrada:5, SalaSaida:7},
-Mongo Insert,, Time: 2023-05-01 21:16:52.983 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:53.467703", SalaEntrada:2, SalaSaida:4},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:53.470696", SalaEntrada:9, SalaSaida:7},
-Mongo Insert,, Time: 2023-05-01 21:16:53.467703 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:53.470696 ,  EntranceRoom: 9, ExitRoom: 7, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:53.774882", Leitura: 11.000000000000005, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:53.774882", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:53.774882 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.271774193548376, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:54.777202", Leitura: 11.000000000000005, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: '2010-02-30 16:17:45',  Leitura: 11.899999999999995, Sensor: 2},
-Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 11.899999999999995,Sensor: 2, isValid: false , Mean: 10.281199999999988, Z-Score: 0.5392141039246681,  , Error: This timestamp wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:55.463366", SalaEntrada:6, SalaSaida:8},
-Mongo Insert,, Time: 2023-05-01 21:16:55.463366 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:55.779521", Leitura: 11.000000000000005, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:55.779521", Leitura: 11.599999999999994, Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:16:55.779521 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 10.289285714285702, Z-Score: 0.43811753493207434,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 11.599999999999994.
-Mongo Insert,, Time: 2023-05-01 21:16:55.779521 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 10.289285714285702, Z-Score: 0.43811753493207434, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:56.782838", Leitura: 11.000000000000005, Sensor: 1},
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:56.782838", Leitura: 3@ , Sensor: 2},
-Alert Insert, ,Time: 2023-05-01 21:16:56.782838 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.292094861660066, Z-Score: 0.0,  , Error: Reading value wasn't parsable.  ,AlertType:High ,Message:Sensor with 50 malfunctions! 
-Mongo Insert,, Time: 2023-05-01 21:16:56.782838 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.292094861660066, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:56.977318", SalaEntrada:2, SalaSaida:4},
-Mongo Insert,, Time: 2023-05-01 21:16:56.977318 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:56.981307", SalaEntrada:1, SalaSaida:2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:56.982304", SalaEntrada:1, SalaSaida:2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:56.983302", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:16:56.981307 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:56.982304 ,  EntranceRoom: 1, ExitRoom: 2, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:56.983302 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:57.469007", SalaEntrada:4, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:16:57.469007 ,  EntranceRoom: 4, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:57.785157", Leitura: 11.000000000000005, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:57.785157 ,  Temp: 11.000000000000005,Sensor: 1, isValid: true , Mean: 10.294881889763767, Z-Score: 0.2365726778732071, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:57.785157", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:16:57.785157 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.294881889763767, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:58.787476", Leitura: 11.300000000000006, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:16:58.787476 ,  Temp: 11.300000000000006,Sensor: 1, isValid: true , Mean: 10.298823529411752, Z-Score: 0.3364881425055917, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:58.787476", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:58.969988", SalaEntrada:5, SalaSaida:7},
-Mongo Insert,, Time: 2023-05-01 21:16:58.969988 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:59.789796", Leitura: 11.600000000000007, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:16:59.789796 ,  Temp: 11.600000000000007,Sensor: 1, isValid: true , Mean: 10.3089494163424, Z-Score: 0.435287225905144,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 11.600000000000007.
-Mongo Insert,, Time: 2023-05-01 21:16:59.789796 ,  Temp: 11.600000000000007,Sensor: 1, isValid: true , Mean: 10.3089494163424, Z-Score: 0.435287225905144, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:16:59.789796", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:59.978292", SalaEntrada:2, SalaSaida:4},
-Mongo Insert,, Time: 2023-05-01 21:16:59.978292 ,  EntranceRoom: 2, ExitRoom: 4, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:59.984276", SalaEntrada:1, SalaSaida:3},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:16:59.984276", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:16:59.984276 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Mongo Insert,, Time: 2023-05-01 21:16:59.984276 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:17:00.483940", SalaEntrada:7, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:17:00.48394 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:00.792116", Leitura: 11.900000000000007, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:17:00.792116 ,  Temp: 11.900000000000007,Sensor: 1, isValid: true , Mean: 10.32007722007721, Z-Score: 0.5342592643473373, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:00.792116", Leitura: 11.599999999999994, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:17:00.792116 ,  Temp: 11.599999999999994,Sensor: 2, isValid: true , Mean: 10.324999999999989, Z-Score: 0.43182400596306636, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:17:01.485262", SalaEntrada:1, SalaSaida:3},
-Mongo Insert,, Time: 2023-05-01 21:17:01.485262 ,  EntranceRoom: 1, ExitRoom: 3, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:01.795433", Leitura: 12.200000000000008, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:17:01.795433 ,  Temp: 12.200000000000008,Sensor: 1, isValid: true , Mean: 10.332183908045966, Z-Score: 0.6333285050983923, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:01.795433", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:17:01.984925", SalaEntrada:5, SalaSaida:7},
-Mongo Insert,, Time: 2023-05-01 21:17:01.984925 ,  EntranceRoom: 5, ExitRoom: 7, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:02.797752", Leitura: 12.500000000000009, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:17:02.797752 ,  Temp: 12.500000000000009,Sensor: 1, isValid: true , Mean: 10.345247148288962, Z-Score: 0.7324059353537558, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:02.798752", Leitura: 11.599999999999994, Sensor: 2},
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:17:02.985250", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:17:02.98525 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:17:02.986250", SalaEntrada:3, SalaSaida:2},
-Mongo Insert,, Time: 2023-05-01 21:17:02.98625 ,  EntranceRoom: 3, ExitRoom: 2, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:03.801070", Leitura: 12.80000000000001, Sensor: 1},
-Alert Insert, ,Time: 2023-05-01 21:17:03.80107 ,  Temp: 12.80000000000001,Sensor: 1, isValid: true , Mean: 10.359245283018858, Z-Score: 0.8313898981803032,  ,AlertType:Low ,Message:INFO: Sensor1 update, reading is 12.80000000000001.
-Mongo Insert,, Time: 2023-05-01 21:17:03.80107 ,  Temp: 12.80000000000001,Sensor: 1, isValid: true , Mean: 10.359245283018858, Z-Score: 0.8313898981803032, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:03.801070", Leitura: 3@ , Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:17:03.80107 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 10.359245283018858, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:17:04.456316", SalaEntrada:7, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:17:04.456316 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:04.803388", Leitura: 13.10000000000001, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:17:04.803388 ,  Temp: 13.10000000000001,Sensor: 1, isValid: true , Mean: 10.369548872180442, Z-Score: 0.9302990106163445, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:04.803388", Leitura: 11.299999999999994, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:17:04.803388 ,  Temp: 11.299999999999994,Sensor: 2, isValid: true , Mean: 10.37303370786516, Z-Score: 0.31636263671373643, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:05.805707", Leitura: 13.400000000000011, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:17:05.805707 ,  Temp: 13.400000000000011,Sensor: 1, isValid: true , Mean: 10.384328358208947, Z-Score: 1.0290916558902978, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:05.805707", Leitura: 10.999999999999993, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:17:05.805707 ,  Temp: 10.999999999999993,Sensor: 2, isValid: true , Mean: 10.386617100371739, Z-Score: 0.2096885820286392, 
-Queue Insert, pisid_mazemov, {Hora:"2023-05-01 21:17:06.470928", SalaEntrada:7, SalaSaida:5},
-Mongo Insert,, Time: 2023-05-01 21:17:06.470928 ,  EntranceRoom: 7, ExitRoom: 5, isValid: true
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:06.808027", Leitura: 13.700000000000012, Sensor: 1},
-Mongo Insert,, Time: 2023-05-01 21:17:06.808027 ,  Temp: 13.700000000000012,Sensor: 1, isValid: true , Mean: 10.39888888888888, Z-Score: 1.1279233535111177, 
-Queue Insert, pisid_mazetemp, {Hora: "2023-05-01 21:17:06.808027", Leitura: 10.699999999999992, Sensor: 2},
-Mongo Insert,, Time: 2023-05-01 21:17:06.808027 ,  Temp: 10.699999999999992,Sensor: 2, isValid: true , Mean: 10.399999999999991, Z-Score: 0.10269161479138865, 
+Mongo Insert,, Time: 1899-12-31 00:00:00.0 ,  Temp: 9.199999999999989,Sensor: 2, isValid: false , Mean: 11.561864406779652, Z-Score: 1.303114491914554,  , Error: This timestamp wasn't parsable. 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:32.088570", SalaEntrada:5, SalaSaida:6},
+Mongo Insert,, Time: 2023-05-03 12:22:32.08857 ,  EntranceRoom: 5, ExitRoom: 6, isValid: true
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:32.657050", SalaEntrada:2, SalaSaida:5},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:32.701930", Leitura: 7.999999999999987, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:32.65705 ,  EntranceRoom: 2, ExitRoom: 5, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:32.701930", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:32.70193 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.531932773109235, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:33.703252", Leitura: 7.999999999999987, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:33.703252", Leitura: 8.599999999999987, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:33.703252 ,  Temp: 8.599999999999987,Sensor: 2, isValid: true , Mean: 11.478512396694205, Z-Score: 1.5432936145781924, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:34.704574", Leitura: 7.999999999999987, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:34.704574", Leitura: 8.299999999999986, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:34.704574 ,  Temp: 8.299999999999986,Sensor: 2, isValid: true , Mean: 11.42439024390243, Z-Score: 1.6467227353973262, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:35.705896", Leitura: 7.999999999999987, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:35.705896", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:35.705896 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.396774193548378, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:36.707219", Leitura: 7.999999999999987, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:36.707219 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.369599999999991, Z-Score: 1.7454345028350309, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:36.707219", Leitura: 7.699999999999987, Sensor: 2},
+Alert Insert, ,Time: 2023-05-03 12:22:36.707219 ,  Temp: 7.699999999999987,Sensor: 2, isValid: true , Mean: 11.340476190476181, Z-Score: 1.8666993741195987,  ,AlertType:Low ,Message:INFO: Sensor2 update, reading is 7.699999999999987.
+Alert Insert, ,Time: 2023-05-03 12:22:36.707219 ,  Temp: 7.699999999999987,Sensor: 2, isValid: true , Mean: 11.340476190476181, Z-Score: 1.8666993741195987,  ,AlertType:High ,Message:HIGH: Temperature is dropping fast bellow mean value
+Mongo Insert,, Time: 2023-05-03 12:22:36.707219 ,  Temp: 7.699999999999987,Sensor: 2, isValid: true , Mean: 11.340476190476181, Z-Score: 1.8666993741195987, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:37.708541", Leitura: 7.999999999999987, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:37.708541", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:37.708541 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.314173228346448, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:38.709863", Leitura: 7.999999999999987, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:38.709863", Leitura: 7.099999999999987, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:38.709863 ,  Temp: 7.099999999999987,Sensor: 2, isValid: true , Mean: 11.255813953488364, Z-Score: 2.0726953585271044, 
+Queue Insert, pisid_mazemov, {Hora:"2023-05-03 12:22:39.209527", SalaEntrada:6, SalaSaida:8},
+Mongo Insert,, Time: 2023-05-03 12:22:39.209527 ,  EntranceRoom: 6, ExitRoom: 8, isValid: true
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:39.711185", Leitura: 7.999999999999987, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:39.711185", Leitura: 3@ , Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:39.711185 ,  Temp: -273.15,Sensor: 2, isValid: false , Mean: 11.230769230769223, Z-Score: 0.0,  , Error: Reading value wasn't parsable. 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:40.712507", Leitura: 7.999999999999987, Sensor: 1},
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:40.712507", Leitura: 6.799999999999987, Sensor: 2},
+Mongo Insert,, Time: 2023-05-03 12:22:40.712507 ,  Temp: 6.799999999999987,Sensor: 2, isValid: true , Mean: 11.172727272727265, Z-Score: 2.125366194245849, 
+Queue Insert, pisid_mazetemp, {Hora: "2023-05-03 12:22:41.713829", Leitura: 7.999999999999987, Sensor: 1},
+Mongo Insert,, Time: 2023-05-03 12:22:41.713829 ,  Temp: 7.999999999999987,Sensor: 1, isValid: true , Mean: 11.14887218045112, Z-Score: 1.5227439891063796, 
+Queu
