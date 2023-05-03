@@ -34,7 +34,7 @@ public class TemperatureReading extends SensorReading {
         if ((value = parseReadingValue(readingString))==null) {
             super.setReadingGood(false);
             super.setError(super.getError() + "Reading value wasn't parsable. ");
-            this.readingValue = -273.15;
+            this.readingValue = -99.99;
         } else {
             readingValue = value;
             updateOutliersAlgorithm(readingValue);

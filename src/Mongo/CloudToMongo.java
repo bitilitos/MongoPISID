@@ -275,6 +275,7 @@ public class CloudToMongo implements MqttCallback {
                 // for testing purpose only
                 // insertToQueue(topic, c.toString());
                 DBObject json = getDBObjectFromReading(reading);
+                if (json==null) return;
 
                 // Main when down and recovery from crash
                 if (runFromBackup && experienceBeginning != null) {
