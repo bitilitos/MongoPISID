@@ -50,7 +50,7 @@ public class CloudToMongo implements MqttCallback {
     private static final String EXPERIENCE_CLOUD_TOPIC = "g7_experiment";
 
 
-    private static boolean testing = true;
+    private static boolean testing = false;
 
     // Flag -> Waiting for Experience Reading to arrive
     private static boolean isWaitingForExperienceStart = false;
@@ -75,9 +75,9 @@ public class CloudToMongo implements MqttCallback {
 
 
     private static void createWindow() {
-        JFrame frame = new JFrame("Cloud to Mongo");
+        JFrame frame = new JFrame("Cloud to Mongo - PC1 - MongoDB");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLabel textLabel = new JLabel("Data from broker: ",SwingConstants.CENTER);
+        JLabel textLabel = new JLabel("Data from broker: pisid_mazetemp, pisid_mazemov ",SwingConstants.CENTER);
         textLabel.setPreferredSize(new Dimension(600, 30));
         JScrollPane scroll = new JScrollPane (documentLabel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scroll.setPreferredSize(new Dimension(600, 200));
@@ -98,8 +98,6 @@ public class CloudToMongo implements MqttCallback {
     public static void initiate() {
 
         createWindow();
-
-
         //**************************//
         // for testing purposes only
          // experienceBeginning = new Timestamp(System.currentTimeMillis());
@@ -129,6 +127,10 @@ public class CloudToMongo implements MqttCallback {
         for (CloudToMongo cloudToMongo : cloudToMongoList) {
             QueueToMongo queueToMongo = new QueueToMongo(cloudToMongo.mongocol, cloudToMongo.readingsForMongo);
             queueToMongo.start();
+            if(cloudToMongo.mongocol.getName().equals("alert")){
+                QueueToMongo queueToMongoAlertUrgent = new QueueToMongo(cloudToMongo.mongocol, cloudToMongo.readingsForMongo);
+                queueToMongoAlertUrgent.start();
+            }
         }
 
     }
@@ -451,11 +453,11 @@ public class CloudToMongo implements MqttCallback {
     public static void insertAlert(Alert alert) {
         CloudToMongo.getAlertCollection().insert(alert.getDBObject());
         System.out.println("Alert Insert, " + alert);
-        try {
-            CloudToMongo.getFileWriter().append("Alert Insert, ,").append(String.valueOf(alert)).append("\n");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            CloudToMongo.getFileWriter().append("Alert Insert, ,").append(String.valueOf(alert)).append("\n");
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     public static boolean isMongoConnected() {

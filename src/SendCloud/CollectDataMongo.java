@@ -23,6 +23,8 @@ public class CollectDataMongo extends Thread {
 
     Timestamp experienceStart;
     ObjectId lastReadingObjectId = null;
+    private static boolean isUrgentSet = false;
+    private boolean isUrgent = false;
 
 
 
@@ -34,6 +36,10 @@ public class CollectDataMongo extends Thread {
         this.mongo_authentication = mongo_authentication;
         this.mongo_address = mongo_address;
         this.experienceStart = experienceStart;
+        if (mongoCollection.equals("alert")&& !isUrgentSet) {
+            this.isUrgent = true;
+            isUrgentSet = true;
+        }
     }
 
 
@@ -45,8 +51,10 @@ public class CollectDataMongo extends Thread {
             e.printStackTrace();
         }
         while(CloudToMongo.getExperienceBeginning() != null)
+           if (mongocol.getName().equals("alert"))
+               getDataFromMongoAlertThread();
+           else
             getDataFromMongo();
-
     }
 
     private void getDataFromMongo () {
@@ -79,6 +87,50 @@ public class CollectDataMongo extends Thread {
     }
 
 
+    private void getDataFromMongoAlertThread () {
+        BasicDBObject query = new BasicDBObject();
+        List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
+        List<String> urgentAlertList = new ArrayList<String>();
+        urgentAlertList.add("High");
+        urgentAlertList.add("Very High");
+
+        if (lastReadingObjectId == null)
+            obj.add(new BasicDBObject("Hour", new BasicDBObject("$gt", experienceStart.toString())));
+        else
+            obj.add(new BasicDBObject("_id", new BasicDBObject("$gt", lastReadingObjectId)));
+
+        if (!isUrgent)
+            obj.add(new BasicDBObject("AlertType", new BasicDBObject("$nin", urgentAlertList)));
+        else
+            obj.add(new BasicDBObject("AlertType", new BasicDBObject("$in", urgentAlertList)));
+
+        query.put("$and", obj);
+
+
+        DBCursor iterDoc = mongocol.find(query);
+        Iterator it = iterDoc.iterator();
+        while (it.hasNext()) {
+            String reading = it.next().toString();
+            System.out.println("Reading took from Mongo:" + reading);
+            if (!isUrgent)
+                data.add(reading);
+            else
+                SendCloud.publishSensor(reading, "g7_alert");
+
+            DBObject json = CloudToMongo.getDBObjectFromReading(reading);
+            ObjectId readingID = (ObjectId) json.get("_id");
+
+            if (lastReadingObjectId == null || lastReadingObjectId.compareTo(readingID) < 0) {
+                lastReadingObjectId = readingID;
+            }
+        }
+        try {
+            if(!isUrgent)
+                sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public void connectMongo(String collection) {
         String mongoURI = new String();
         mongoURI = "mongodb://";

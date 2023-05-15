@@ -21,7 +21,7 @@ public abstract class SensorReading {
         time = parseTimestamp(timestampString);
 
         if (time == null) {
-            this.timestamp = new Timestamp(0,0,0,0,0,0,0);
+            this.timestamp = Timestamp.valueOf("2000-01-01 00:00:00");
             this.setReadingGood(false);
             this.setError("This timestamp wasn't parsable. ");
 
