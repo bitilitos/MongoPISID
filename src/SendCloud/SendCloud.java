@@ -66,6 +66,7 @@ public class SendCloud  extends Thread implements MqttCallback  {
 			}
 			else {
 				System.out.println("MQTT on topic " + cloud_topic + " is not connected");
+				connectCloud(cloud_topic);
 
 				try {
 					sleep(1000);

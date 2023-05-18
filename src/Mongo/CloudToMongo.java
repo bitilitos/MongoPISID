@@ -64,7 +64,7 @@ public class CloudToMongo implements MqttCallback {
     private static Timestamp experienceBeginning = null;
 
     private static File csvFile = new File("inserts.csv");
-    private static FileWriter fw;
+    //private static FileWriter fw;
 
     private static final String CLOUD_TO_MONGO_INI_PATH = "/home/bitos/IdeaProjects/MongoPISID/CloudToMongo.ini";
     private static final String BACKUP_AUTOMATIC_RUN = "BACKUP_AUTOMATIC_RUN";
@@ -97,7 +97,6 @@ public class CloudToMongo implements MqttCallback {
 
     public static void initiate() {
 
-        createWindow();
         //**************************//
         // for testing purposes only
          // experienceBeginning = new Timestamp(System.currentTimeMillis());
@@ -138,13 +137,13 @@ public class CloudToMongo implements MqttCallback {
     private void insertToQueue (String topic, String reading) {
         readingsForMongo.add(reading);
         String insert = "Queue Insert, " + topic + "," + " " + reading +",";
-        if (fw != null) {
-            try {
-                fw.append(insert + "\n");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        if (fw != null) {
+//            try {
+//                fw.append(insert + "\n");
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
         System.out.println(insert);
     }
 
@@ -207,6 +206,8 @@ public class CloudToMongo implements MqttCallback {
 
     private static void startService() {
         loadConfig();
+
+        createWindow();
         Runnable thread = new Runnable() {
 
             @Override
@@ -248,7 +249,7 @@ public class CloudToMongo implements MqttCallback {
             throws Exception {
         try {
             String reading = "";
-            if (testing && !cloud_topic.equals(EXPERIENCE_CLOUD_TOPIC)) {
+            if (testing && cloud_topic.equals("pisid_mazemov")) {
                 reading = "{Hora:\"2000-01-01 00:00:00\",SalaEntrada:0,SalaSaida:0}";
                 testing = false;
             }
@@ -363,7 +364,6 @@ public class CloudToMongo implements MqttCallback {
 
     // checks if reading is experience start
     private boolean isReadingExperienceStart (DBObject json) {
-
         if (json==null) return false;
         if (json.get("Hora").toString().equals("2000-01-01 00:00:00") && json.get("SalaEntrada").toString().equals("0") &&
                 json.get("SalaSaida").toString().equals("0")) {
@@ -397,19 +397,17 @@ public class CloudToMongo implements MqttCallback {
         MongoToJava.initiate(experienceBeginning);
 
         // For better data analysis
-        try {
-            csvFile = new File("inserts.csv");
-            fw = new FileWriter(csvFile.getPath(), false);
-            String header = "Insert,Topic,Time,Field1,Field2,isValid,Error\n";
-            fw.append(header);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+//        try {
+//            csvFile = new File("inserts.csv");
+//            fw = new FileWriter(csvFile.getPath(), false);
+//            String header = "Insert,Topic,Time,Field1,Field2,isValid,Error\n";
+//            fw.append(header);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         experienceMustEnd = false;
     }
-
 
     public static void endExperience(Timestamp timestamp, String motive) {
         DBCollection exp = db.getCollection("exp");
@@ -425,13 +423,12 @@ public class CloudToMongo implements MqttCallback {
         cloudToMongoList.clear();
         isExperienceActive = false;
 
-        try {
-            fw.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            fw.close();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
-
 
     private static void cleanDataReadingsForMongo() {
         for (CloudToMongo cloudToMongo : cloudToMongoList) {
@@ -454,7 +451,7 @@ public class CloudToMongo implements MqttCallback {
         CloudToMongo.getAlertCollection().insert(alert.getDBObject());
         System.out.println("Alert Insert, " + alert);
 //        try {
-//            CloudToMongo.getFileWriter().append("Alert Insert, ,").append(String.valueOf(alert)).append("\n");
+//            fw.append("Alert Insert, ,").append(String.valueOf(alert)).append("\n");
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
@@ -477,7 +474,6 @@ public class CloudToMongo implements MqttCallback {
         }
     }
 
-
     public static Timestamp getExperienceBeginning() { return experienceBeginning; }
 
     public static Timestamp getExperienceLimitTimestamp() {
@@ -488,7 +484,7 @@ public class CloudToMongo implements MqttCallback {
         return experienceMustEnd;
     }
 
-    public static FileWriter getFileWriter() {return fw;}
+    //public static FileWriter getFileWriter() {return fw;}
 
     public static DB getDb() {
         return db;
@@ -532,7 +528,7 @@ public class CloudToMongo implements MqttCallback {
 
     private static void manualRun() {
         CloudToMongo.startService();
-        // startBackup();
+        //startBackup();
 
     }
 
@@ -541,6 +537,7 @@ public class CloudToMongo implements MqttCallback {
     //args[2]="isWaitingForExperienceStart," + isWaitingForExperienceStart ** Boolean
     //args[3]="experienceMustEnd," + experienceMustEnd + " " ** Boolean
     //args[4]="experienceBeginning," + expBeginningString ** Timestamp - can be null
+    //args[5]="isExperienceActive, + isExperienceActive ** Boolean
     private static void backupAutomaticRun(String[] args) {
         runFromBackup = true;
         String[] values = new String[args.length-1];
@@ -551,13 +548,20 @@ public class CloudToMongo implements MqttCallback {
         hasStartReadingArrived = Boolean.parseBoolean((values[0]));
         isWaitingForExperienceStart = Boolean.parseBoolean(values[1]);
         experienceMustEnd = Boolean.parseBoolean(values[2]);
-        if (values[3].equals("null"))
+        isExperienceActive = Boolean.parseBoolean(values[3]);
+        if (values[4].equals("null"))
          experienceBeginning = null;
         else
-            experienceBeginning = Timestamp.valueOf(values[3]);
+            experienceBeginning = Timestamp.valueOf(values[4]);
+
+
 
         System.out.println(BACKUP_AUTOMATIC_RUN);
-        CloudToMongo.initiate();
+        CloudToMongo.startService();
+
+        if (isExperienceActive) {
+            CloudToMongo.initiate();
+        }
     }
 
 

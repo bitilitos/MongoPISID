@@ -2,16 +2,13 @@ package Mongo;
 
 
 import Sensor.*;
-import com.mongodb.DBCollection;
-import com.mongodb.WriteResult;
+import com.mongodb.*;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
+import java.math.*;
+import java.sql.*;
+import java.util.*;
+import java.util.concurrent.*;
+
 
 public class QueueToMongo extends Thread{
     private BlockingQueue<String> readingsForMongo;
@@ -64,13 +61,13 @@ public class QueueToMongo extends Thread{
                 temperatureReadingIsToAlert(sensorReading);
 
             String insert = "Mongo Insert,, " + sensorReading;
-            if (CloudToMongo.getFileWriter()!=null){
-                try {
-                    CloudToMongo.getFileWriter().append(insert + "\n");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+//            if (CloudToMongo.getFileWriter()!=null){
+//                try {
+//                    CloudToMongo.getFileWriter().append(insert + "\n");
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
             System.out.println(insert);
         }
     }
