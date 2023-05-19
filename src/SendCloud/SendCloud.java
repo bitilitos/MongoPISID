@@ -19,8 +19,14 @@ public class SendCloud  extends Thread implements MqttCallback  {
 		try {
 			MqttMessage mqtt_message = new MqttMessage();
 			mqtt_message.setPayload(leitura.getBytes());
+
+			if(cloud_topic.equals("g7_alert"))
+				mqtt_message.setQos(2);
+			else
+				mqtt_message.setQos(1);
+
 			mqttclient.publish(cloud_topic, mqtt_message);
-			System.out.println("Published topic " + cloud_topic + " : message:" + mqtt_message);
+			System.out.println("Published a topic");
 		} catch (MqttException e) {
 			e.printStackTrace();}
 	}
@@ -66,7 +72,6 @@ public class SendCloud  extends Thread implements MqttCallback  {
 			}
 			else {
 				System.out.println("MQTT on topic " + cloud_topic + " is not connected");
-				connectCloud(cloud_topic);
 
 				try {
 					sleep(1000);
